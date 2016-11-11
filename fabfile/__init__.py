@@ -21,12 +21,6 @@ import text
 import utils
 import spreadsheet
 
-if app_config.DEPLOY_TO_SERVERS:
-    import servers
-
-if app_config.DEPLOY_CRONTAB:
-    import cron_jobs
-
 # Bootstrap can only be run once, then it's disabled
 if app_config.PROJECT_SLUG == '$NEW_PROJECT_SLUG':
     import bootstrap
@@ -99,26 +93,9 @@ def app(port='8000'):
     Serve app.py.
     """
     if env.get('settings'):
-        local("DEPLOYMENT_TARGET=%s bash -c 'gunicorn -b 0.0.0.0:%s --timeout 3600 --debug --reload --log-file=logs/app.log app:wsgi_app'" % (env.settings, port))
+        local("DEPLOYMENT_TARGET=%s bash -c 'gunicorn -b 0.0.0.0:%s --timeout 3600 --debug --reload --log-file=-'" % (env.settings, port))
     else:
-        local('gunicorn -b 0.0.0.0:%s --timeout 3600 --debug --reload --log-file=logs/app.log app:wsgi_app' % port)
-
-@task
-def public_app(port='8001'):
-    """
-    Serve public_app.py.
-    """
-    if env.get('settings'):
-        local("DEPLOYMENT_TARGET=%s bash -c 'gunicorn -b 0.0.0.0:%s --timeout 3600 --debug --reload --log-file=logs/public_app.log public_app:wsgi_app'" % (env.settings, port))
-    else:
-        local('gunicorn -b 0.0.0.0:%s --timeout 3600 --debug --reload --log-file=logs/public_app.log public_app:wsgi_app' % port)
-
-@task
-def tests():
-    """
-    Run Python unit tests.
-    """
-    local('nosetests')
+        local('gunicorn -b 0.0.0.0:%s --timeout 3600 --debug --reload --log-file=- app:wsgi_app' % port)
 
 """
 Deployment
