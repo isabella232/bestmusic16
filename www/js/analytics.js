@@ -1,6 +1,5 @@
-/*
- * Module for tracking standardized analytics.
- */
+import Cookies from './lib/cookie.js';
+import CrossStorageClient from './lib/cross-storage-client.js';
 
 var _gaq = _gaq || [];
 var _sf_async_config = {};

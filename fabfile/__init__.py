@@ -92,10 +92,12 @@ def app(port='8000'):
     """
     Serve app.py.
     """
+    gunicorn = 'gunicorn -b 0.0.0.0:%s --timeout 3600 --debug --reload --log-file=- app:wsgi_app' % port
+
     if env.get('settings'):
         local("DEPLOYMENT_TARGET=%s bash -c 'gunicorn -b 0.0.0.0:%s --timeout 3600 --debug --reload --log-file=-'" % (env.settings, port))
     else:
-        local('gunicorn -b 0.0.0.0:%s --timeout 3600 --debug --reload --log-file=- app:wsgi_app' % port)
+        local('concurrently "%s" "npm start"' % gunicorn)
 
 """
 Deployment
