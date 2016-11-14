@@ -5,16 +5,21 @@ let modal = null;
 let modalOverlay = null;
 
 const onWindowLoaded = function() {
-    songContainers = document.querySelectorAll('.song-container');
-    modal = document.querySelector('.modal');
-    modalOverlay = document.querySelector('.modal-overlay');
-
-    for (var i = 0; i < songContainers.length; i++) {
-        songContainers[i].addEventListener('click', onSongClick);
-    }
-    modalOverlay.addEventListener('click', onModalClick);
-
     Barba.Pjax.start();
+    Barba.Dispatcher.on('newPageReady', attachEvents);
+}
+
+const attachEvents = function(currentStatus, prevStatus) {
+    if (currentStatus.namespace === 'list') {
+        songContainers = document.querySelectorAll('.song-container');
+        modal = document.querySelector('.modal');
+        modalOverlay = document.querySelector('.modal-overlay');
+
+        for (var i = 0; i < songContainers.length; i++) {
+            songContainers[i].addEventListener('click', onSongClick);
+        }
+        modalOverlay.addEventListener('click', onModalClick);
+    }
 }
 
 const onSongClick = function() {
