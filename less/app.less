@@ -49,6 +49,8 @@ body {
 
 p {
 	color: @music-event-txt-dark;
+	font-size: 14px;
+	font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -80,9 +82,16 @@ header {
     }
 }
 
+// GENERAL
+h2 {
+	color: white;
+	font-size: 1.3rem;
+}
+
+// INDEX
 .index-lists {
     max-width: 960px;
-    margin: 0 auto; 
+    margin: 0 auto;
 
     h2 {
         font-size: 32px;
@@ -104,8 +113,8 @@ header {
 
         .list-art {
             flex-basis: 20%;
-            img { 
-                width: 100%; 
+            img {
+                width: 100%;
                 max-width: 300px;
             }
         }
@@ -129,4 +138,58 @@ header {
             padding-bottom: 10px;
         }
     }
+}
+
+// LIST
+.list-container {
+	max-width: 960px;
+	margin: 0 auto;
+	width: 100%;
+
+	.song-container {
+		border-top: 1.5px solid white;
+		clear: both;
+		padding: 20px 0;
+
+		p {
+			line-height: 18px;
+
+			&.short-desc::after {
+				font-family: "npr-app-template";
+				content: '\E801';
+				margin-left: 5px;
+			}
+		}
+
+		.song-art {
+			width: 25%;
+			float: left;
+
+			img {
+				width: 100%;
+				max-width: 150px;
+			}
+		}
+
+		.song-info {
+			width: 65%;
+			margin-left: 5%;
+			float: left;
+
+			h6 {
+				font-weight: 700;
+				color: indianred;
+				margin: 0;
+			}
+
+			h5 {
+				color: white;
+				margin: 8px 0;
+			}
+		}
+	}
+
+	@media (max-width: 500px) {
+		width: 90%;
+	}
 }

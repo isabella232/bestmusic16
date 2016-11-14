@@ -1,4 +1,25 @@
 {% extends '_base.html' %}
 {% block content %}
-<p>{{ slug }}</p>
-{% endblock %}
+<div class="list-container">
+  <h2>Top Songs of 2016</h2>
+  <p>
+    We ased more than 50 hosts to name their favorite song of the year.
+  </p>
+  <!-- <hr /> -->
+  {% for song in COPY[slug] %}
+  <div class="song-container">
+    <div class="song-art">
+      <a href="#">
+        <img class="coverart" src="{{ song.art }}">
+      </a>
+    </div>
+    <div class="song-info">
+      <h6>{{ song.artist }}</h6>
+      <h5>"{{ song.title }}"</h5>
+      <p class="short-desc">{{ song.description }}</p>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+{% endblock content %}
