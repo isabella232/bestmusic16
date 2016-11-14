@@ -44,9 +44,89 @@
 @tag-10: #416ab8;
 
 body {
-	background-color: @music-event-darker;
+	background-color: @blue-darker;
 }
 
 p {
-	color: white;
+	color: @music-event-txt-dark;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    background: @blue-dark;
+    border-bottom: @music-hp-link-color 3px solid;
+
+    img {
+        max-width: 150px;
+        width: 100%;
+        height: auto;
+        margin-top: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+        text-transform: uppercase;
+        font-weight: normal;
+        color: @white;
+    }
+
+    .favorites {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+.index-lists {
+    max-width: 960px;
+    margin: 0 auto; 
+
+    h2 {
+        font-size: 32px;
+        text-transform: uppercase;
+        color: @white;
+    }
+
+    .list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+        padding: 0 0 30px;
+        border-bottom: @music-hp-link-color 1px solid;
+
+        &:last-child {
+            padding-top: 30px;
+        }
+
+        .list-art {
+            flex-basis: 20%;
+            img { 
+                width: 100%; 
+                max-width: 300px;
+            }
+        }
+        .list-info {
+            padding-left: 20px;
+            flex-basis: 80%;
+            h3 {
+                a { color: @white; }
+                text-decoration: none;
+                font-size: 20px;
+            }
+        }
+    }
+
+    .deeper-lists {
+        h4 {
+            a { color: @white; }
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            padding-bottom: 10px;
+        }
+    }
 }
