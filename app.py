@@ -36,6 +36,37 @@ def index():
 
     return make_response(render_template('index.html', **context))
 
+@app.route('/<slug>/')
+@oauth.oauth_required
+def list(slug):
+    """
+    Example view demonstrating rendering a simple HTML page.
+    """
+    context = make_context()
+    context['slug'] = slug
+
+    return make_response(render_template('list.html', **context))
+
+@app.route('/favorites/')
+@oauth.oauth_required
+def favorites():
+    """
+    Example view demonstrating rendering a simple HTML page.
+    """
+    context = make_context()
+
+    return make_response(render_template('favorites.html', **context))
+
+@app.route('/')
+@oauth.oauth_required
+def index():
+    """
+    Example view demonstrating rendering a simple HTML page.
+    """
+    context = make_context()
+
+    return make_response(render_template('index.html', **context))
+
 app.register_blueprint(static.static)
 app.register_blueprint(oauth.oauth)
 
