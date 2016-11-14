@@ -39,9 +39,19 @@ header {
     }
 
     .favorites {
+				.gotham();
+				font-size: .9rem;
         position: absolute;
         top: 10px;
         right: 10px;
+				background: @deep-blue;
+				border: 0;
+				padding: 7px 10px;
+
+				.heart::before {
+					.fa-icon();
+					content: '\E801';
+				}
     }
 }
 
@@ -119,7 +129,7 @@ h2 {
 			line-height: 18px;
 
 			&.short-desc::after {
-				font-family: "npr-app-template";
+				.fa-icon();
 				content: '\E801';
 				margin-left: 5px;
 			}
