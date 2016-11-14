@@ -1,0 +1,93 @@
+// FONTS
+.gotham() {
+    font-family: 'Gotham SSm',Helvetica,Arial,sans-serif;
+    font-weight: normal;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+}
+
+.knockout() {
+    font-family: 'Knockout 31 4r';
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+}
+
+.knockout-upper() {
+    .knockout();
+    text-transform: uppercase;
+}
+
+.sans-serif() {
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+// COLORS
+@primary-control: #6d8ac4;
+@deep-blue: #7598c9;
+@blue-dark: #1E2E3A;
+@blue-darker: #141D24;
+
+@music-dark: #444d58;
+@music-medium: #e6ebf2;
+@music-light: #dbe0e6;
+@music-red: #bc453e;
+@music-red-dark: #6f3533;
+@music-red-light: #f05b4e;
+
+@music-event-dark: #2e333c;
+@music-event-darker: #16191e;
+@music-event-txt-light: #cfd3de;
+@music-event-txt-dark: #8b9094;
+@music-event-light-button-blue: @deep-blue;
+@music-event-light-button: @deep-blue;
+@music-event-light-highlight-txt: @primary-control;
+@music-event-light-border: #252525;
+
+@music-hp-light: #e7e4dd;
+@music-hp-dark: #19262f;
+@music-hp-link-color: #568fcb;
+@music-hp-link-color2: #4a90e2;
+@music-hp-c-t-asecondary: #8a8a8a;
+
+@yellow: #EFC637;
+@white: #fff;
+@gray-medium: #A0A0A0;
+
+@tag-1: #f97450;
+@tag-2: #f05b4e;
+@tag-3: #ce4242;
+@tag-4: #b73759;
+@tag-5: #933256;
+@tag-6: #7b2c62;
+@tag-7: #653279;
+@tag-8: #524189;
+@tag-9: #5756a5;
+@tag-10: #416ab8;
+
+// BREAKPOINTS
+@screen-jumbo-above: ~"screen and (min-width: 1920px)";
+@screen-mega-above: ~"screen and (min-width: 1600px)";
+@screen-large-above: ~"screen and (min-width: 1201px)";
+@screen-large: ~"screen and (min-width: 1200px)";
+@screen-medium-above: ~"screen and (min-width: 992px)";
+@screen-medium: ~"screen and (max-width: 991px)";
+@screen-small-above: ~"screen and (min-width: 768px)";
+@screen-small: ~"screen and (max-width: 767px)";
+@screen-leftrail-above: ~"screen and (min-width: 641px)";
+@screen-leftrail: ~"screen and (max-width: 640px)";
+@screen-landscape-above: ~"screen and (min-width: 581px)";
+@screen-landscape: ~"screen and (max-width: 580px)";
+@screen-tiny-above: ~"screen and (min-width: 481px)";
+@screen-tiny: ~"screen and (max-width: 480px)";
+
+//CLEARFIX 
+.clearfix() {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
