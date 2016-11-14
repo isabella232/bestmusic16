@@ -113,6 +113,7 @@ h2 {
 		border-top: 1.5px solid @music-event-txt-light;
 		clear: both;
 		padding: 20px 0;
+		display: flex;
 
 		p {
 			line-height: 18px;
@@ -125,7 +126,7 @@ h2 {
 		}
 
 		.song-art {
-			width: 25%;
+			flex-basis: 25%;
 			float: left;
 
 			img {
@@ -135,7 +136,7 @@ h2 {
 		}
 
 		.song-info {
-			width: 65%;
+			flex-basis: 65%;
 			margin-left: 5%;
 			float: left;
 
@@ -152,7 +153,15 @@ h2 {
 		}
 	}
 
-	@media (max-width: 500px) {
+	@media @screen-small {
 		width: 90%;
+	}
+
+	@media @screen-medium {
+		width: 90%;
+
+		.song-container {
+			padding: 25px 0;
+		}
 	}
 }
