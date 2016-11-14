@@ -21,5 +21,6 @@
     "webpack-glob-entries": "^1.0.1"
   },
   "dependencies": {
+    "barba.js": "^1.0.0"
   }
 }
