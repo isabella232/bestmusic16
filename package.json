@@ -21,6 +21,5 @@
     "webpack-glob-entries": "^1.0.1"
   },
   "dependencies": {
-    "maquette": "^2.4.1"
   }
 }
