@@ -5,8 +5,8 @@ let modal = null;
 let modalOverlay = null;
 
 const onWindowLoaded = function() {
-    Barba.Pjax.start();
     Barba.Dispatcher.on('newPageReady', attachEvents);
+    Barba.Pjax.start();
 }
 
 const attachEvents = function(currentStatus, prevStatus) {
