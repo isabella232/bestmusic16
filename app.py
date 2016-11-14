@@ -33,7 +33,7 @@ def index():
     Example view demonstrating rendering a simple HTML page.
     """
     context = make_context()
-
+    context['namespace'] = 'index'
     return make_response(render_template('index.html', **context))
 
 @app.route('/<slug>/')
@@ -44,6 +44,7 @@ def list(slug):
     """
     context = make_context()
     context['slug'] = slug
+    context['namespace'] = 'list'
 
     return make_response(render_template('list.html', **context))
 
@@ -54,6 +55,7 @@ def favorites():
     Example view demonstrating rendering a simple HTML page.
     """
     context = make_context()
+    context['namespace'] = 'favorites'
 
     return make_response(render_template('favorites.html', **context))
 
