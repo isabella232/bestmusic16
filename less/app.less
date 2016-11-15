@@ -119,12 +119,19 @@ h2 {
 	margin: 0 auto;
 	width: 100%;
 
-	.song-container {
-		border-top: 1.5px solid @music-event-txt-light;
+	.songs-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
+	.song-wrapper {
+		border-bottom: 1.5px solid @music-event-txt-light;
 		clear: both;
 		padding: 20px 0;
 		display: flex;
-
+		flex-basis: 48%;
+		
 		p {
 			line-height: 18px;
 
@@ -163,17 +170,24 @@ h2 {
 		}
 	}
 
-	@media @screen-small {
-		width: 90%;
-	}
-
 	@media @screen-medium {
 		width: 90%;
 
-		.song-container {
+		.song-wrapper {
 			padding: 25px 0;
+			flex-basis: 50%;
 		}
 	}
+
+	@media @screen-small {
+		width: 90%;
+
+		.song-wrapper {
+			flex-basis: 100%;
+		}
+	}
+
+
 }
 
 .modal {
