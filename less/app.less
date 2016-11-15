@@ -152,7 +152,7 @@ h2 {
 
 			h6 {
 				font-weight: 700;
-				color: indianred;
+				color: @music-red;
 				margin: 0;
 			}
 
@@ -197,12 +197,49 @@ h2 {
     .modal-content {
         background-color: @music-hp-dark;
         min-height: 400px;
-        width: 60%;
+        width: 90%;
         opacity: 1;
         z-index: 2;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+		padding: 15px;
+
+		h6.artist {
+			font-weight: 700;
+			color: @music-red;
+			margin: 0;
+		}
+
+		h5.title {
+			color: @music-event-txt-light;
+			margin: 8px 0;
+		}
+
+		.song-player {
+			background-color: @music-dark;
+			display: flex;
+			height: 85px;
+
+			div.art-cover {
+				flex-basis: 25%;
+
+				img {
+					width: 100%;
+					max-width: 85px;
+				}
+			}
+			div.play-box {
+				flex-basis: 70%;
+				padding: 8px 10px;
+
+				p {
+					color: @music-event-txt-light;
+
+					&:first-child { margin-bottom: 5px; }
+				}
+			}
+		}
     }
 }

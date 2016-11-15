@@ -28,6 +28,8 @@ const onSongClick = function() {
     modal.querySelector('.artist').innerHTML = this.querySelector('h6').innerHTML;
     modal.querySelector('.title').innerHTML = this.querySelector('h5').innerHTML;
     modal.querySelector('.desc').innerHTML = this.querySelector('p').innerHTML;
+    var imgSrc = this.querySelector('img').src;
+    modal.querySelector("img").src = imgSrc;
 }
 
 const onModalClick = function() {
