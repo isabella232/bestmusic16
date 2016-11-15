@@ -33,10 +33,16 @@
     <script type="text/javascript" src="/js/rendered/analytics.js"></script>
 
     <header>
-        <a href="http://npr.org/music"><img src="/assets/music-logo-outline-thick.svg"></a>
-        <h1><a href="/">The Best Music of 2016</a></h1>
-        <a href="#"><button class="lists">Lists <span class="list-menu"></span></button></a>
-        <a href="/favorites"><button class="favorites">Favorites <span class="heart"></span></button></a>
+        <div class="header-wrapper">
+            <a href="http://npr.org/music"><img src="/assets/music-logo-outline-thick.svg"></a>
+            <h1><a href="/">The Best Music of 2016</a></h1>
+            <div class="header-btns">
+                {% if namespace == "list" %}
+                <a href="#"><button class="lists">Lists <span class="list-menu"></span></button></a>
+                {% endif %}
+                <a href="/favorites"><button class="favorites">Favorites <span class="heart"></span></button></a>
+            </div>
+        </div>
     </header>
 
     <div id="barba-wrapper">
