@@ -21,6 +21,7 @@
     "webpack-glob-entries": "^1.0.1"
   },
   "dependencies": {
-    "barba.js": "^1.0.0"
+    "barba.js": "^1.0.0",
+    "flickity": "^2.0.5"
   }
 }
