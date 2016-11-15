@@ -7,12 +7,12 @@
         {% for list in COPY.best_lists %}
             <div class="list">
                 <div class="list-art">
-                    <a href="{{ list.url }}">
+                    <a href="list/{{ list.slug }}">
                         <img src="assets/{{ list.art }}">
                     </a>
                 </div>
                 <div class="list-info">
-                    <h3><a href="{{ list.url }}">{{ list.list_name }}</a></h3>
+                    <h3><a href="list/{{ list.slug }}">{{ list.list_name }}</a></h3>
                     <p>{{ list.description }}</p>
                 </div>
             </div>
@@ -24,7 +24,7 @@
         <p>A short description that communicates that these lists are great, but not our authoritative 2016 lists. We're looking at 18 lists or less for the dive deeper section.</p>
         <div class="lists">
             {% for list in COPY.deeper_lists %}
-            <h4><a href="{{ list.url }}">{{ list.list_name }}</a></h4>
+            <h4><a href="list/{{ list.slug }}">{{ list.list_name }}</a></h4>
             {% endfor %}
         </div>
     </div>
