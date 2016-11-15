@@ -2,7 +2,6 @@
 {% block content %}
 <div class="list-container">
 
-    <!-- <h2>Top Songs of 2016</h2> -->
     {% for row in COPY.best_lists %}
     {% if row.slug == slug %}
     <h2>{{ row.list_name }}</h2>

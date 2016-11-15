@@ -6,16 +6,23 @@ let modal = null;
 let modalOverlay = null;
 let carousel = null;
 let flkty = null;
+let listButton = null;
 
 const isTouch = Modernizr.touchevents;
 
 const onWindowLoaded = function() {
+    listButton = document.querySelector('button.lists');
     Barba.Dispatcher.on('newPageReady', attachEvents);
     Barba.Pjax.start();
 }
 
 const attachEvents = function(currentStatus, prevStatus) {
+    if (currentStatus.namespace === 'index') {
+        listButton.style.display = "none";
+    }
+
     if (currentStatus.namespace === 'list') {
+        listButton.style.display = "block";
         songContainers = document.querySelectorAll('.song-wrapper');
         modal = document.querySelector('.modal');
         modalOverlay = document.querySelector('.modal-overlay');
