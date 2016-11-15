@@ -77,6 +77,12 @@
       "css": "heart",
       "code": 59401,
       "src": "fontawesome"
+    },
+    {
+      "uid": "17ebadd1e3f274ff0205601eef7b9cc4",
+      "css": "help-circled",
+      "code": 59402,
+      "src": "fontawesome"
     }
   ]
 }
