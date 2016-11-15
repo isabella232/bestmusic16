@@ -19,7 +19,8 @@ const attachEvents = function(currentStatus, prevStatus) {
         modalOverlay = document.querySelector('.modal-overlay');
         carousel = document.querySelector('.main-carousel');
         flkty = new Flickity(carousel, {
-            pageDots: false
+            pageDots: false,
+            draggable: Modernizr.touchevents
         });
 
         for (var i = 0; i < songContainers.length; i++) {
