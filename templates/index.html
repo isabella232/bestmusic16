@@ -2,8 +2,8 @@
 {% block content %}
 <div class="index-lists">
     <div class="best-lists">
-        <h2>The Best of 2016</h2>
-        <p>Our authoritative lists. These are the ones we couldn't stop playing, the ones we shared, the ones we kept close all year long.</p>
+        <h2>{{ COPY.content.index_best_title }}</h2>
+        <p>{{ COPY.content.index_best_sub }}</p>
         {% for list in COPY.best_lists %}
             <div class="list">
                 <div class="list-art">
@@ -20,8 +20,8 @@
     </div>
 
     <div class="deeper-lists">
-        <h2>Dive Deeper</h2>
-        <p>A short description that communicates that these lists are great, but not our authoritative 2016 lists. We're looking at 18 lists or less for the dive deeper section.</p>
+        <h2>{{ COPY.content.index_deeper_title }}</h2>
+        <p>{{ COPY.content.index_deeper_sub }}</p>
         <div class="lists">
             {% for list in COPY.deeper_lists %}
             <h4><a href="list/{{ list.slug }}">{{ list.list_name }}</a></h4>
