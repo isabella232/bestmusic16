@@ -308,4 +308,18 @@ hr {
 			}
 		}
     }
+
+    .carousel-cell {
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        &.is-selected {
+            z-index: 0;
+            background-color: @music-hp-dark;
+        }
+    }
+
+    .flickity-viewport {
+        min-height: 400px;
+    }
 }

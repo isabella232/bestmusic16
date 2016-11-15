@@ -1,8 +1,11 @@
 import Barba from 'barba.js';
+import Flickity from 'flickity';
 
 let songContainers = null;
 let modal = null;
 let modalOverlay = null;
+let carousel = null;
+let flkty = null;
 
 const onWindowLoaded = function() {
     Barba.Dispatcher.on('newPageReady', attachEvents);
@@ -11,9 +14,14 @@ const onWindowLoaded = function() {
 
 const attachEvents = function(currentStatus, prevStatus) {
     if (currentStatus.namespace === 'list') {
-        songContainers = document.querySelectorAll('.song-container');
+        songContainers = document.querySelectorAll('.song-wrapper');
         modal = document.querySelector('.modal');
         modalOverlay = document.querySelector('.modal-overlay');
+        carousel = document.querySelector('.main-carousel');
+        flkty = new Flickity(carousel, {
+            pageDots: false,
+            draggable: Modernizr.touchevents
+        });
 
         for (var i = 0; i < songContainers.length; i++) {
             songContainers[i].addEventListener('click', onSongClick);
@@ -24,12 +32,7 @@ const attachEvents = function(currentStatus, prevStatus) {
 
 const onSongClick = function() {
     modal.style.display = 'block';
-
-    modal.querySelector('.artist').innerHTML = this.querySelector('h6').innerHTML;
-    modal.querySelector('.title').innerHTML = this.querySelector('h5').innerHTML;
-    modal.querySelector('.desc').innerHTML = this.querySelector('p').innerHTML;
-    var imgSrc = this.querySelector('img').src;
-    modal.querySelector("img").src = imgSrc;
+    flkty.resize();
 }
 
 const onModalClick = function() {

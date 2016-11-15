@@ -55,12 +55,13 @@ class Includer(object):
         if relative_path.startswith('www/'):
             relative_path = relative_path[4:]
 
-        depth = len(request.path.split('/')) - (2 + self.asset_depth)
+        depth = self.asset_depth
 
         while depth > 0:
             relative_path = '../%s' % relative_path
             depth -= 1
 
+        print(relative_path)
         return relative_path
 
     def render(self, path):
