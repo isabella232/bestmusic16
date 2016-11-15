@@ -11,9 +11,13 @@ body {
 }
 
 p {
-	.gotham();
+	font-family: Georgia;
 	color: @music-event-txt-dark;
 	font-size: 14px;
+
+	@media @screen-small {
+		.gotham();
+	}
 }
 
 a {
