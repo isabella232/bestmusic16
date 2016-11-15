@@ -33,6 +33,7 @@ const attachEvents = function(currentStatus, prevStatus) {
 const onSongClick = function() {
     modal.style.display = 'block';
     flkty.resize();
+    flkty.select([].indexOf.call(songContainers, this), false, true);
 }
 
 const onModalClick = function() {
