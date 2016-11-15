@@ -7,6 +7,8 @@ let modalOverlay = null;
 let carousel = null;
 let flkty = null;
 
+const isTouch = Modernizr.touchevents;
+
 const onWindowLoaded = function() {
     Barba.Dispatcher.on('newPageReady', attachEvents);
     Barba.Pjax.start();
@@ -20,7 +22,11 @@ const attachEvents = function(currentStatus, prevStatus) {
         carousel = document.querySelector('.main-carousel');
         flkty = new Flickity(carousel, {
             pageDots: false,
-            draggable: Modernizr.touchevents
+            draggable: isTouch,
+            dragThreshold: 20,
+            setGallerySize: false,
+            friction: isTouch ? 0.28 : 1,
+            selectedAttraction: isTouch ? 0.025 : 1
         });
 
         for (var i = 0; i < songContainers.length; i++) {
