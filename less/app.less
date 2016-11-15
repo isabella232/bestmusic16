@@ -337,3 +337,23 @@ hr {
         min-height: 400px;
     }
 }
+
+footer {
+    background: @blue-darker;
+    border-top: @music-blue-lighter 3px solid;
+    margin-top: 20px;
+    padding: 20px 0;
+    .footer-wrapper {
+        max-width: 960px;
+        margin: 0 auto;
+
+        @media @screen-medium {
+            width: 90%;
+        }
+    }
+
+    h5 {
+        color: @white;
+        text-transform: uppercase;
+    }
+}
