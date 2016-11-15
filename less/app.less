@@ -66,7 +66,7 @@ header {
 
 				&.favorites {
 					top: 10px;
-					right: 10px;
+					right: 0px;
 					.heart::before {
 						.fa-icon();
 						content: '\E808';
@@ -75,10 +75,24 @@ header {
 
 				&.lists {
 					top: 10px;
-					right: 125px;
+					right: 118px;
 					.list-menu::before {
 						.fa-icon();
 						content: '\F0C9';
+					}
+				}
+
+				@media @screen-small {
+					border: 0;
+					background: @bg-medium;
+					padding: 7px 5px;
+
+					&.favorites, &.lists {
+						top: -5px;
+					}
+
+					&.lists {
+						right: 105px;
 					}
 				}
 		    }
@@ -94,6 +108,8 @@ h2 {
 
 hr {
 	margin: 16px 0 0;
+	border-color: @music-blue-lighter;
+	border-width: 0 1px 1px 1px;
 
 	@media @screen-medium-above {
 		&.line {
@@ -238,8 +254,6 @@ hr {
 			flex-basis: 100%;
 		}
 	}
-
-
 }
 
 .modal {
