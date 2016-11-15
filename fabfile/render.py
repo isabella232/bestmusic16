@@ -8,10 +8,12 @@ from glob import glob
 import logging
 import os
 
+import copytext
 from fabric.api import local, task
 
 import app
 import app_config
+
 
 logging.basicConfig(format=app_config.LOG_FORMAT)
 logger = logging.getLogger(__name__)
@@ -98,7 +100,6 @@ def render_all():
     from flask import g
 
     less()
-    jst()
     app_config_js()
     copytext_js()
 
@@ -138,11 +139,38 @@ def render_all():
 
             view = _view_from_name(name)
 
-            content = view().data
+            if name == 'list':
+                all_lists = get_lists()
 
-            compiled_includes = g.compiled_includes
+                for item in all_lists:
+                    if item['url']:
+                        slug = item['url'].split('/')[-1]
+                        filename = 'www/list/{0}/index.html'.format(slug)
+                        dirname = os.path.dirname(filename)
+
+                        if not (os.path.exists(dirname)):
+                            os.makedirs(dirname)
+
+                        content = view(slug).data
+                        compiled_includes = g.compiled_includes
+
+                        with open(filename, 'w') as f:
+                            f.write(content)
+                    else:
+                        logger.warn('no url found for {0}'.format(item['list_name']))
+            else:
+                content = view().data
+                compiled_includes = g.compiled_includes
+
+                with open(filename, 'w') as f:
+                    f.write(content)
 
         # Write rendered view
         # NB: Flask response object has utf-8 encoded the data
         with open(filename, 'w') as f:
             f.write(content)
+
+def get_lists():
+    sheet = copytext.Copy(app_config.COPY_PATH)
+    all_lists = list(sheet['best_lists']) + list(sheet['deeper_lists'])
+    return all_lists    

@@ -14,7 +14,7 @@ const onWindowLoaded = function() {
 
 const attachEvents = function(currentStatus, prevStatus) {
     if (currentStatus.namespace === 'list') {
-        songContainers = document.querySelectorAll('.song-container');
+        songContainers = document.querySelectorAll('.song-wrapper');
         modal = document.querySelector('.modal');
         modalOverlay = document.querySelector('.modal-overlay');
         carousel = document.querySelector('.main-carousel');

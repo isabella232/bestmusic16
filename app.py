@@ -32,17 +32,18 @@ def index():
     """
     Example view demonstrating rendering a simple HTML page.
     """
+    print('using index route')
     context = make_context()
     context['namespace'] = 'index'
     return make_response(render_template('index.html', **context))
 
-@app.route('/<slug>/')
+@app.route('/list/<slug>/')
 @oauth.oauth_required
 def list(slug):
     """
     Example view demonstrating rendering a simple HTML page.
     """
-    context = make_context()
+    context = make_context(asset_depth=2)
     context['slug'] = slug
     context['namespace'] = 'list'
 
@@ -54,20 +55,10 @@ def favorites():
     """
     Example view demonstrating rendering a simple HTML page.
     """
-    context = make_context()
+    context = make_context(asset_depth=1)
     context['namespace'] = 'favorites'
 
     return make_response(render_template('favorites.html', **context))
-
-@app.route('/')
-@oauth.oauth_required
-def index():
-    """
-    Example view demonstrating rendering a simple HTML page.
-    """
-    context = make_context()
-
-    return make_response(render_template('index.html', **context))
 
 app.register_blueprint(static.static)
 app.register_blueprint(oauth.oauth)
