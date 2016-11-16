@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "barba.js": "^1.0.0",
-    "flickity": "^2.0.5"
+    "flickity": "^2.0.5",
+    "lodash.template": "^4.4.0"
   }
 }

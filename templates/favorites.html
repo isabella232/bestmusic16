@@ -8,4 +8,55 @@
   </p>
 </div>
 
+<div class="list-container"></div>
+<div class="modal"></div>
+
+<script type="text/template" id="song-container-template">
+    <div class="songs-container">
+    <% favoriteItems.forEach(function(item) { %>
+        <div class="song-wrapper">
+            <div class="song-art">
+                <a href="#"><img class="coverart" src="<%= item.art %>"></a>
+            </div>
+            <div class="song-info">
+                <h6><%= item.artist %></h6>
+                <h5><%= item.title %></h5>
+                <span class="arrow-more"></span>
+            </div>
+        </div>
+    <% }); %>    
+    </div>
+</script>
+
+<script type="text/template" id="modal-template">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+        <div class="main-carousel">
+            <% favoriteItems.forEach(function(item) { %>
+            <div class="carousel-cell" data-slug="<%= item.song_slug %>">
+                <div class="favorite-button">
+                    <button class="favorite-btn"><i class="icon-heart-empty icon"></i> Favorite</button>
+                </div>
+                <div class="song-titleinfo">
+                    <h6 class="artist"><%= item.artist %></h6>
+                    <h5 class="title"><%= item.title %></h5>
+                </div>
+                <div class="song-player">
+                    <div class="art-cover">
+                        <img src="<%= item.art %>" />
+                    </div>
+                    <div class="play-box">
+                        <p>Play this song</p>
+                        <p><%= item.smarturl %></p>
+                    </div>
+                </div>
+                <div class="song-information">
+                    <p class="desc"><%= item.description %></p>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+    </div>
+</script>
+
 {% endblock content %}

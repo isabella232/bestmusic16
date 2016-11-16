@@ -3,7 +3,10 @@
     <div class="modal-content">
         <div class="main-carousel">
             {% for item in COPY[slug] %}
-            <div class="carousel-cell">
+            <div class="carousel-cell" data-slug="{{ item.song_slug }}">
+                <div class="favorite-button">
+                    <button class="favorite-btn"><i class="icon-heart-empty icon"></i> Favorite</button>
+                </div>
                 <div class="song-titleinfo">
                     <h6 class="artist">{{ item.artist }}</h6>
                     <h5 class="title">{{ item.title }}</h5>

@@ -5,6 +5,8 @@ Commands related to syncing copytext from Google Docs.
 """
 
 import app_config
+import copytext
+import json
 import logging
 
 from fabric.api import task
@@ -30,3 +32,28 @@ def update():
         return
 
     get_document(app_config.COPY_GOOGLE_DOC_KEY, app_config.COPY_PATH)
+    with open('www/js/songs.json', 'w') as f:
+        sheet = copytext.Copy(app_config.COPY_PATH)
+        all_lists = list(sheet['best_lists']) + list(sheet['deeper_lists'])
+        all_songs = {}
+
+        for row in all_lists:
+            if row['slug']:
+                songs = sheet[row['slug']]
+                for song in songs:
+                    if all_songs.get(song['song_slug']):
+                        continue
+
+                    song_obj = {}
+                    song_obj['artist'] = song['artist']
+                    song_obj['title'] = song['title']
+                    song_obj['smarturl'] = song['smarturl']
+                    song_obj['description'] = song['description']
+                    song_obj['art'] = song['art']
+                    song_obj['other_tags'] = song['other_tags']
+                    song_obj['song_slug'] = song['song_slug']
+
+                    all_songs[song['song_slug']] = song_obj
+        
+        output = json.dumps(all_songs)
+        f.write(output)

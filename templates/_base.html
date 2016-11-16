@@ -38,9 +38,7 @@
             <a href="http://npr.org/music"><img src="{{ S3_BASE_URL }}/assets/music-logo-outline-thick.svg"></a>
             <h1><a href="{{ S3_BASE_URL }}">The Best Music of 2016</a></h1>
             <div class="header-btns">
-                {% if namespace == "list" %}
                 <a href="{{ S3_BASE_URL }}"><button class="lists"><span class="list-menu"></span> Lists</button></a>
-                {% endif %}
                 <a href="{{ S3_BASE_URL }}/favorites"><button class="favorites"><span class="heart"></span> Favorites</button></a>
             </div>
         </div>
@@ -61,6 +59,7 @@
         </div>
     </footer>
     <script type="text/javascript" src="{{ S3_BASE_URL }}/js/rendered/app.js"></script>
+
     {# Setup Chartbeat last! #}
     <script type="text/javascript">
         // ANALYTICS.setupChartbeat();
