@@ -45,6 +45,19 @@ def list(slug):
     """
     context = make_context(asset_depth=2)
     context['slug'] = slug
+
+    types_found = []
+    for row in context['COPY'][slug]:
+        if row['type'] not in types_found:
+            types_found.append(row['type'])
+
+    if len(types_found) >= 2:
+        context['types'] = 'both'
+    else:
+        context['types'] = 'single'
+
+    print(context['types'])
+
     context['namespace'] = 'list'
 
     return make_response(render_template('list.html', **context))
