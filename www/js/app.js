@@ -47,6 +47,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         modalOverlay = document.querySelector('.modal-overlay');
         carousel = document.querySelector('.main-carousel');
         favoriteButtons = document.querySelectorAll('.favorite-btn');
+        
         flkty = new Flickity(carousel, {
             pageDots: false,
             draggable: isTouch,
@@ -108,29 +109,44 @@ const onModalClick = function() {
 }
 
 const layoutFavorites = function(container) {
-    const favorites = JSON.parse(localStorage.getItem('favorites'));
-    if (favorites) {
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites'));
+    console.log(storedFavorites);
+    if (storedFavorites.length > 0) {
         container.querySelector('.no-content').style.display = 'none';
         const parser = new DOMParser();
 
         let songObjects = [];
-        favorites.forEach(function(item) {
+        storedFavorites.forEach(function(item) {
             songObjects.push(SONGS[item]);
+        });
+
+        let songTypes = [];
+        songObjects.forEach(function(item) {
+            if (songTypes.indexOf(item.type) === -1) {
+                songTypes.push(item.type);
+            }
         });
 
         const songTemplateCompiled = template(songContainerTemplate.innerHTML);
         const modalTemplateCompiled = template(modalTemplate.innerHTML);
 
-        const songHTML = parser.parseFromString(songTemplateCompiled({
-           'favoriteItems': songObjects 
+        const songDOM = parser.parseFromString(songTemplateCompiled({
+           'favoriteItems': songObjects,
+           'types': songTypes.length > 1 ? 'both' : 'single'
         }), 'text/html');
-        const modalHTML = parser.parseFromString(modalTemplateCompiled({
-           'favoriteItems': songObjects 
+        const modalDOM = parser.parseFromString(modalTemplateCompiled({
+           'favoriteItems': songObjects
         }), 'text/html');
 
-        container.querySelector('.list-container').append(songHTML.querySelector('.songs-container'));
-        container.querySelector('.modal').append(modalHTML.querySelector('.modal-overlay'));
-        container.querySelector('.modal').append(modalHTML.querySelector('.modal-content'));
+        const songHTML = songDOM.querySelector('.list-container');
+        const modalOverlayHTML = modalDOM.querySelector('.modal-overlay')
+        const modalContentHTML = modalDOM.querySelector('.modal-content')
+
+        container.querySelector('.favorites').append(songHTML);
+        container.querySelector('.modal').append(modalOverlayHTML);
+        container.querySelector('.modal').append(modalContentHTML);
+    } else {
+        container.querySelector('.no-content').style.display = 'block';
     }
 }
 

@@ -8,24 +8,65 @@
   </p>
 </div>
 
-<div class="list-container"></div>
+<div class="favorites"></div>
 <div class="modal"></div>
 
 <script type="text/template" id="song-container-template">
-    <div class="songs-container">
-    <% favoriteItems.forEach(function(item) { %>
-        <div class="song-wrapper">
-            <div class="song-art">
-                <a href="#"><img class="coverart" src="<%= item.art %>"></a>
-            </div>
-            <div class="song-info">
-                <h6><%= item.artist %></h6>
-                <h5><%= item.title %></h5>
-                <span class="arrow-more"></span>
+    <div class="list-container">
+        <% if (types === 'both') { %>
+        <div class="albums">
+            <h3>Albums</h3>
+            <div class="songs-container">
+            <% favoriteItems.forEach(function(item) {
+               if (item.type === 'album') { 
+            %>
+                <div class="song-wrapper">
+                    <div class="song-art">
+                        <a href="#"><img class="coverart" src="<%= item.art %>"></a>
+                    </div>
+                    <div class="song-info">
+                        <h6><%= item.artist %></h6>
+                        <h5><%= item.title %></h5>
+                        <span class="arrow-more"></span>
+                    </div>
+                </div>
+            <% }}); %>
             </div>
         </div>
-    <% }); %>    
-    </div>
+        <div class="songs">
+            <h3>Songs</h3>
+            <div class="songs-container">
+            <% favoriteItems.forEach(function(item) { 
+               if (item.type === 'song') { 
+            %>
+                <div class="song-wrapper">
+                    <div class="song-art">
+                        <a href="#"><img class="coverart" src="<%= item.art %>"></a>
+                    </div>
+                    <div class="song-info">
+                        <h6><%= item.artist %></h6>
+                        <h5><%= item.title %></h5>
+                        <span class="arrow-more"></span>
+                    </div>
+                </div>
+            <% }}); %>
+            </div>
+        </div>
+        <% } else { %>
+        <div class="songs-container">
+        <% favoriteItems.forEach(function(item) { %>
+            <div class="song-wrapper">
+                <div class="song-art">
+                    <a href="#"><img class="coverart" src="<%= item.art %>"></a>
+                </div>
+                <div class="song-info">
+                    <h6><%= item.artist %></h6>
+                    <h5><%= item.title %></h5>
+                    <span class="arrow-more"></span>
+                </div>
+            </div>
+        <% })}; %>
+    </div>   
 </script>
 
 <script type="text/template" id="modal-template">

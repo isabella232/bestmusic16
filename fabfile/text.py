@@ -52,6 +52,7 @@ def update():
                     song_obj['art'] = song['art']
                     song_obj['other_tags'] = song['other_tags']
                     song_obj['song_slug'] = song['song_slug']
+                    song_obj['type'] = song['type']
 
                     all_songs[song['song_slug']] = song_obj
         
