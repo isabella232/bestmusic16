@@ -40,12 +40,13 @@ body {
 	.container {
 		max-width: 960px;
 		width: 90%;
+		margin: 0 auto;
 	}
 
 	hr {
 		margin: 16px 0 0;
 		border-color: @music-blue-lighter;
-		border-width: 0 1px 1px 1px;
+		border-width: 0 1px 2.25px 1px;
 	}
 
 	span.arrow-more::before {
@@ -55,7 +56,7 @@ body {
 		font-size: 25px;
 	}
 
-	@media @screen-medium-above {
+	@media @screen-small-above {
 		hr.line {
 			display: none;
 		}
@@ -284,6 +285,10 @@ header {
 	margin: 0 auto;
 	width: 100%;
 
+	h2 {
+		text-transform: capitalize;
+	}
+
 	.songs-container {
 		display: flex;
 		flex-wrap: wrap;
@@ -291,11 +296,16 @@ header {
 	}
 
 	.song-wrapper {
-		border-bottom: 2.5px solid @music-blue-lighter;
+		border-bottom: 2.25px solid @music-blue-lighter;
 		clear: both;
 		padding: 20px 0;
 		display: flex;
 		flex-basis: 48%;
+		cursor: pointer;
+
+		&:last-child, &:nth-last-child(2) {
+			border-bottom: none;
+		}
 
 		p {
 			line-height: 18px;
@@ -314,6 +324,7 @@ header {
 			img {
 				width: 100%;
 				max-width: 150px;
+				cursor: pointer;
 			}
 		}
 
@@ -321,6 +332,7 @@ header {
 			flex-basis: 65%;
 			margin-left: 5%;
 			float: left;
+			cursor: pointer;
 
 			h6 {
 				font-weight: 700;
@@ -353,6 +365,14 @@ header {
 
 		.song-wrapper {
 			flex-basis: 100%;
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			&:nth-last-child(2) {
+				border-bottom: 2.25px solid @music-blue-lighter;
+			}
 		}
 	}
 }
@@ -376,6 +396,11 @@ header {
     }
 
     .modal-content {
+
+		.modal-container {
+			width: 80%;
+			margin: 0 auto;
+		}
         background-color: @music-hp-dark;
         min-height: 400px;
         width: 90%;
