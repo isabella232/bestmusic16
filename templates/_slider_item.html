@@ -1,0 +1,18 @@
+<div class="carousel-cell">
+    <div class="song-titleinfo">
+        <h6 class="artist">{{ item.artist }}</h6>
+        <h5 class="title">{{ item.title }}</h5>
+    </div>
+    <div class="song-player">
+        <div class="art-cover">
+            <img src="{{ item.art }}" />
+        </div>
+        <div class="play-box">
+            <p>Play this song</p>
+            <p>{{ item.smarturl }}</p>
+        </div>
+    </div>
+    <div class="song-information">
+        <p class="desc">{{ item.description }}</p>
+    </div>
+</div>
