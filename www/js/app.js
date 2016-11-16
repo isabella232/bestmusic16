@@ -61,6 +61,13 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         }
 
         for (var i = 0; i < favoriteButtons.length; i++) {
+            const el = favoriteButtons[i];
+
+            if (favorites.indexOf(el.parentNode.parentNode.getAttribute('data-slug')) !== -1) {
+                console.log(el);
+                el.querySelector('span').classList.add('filled');
+            }
+
             favoriteButtons[i].addEventListener('click', onFavoriteButtonClick);
         }
 

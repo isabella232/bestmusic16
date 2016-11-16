@@ -295,6 +295,18 @@ hr {
         transform: translate(-50%, -50%);
 		padding: 15px;
 
+        .favorite-btn {
+            .heart::before {
+                .fa-icon();
+                content: '\E808';
+            }
+            .heart.filled::before {
+                .fa-icon();
+                content: '\E809';
+                color: @music-red;
+            }
+        }
+
 		h6.artist {
 			font-weight: 700;
 			color: @music-red;
