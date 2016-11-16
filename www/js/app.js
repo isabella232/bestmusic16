@@ -64,7 +64,6 @@ const attachEvents = function(currentStatus, prevStatus, container) {
             const el = favoriteButtons[i];
 
             if (favorites.indexOf(el.parentNode.parentNode.getAttribute('data-slug')) !== -1) {
-                console.log(el);
                 el.querySelector('span').classList.add('filled');
             }
 
@@ -83,10 +82,25 @@ const onSongClick = function() {
 
 const onFavoriteButtonClick = function() {
     const slug = this.parentNode.parentNode.getAttribute('data-slug');
-    favorites.push(slug);
+    const favoriteIndex = favorites.indexOf(slug);
+    
+    // not a favorite yet
+    if (favoriteIndex === -1) {
+        favorites.push(slug);
+        this.querySelector('span').classList.add('filled');
+    } else {
+        favorites.splice(favoriteIndex, 1);
+        this.querySelector('span').classList.remove('filled');
+    }
+
+    if (favorites.length > 0) {
+        headerFavoriteButton.querySelector('span').classList.add('filled');
+    } else {
+        headerFavoriteButton.querySelector('span').classList.remove('filled');
+    }
+
     const storageItem = JSON.stringify(favorites);
     localStorage.setItem('favorites', storageItem);
-    headerFavoriteButton.querySelector('span').classList.add('filled');
 }
 
 const onModalClick = function() {
