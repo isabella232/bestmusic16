@@ -14,5 +14,10 @@
     </div>
     <div class="song-information">
         <p class="desc">{{ item.description }}</p>
+        {% if item.embed %}
+        <div class="embed">
+            {{ item.embed|safe }}
+        </div>
+        {% endif %}
     </div>
 </div>
