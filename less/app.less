@@ -6,24 +6,80 @@
     transition: visibility 0s linear 0s, opacity 0.25s;
 }
 
+// GENERAL
 body {
 	background-color: @bg-dark;
-}
 
-p {
-	font-family: Georgia;
-	color: @music-event-txt-dark;
-	font-size: 14px;
+	h2 {
+		color: @white;
+		font-size: 1.8rem;
+		text-transform: uppercase;
+		margin-bottom: 12px;
+		font-weight: 400;
+	}
+
+	p {
+		.gotham();
+		color: @para-txt-dark;
+		font-size: 1.1rem;
+		line-height: 1.5rem;
+		font-family: Georgia;
+		margin: 12px 0 18px;
+    	letter-spacing: .05px;
+
+		&.intro-text {
+			margin-bottom: 2rem;
+		}
+	}
+
+	a {
+	    text-decoration: none;
+	}
+
+	.container {
+		max-width: 960px;
+		width: 90%;
+	}
+
+	hr {
+		margin: 16px 0 0;
+		border-color: @music-blue-lighter;
+		border-width: 0 1px 1px 1px;
+	}
+
+	span.arrow-more::before {
+		.fa-icon();
+		content: '\E801';
+		color: @para-txt-light;
+		font-size: 25px;
+	}
+
+	@media @screen-medium-above {
+		hr.line {
+			display: none;
+		}
+	}
 
 	@media @screen-small {
-		.gotham();
+		h2 {
+			font-size: 1.3rem;
+			margin-bottom: 6px;
+			font-weight: bold;
+		}
+
+		p {
+			.gotham();
+			font-size: .9rem;
+		}
+
+		.container {
+			max-width: 90%;
+			margin: 0 auto;
+		}
 	}
 }
 
-a {
-    text-decoration: none;
-}
-
+// HEADER
 header {
     background: @bg-medium;
     border-bottom: @music-blue-lighter 3px solid;
@@ -31,6 +87,7 @@ header {
 	.header-wrapper {
 		max-width: 960px;
 		margin: 0 auto;
+		width: 90%;
 
 		img {
 	        max-width: 150px;
@@ -40,23 +97,31 @@ header {
 	    }
 
 	    h1 {
-	        font-size: 1rem;
+	        font-size: 2rem;
 	        text-transform: uppercase;
 	        font-weight: normal;
 	        a { color: @white; }
 	    }
 
-		@media @screen-medium {
+		@media @screen-small {
 			width: 90%;
+
+			h1 {
+				font-size: 1rem;
+			}
+
+			img {
+				max-width: 95px;
+			}
 		}
 
 		.header-btns {
 			position: relative;
 			background-color: yellow;
-			top: -50px;
+			top: -55px;
 
 			@media @screen-small {
-				top: -95px;
+				top: -80px;
 			}
 
 			button {
@@ -67,6 +132,8 @@ header {
 				border: 1px solid rgba(110, 110, 128, 0.85);
 				padding: 7px 10px;
 				color: @white;
+				outline: none;
+				transition: all 0.2s;
 
 				&.favorites {
 					top: 10px;
@@ -91,6 +158,12 @@ header {
 					}
 				}
 
+				@media @screen-medium-above {
+					&:hover {
+						background: #45418C;
+					}
+				}
+
 				@media @screen-small {
 					border: 0;
 					background: @bg-medium;
@@ -109,74 +182,104 @@ header {
 	}
 }
 
-// GENERAL
-h2 {
-	color: @white;
-	font-size: 1.3rem;
-}
-
-hr {
-	margin: 16px 0 0;
-	border-color: @music-blue-lighter;
-	border-width: 0 1px 1px 1px;
-
-	@media @screen-medium-above {
-		&.line {
-			display: none;
-		}
-	}
-}
-
 // INDEX
 .index-lists {
     max-width: 960px;
     margin: 0 auto;
 
-    h2 {
-        font-size: 32px;
-        text-transform: uppercase;
-        color: @white;
-    }
-
     .list {
         display: flex;
         justify-content: space-between;
-        align-items: center;
         align-content: center;
         padding: 0 0 30px;
-        border-bottom: @music-hp-link-color 1px solid;
+        border-bottom: 2.25px solid @music-blue-lighter;
 
         &:last-child {
             padding-top: 30px;
+			border-bottom: 2.25px solid rgba(63, 63, 82, 0.95);
+			//Take border away when sponsorship comes in and use borders on that space instead
         }
 
         .list-art {
             flex-basis: 20%;
+
             img {
                 width: 100%;
                 max-width: 300px;
             }
         }
+
         .list-info {
-            padding-left: 20px;
+            padding-left: 30px;
             flex-basis: 80%;
+
             h3 {
                 a { color: @white; }
                 text-decoration: none;
-                font-size: 20px;
+                font-size: 1.3rem;
+				margin: 3px 0 8px;
             }
+
+			span.arrow-more::before {
+				margin-left: 8px;
+				position: absolute;
+			}
         }
+
+		@media @screen-small {
+		    padding: 0 0 20px;
+
+			.list-art {
+				flex-basis: 30%;
+			}
+			.list-info {
+				flex-basis: 70%;
+
+				h3 {
+					font-size: 1rem;
+					margin: 3px 0 8px;
+				}
+			}
+		}
     }
 
     .deeper-lists {
+		margin-bottom: 3rem;
+
+		.dlist {
+			margin-bottom: 18px;
+		}
         h4 {
             a { color: @white; }
             text-decoration: none;
             font-size: 16px;
-            font-weight: bold;
-            padding-bottom: 10px;
+			margin-bottom: 8px;
+			margin-top: 18px;
         }
+
+		p {
+			font-size: 1rem;
+			margin-top: 0;
+			margin-bottom: 16px;
+			line-height: 1.4rem;
+		}
+
+		@media @screen-small {
+			margin-bottom: 2rem;
+			h4 {
+				font-size: 16px;
+				margin-bottom: 5px;
+			}
+
+			p {
+				font-size: .9rem;
+				margin-top: 0;
+				margin-bottom: 16px;
+				line-height: 22px;
+			}
+		}
     }
+
 }
 
 // LIST
@@ -192,7 +295,7 @@ hr {
 	}
 
 	.song-wrapper {
-		border-bottom: 1.5px solid @music-blue-lighter;
+		border-bottom: 2.5px solid @music-blue-lighter;
 		clear: both;
 		padding: 20px 0;
 		display: flex;
@@ -237,13 +340,6 @@ hr {
 			span.arrow-more {
 				float: right;
 				margin-top: -10px;
-
-				&::before {
-					.fa-icon();
-					content: '\E801';
-					color: @para-txt-light;
-					font-size: 25px;
-				}
 			}
 		}
 	}

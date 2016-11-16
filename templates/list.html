@@ -17,22 +17,64 @@
     {% endfor %}
     <hr class="line" />
 
-    <div class="songs-container">
-    {% for song in COPY[slug] %}
-    <div class="song-wrapper">
-        <div class="song-art">
-            <a href="#"><img class="coverart" src="{{ song.art }}"></a>
+    {% if types == 'both' %}
+    <div class="albums">
+        <h3>Albums</h3>
+        <div class="songs-container">
+        {% for song in COPY[slug] %}
+        {% if song.type == 'album' %}
+        <div class="song-wrapper">
+            <div class="song-art">
+                <a href="#"><img class="coverart" src="{{ song.art }}"></a>
+            </div>
+            <div class="song-info">
+                <h6>{{ song.artist }}</h6>
+                <h5>"{{ song.title }}"</h5>
+                <span class="arrow-more"></span>
+            </div>
         </div>
-        <div class="song-info">
-            <h6>{{ song.artist }}</h6>
-            <h5>"{{ song.title }}"</h5>
-            <span class="arrow-more"></span>
-        </div>
+        {% endif %}
+        {% endfor %}
+        <hr class="line" />
     </div>
-    {% endfor %}
+    <div class="songs">
+        <h3>Songs</h3>
+        <div class="songs-container">
+        {% for song in COPY[slug] %}
+        {% if song.type == 'song' %}
+        <div class="song-wrapper">
+            <div class="song-art">
+                <a href="#"><img class="coverart" src="{{ song.art }}"></a>
+            </div>
+            <div class="song-info">
+                <h6>{{ song.artist }}</h6>
+                <h5>"{{ song.title }}"</h5>
+                <span class="arrow-more"></span>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <hr class="line" />
     </div>
 
+    {% else %}
+    <div class="songs-container">
+        {% for song in COPY[slug] %}
+        <div class="song-wrapper">
+            <div class="song-art">
+                <a href="#"><img class="coverart" src="{{ song.art }}"></a>
+            </div>
+            <div class="song-info">
+                <h6>{{ song.artist }}</h6>
+                <h5>"{{ song.title }}"</h5>
+                <span class="arrow-more"></span>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+        {% endif %}
     </div>
+</div>
 
 {% include '_modal.html' %}
 {% endblock content %}
