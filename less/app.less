@@ -6,24 +6,54 @@
     transition: visibility 0s linear 0s, opacity 0.25s;
 }
 
+// GENERAL
 body {
 	background-color: @bg-dark;
-}
 
-p {
-	font-family: Georgia;
-	color: @music-event-txt-dark;
-	font-size: 14px;
+	h2 {
+		color: @white;
+		font-size: 1.3rem;
+	}
+
+	p {
+		font-family: Georgia;
+		color: @music-event-txt-dark;
+		font-size: 1rem;
+	}
+
+	a {
+	    text-decoration: none;
+	}
+
+	.container {
+		max-width: 960px;
+	}
+
+	hr {
+		margin: 16px 0 0;
+		border-color: @music-blue-lighter;
+		border-width: 0 1px 1px 1px;
+	}
+
+	@media @screen-medium-above {
+		hr.line {
+			display: none;
+		}
+	}
 
 	@media @screen-small {
-		.gotham();
+		p {
+			.gotham();
+		}
+
+		.container {
+			max-width: 90%;
+			margin: 0 auto;
+		}
 	}
 }
 
-a {
-    text-decoration: none;
-}
-
+// HEADER
 header {
     background: @bg-medium;
     border-bottom: @music-blue-lighter 3px solid;
@@ -31,6 +61,7 @@ header {
 	.header-wrapper {
 		max-width: 960px;
 		margin: 0 auto;
+		width: 90%;
 
 		img {
 	        max-width: 150px;
@@ -40,14 +71,22 @@ header {
 	    }
 
 	    h1 {
-	        font-size: 1rem;
+	        font-size: 2rem;
 	        text-transform: uppercase;
 	        font-weight: normal;
 	        a { color: @white; }
 	    }
 
-		@media @screen-medium {
+		@media @screen-small {
 			width: 90%;
+
+			h1 {
+				font-size: 1rem;
+			}
+
+			img {
+				max-width: 95px;
+			}
 		}
 
 		.header-btns {
@@ -56,7 +95,7 @@ header {
 			top: -50px;
 
 			@media @screen-small {
-				top: -95px;
+				top: -80px;
 			}
 
 			button {
@@ -67,6 +106,8 @@ header {
 				border: 1px solid rgba(110, 110, 128, 0.85);
 				padding: 7px 10px;
 				color: @white;
+				outline: none;
+				transition: all 0.2s;
 
 				&.favorites {
 					top: 10px;
@@ -83,6 +124,12 @@ header {
 					.list-menu::before {
 						.fa-icon();
 						content: '\F0C9';
+					}
+				}
+
+				@media @screen-medium-above {
+					&:hover {
+						background: #45418C;
 					}
 				}
 
@@ -104,24 +151,6 @@ header {
 	}
 }
 
-// GENERAL
-h2 {
-	color: @white;
-	font-size: 1.3rem;
-}
-
-hr {
-	margin: 16px 0 0;
-	border-color: @music-blue-lighter;
-	border-width: 0 1px 1px 1px;
-
-	@media @screen-medium-above {
-		&.line {
-			display: none;
-		}
-	}
-}
-
 // INDEX
 .index-lists {
     max-width: 960px;
@@ -139,7 +168,7 @@ hr {
         align-items: center;
         align-content: center;
         padding: 0 0 30px;
-        border-bottom: @music-hp-link-color 1px solid;
+        border-bottom: 1.5px solid @music-blue-lighter;
 
         &:last-child {
             padding-top: 30px;
