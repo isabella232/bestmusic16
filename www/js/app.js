@@ -21,6 +21,9 @@ const onWindowLoaded = function() {
     listButton = document.querySelector('button.lists');
     headerFavoriteButton = document.querySelector('button.favorites');
     favorites = JSON.parse(localStorage.getItem('favorites'));
+    if (favorites) {
+        headerFavoriteButton.querySelector('span').classList.add('filled');
+    }
 
     Barba.Dispatcher.on('newPageReady', attachEvents);
     Barba.Pjax.start();
