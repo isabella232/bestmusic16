@@ -24,7 +24,6 @@ const attachEvents = function(currentStatus, prevStatus) {
     if (currentStatus.namespace === 'list') {
         listButton.style.display = "block";
         songContainers = document.querySelectorAll('.song-wrapper');
-        console.log(songContainers);
         modal = document.querySelector('.modal');
         modalOverlay = document.querySelector('.modal-overlay');
         carousel = document.querySelector('.main-carousel');
