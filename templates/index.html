@@ -3,7 +3,7 @@
 <div class="index-lists container">
     <div class="best-lists">
         <h2>{{ COPY.content.index_best_title }}</h2>
-        <p>{{ COPY.content.index_best_sub }}</p>
+        <p class="intro-text">{{ COPY.content.index_best_sub }}</p>
         {% for list in COPY.best_lists %}
             <div class="list">
                 <div class="list-art">
@@ -13,7 +13,7 @@
                 </div>
                 <div class="list-info">
                     <h3><a href="list/{{ list.slug }}">{{ list.list_name }}</a></h3>
-                    <p>{{ list.description }}</p>
+                    <p>{{ list.description }}<span class="arrow-more"></span></p>
                 </div>
             </div>
         {% endfor %}
@@ -24,7 +24,7 @@
         <!-- <p>{{ COPY.content.index_deeper_sub }}</p> -->
         <div class="lists">
             {% for list in COPY.deeper_lists %}
-            <div class="deeper-list">
+            <div class="dlist">
                 <h4><a href="list/{{ list.slug }}">{{ list.list_name }}</a></h4>
                 <p class="list-desc">{{ list.description }}</p>
             </div>
