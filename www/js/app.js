@@ -9,6 +9,7 @@ let modalOverlay = null;
 let carousel = null;
 let flkty = null;
 let listButton = null;
+let headerFavoriteButton = null;
 let favoriteButtons = null;
 let favorites = [];
 let songContainerTemplate = null;
@@ -18,19 +19,22 @@ const isTouch = Modernizr.touchevents;
 
 const onWindowLoaded = function() {
     listButton = document.querySelector('button.lists');
+    headerFavoriteButton = document.querySelector('button.favorites');
+    favorites = JSON.parse(localStorage.getItem('favorites'));
+
     Barba.Dispatcher.on('newPageReady', attachEvents);
     Barba.Pjax.start();
 }
 
-const attachEvents = function(currentStatus, prevStatus) {
+const attachEvents = function(currentStatus, prevStatus, container) {
     if (currentStatus.namespace === 'index') {
         listButton.style.display = "none";
     }
 
     if (currentStatus.namespace === 'favorites') {
-        songContainerTemplate = document.querySelector('#song-container-template');
-        modalTemplate = document.querySelector('#modal-template');
-        layoutFavorites();
+        songContainerTemplate = container.querySelector('#song-container-template');
+        modalTemplate = container.querySelector('#modal-template');
+        layoutFavorites(container);
     }
 
     if (currentStatus.namespace === 'list' || currentStatus.namespace === 'favorites') {
@@ -72,16 +76,17 @@ const onFavoriteButtonClick = function() {
     favorites.push(slug);
     const storageItem = JSON.stringify(favorites);
     localStorage.setItem('favorites', storageItem);
+    headerFavoriteButton.querySelector('span').classList.add('filled');
 }
 
 const onModalClick = function() {
     modal.style.display = 'none';
 }
 
-const layoutFavorites = function() {
+const layoutFavorites = function(container) {
     const favorites = JSON.parse(localStorage.getItem('favorites'));
     if (favorites) {
-        document.querySelector('.no-content').style.display = 'none';
+        container.querySelector('.no-content').style.display = 'none';
         const parser = new DOMParser();
 
         let songObjects = [];
@@ -99,9 +104,9 @@ const layoutFavorites = function() {
            'favoriteItems': songObjects 
         }), 'text/html');
 
-        document.querySelector('.list-container').append(songHTML.querySelector('.songs-container'));
-        document.querySelector('.modal').append(modalHTML.querySelector('.modal-overlay'));
-        document.querySelector('.modal').append(modalHTML.querySelector('.modal-content'));
+        container.querySelector('.list-container').append(songHTML.querySelector('.songs-container'));
+        container.querySelector('.modal').append(modalHTML.querySelector('.modal-overlay'));
+        container.querySelector('.modal').append(modalHTML.querySelector('.modal-content'));
     }
 }
 
