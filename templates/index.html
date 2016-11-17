@@ -21,12 +21,14 @@
 
     <div class="deeper-lists">
         <h2>{{ COPY.content.index_deeper_title }}</h2>
-        <!-- <p>{{ COPY.content.index_deeper_sub }}</p> -->
+        <p class="intro-text">{{ COPY.content.index_deeper_sub }}</p>
         <div class="lists">
             {% for list in COPY.deeper_lists %}
             <div class="dlist">
-                <h4><a href="list/{{ list.slug }}">{{ list.list_name }}</a></h4>
-                <p class="list-desc">{{ list.description }}</p>
+                <a href="list/{{ list.slug }}">
+                    <h4>{{ list.list_name }}</h4>
+                    <p class="list-desc">{{ list.description }}<span class="arrow-more"></span></p>
+                </a>
             </div>
             {% endfor %}
         </div>

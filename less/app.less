@@ -38,7 +38,7 @@ body {
 	}
 
 	.container {
-		max-width: 960px;
+		max-width: 800px;
 		width: 90%;
 		margin: 0 auto;
 	}
@@ -65,13 +65,13 @@ body {
 	@media @screen-small {
 		h2 {
 			font-size: 1.3rem;
-			margin-bottom: 6px;
-			font-weight: bold;
+			margin-bottom: 0px;
 		}
 
 		p {
 			.gotham();
 			font-size: .9rem;
+			margin-top: 4px;
 		}
 
 		.container {
@@ -87,10 +87,6 @@ header {
     border-bottom: @music-blue-lighter 3px solid;
 
 	.header-wrapper {
-		max-width: 960px;
-		margin: 0 auto;
-		width: 90%;
-
 		img {
 	        max-width: 150px;
 	        width: 100%;
@@ -102,6 +98,7 @@ header {
 	        font-size: 2rem;
 	        text-transform: uppercase;
 	        font-weight: normal;
+			margin-top: 12px;
 	        a { color: @white; }
 	    }
 
@@ -167,7 +164,7 @@ header {
 					padding: 7px 5px;
 
 					&.favorites, &.lists {
-						top: -5px;
+						top: 7px;
 					}
 
 					&.lists {
@@ -193,7 +190,7 @@ header {
 
         &:last-child {
             padding-top: 30px;
-			border-bottom: 2.25px solid rgba(63, 63, 82, 0.95);
+			border-bottom: 2.25px solid @music-grey-borders;
 			//Take border away when sponsorship comes in and use borders on that space instead
         }
 
@@ -245,12 +242,25 @@ header {
 
 		.dlist {
 			margin-bottom: 18px;
+			border-bottom: 1.75px solid @music-grey-borders;
+
+			&:last-child {
+				border-bottom: 0;
+			}
 		}
+
+		span.arrow-more::before {
+			font-size: 16px;
+			margin-left: 4px;
+			position: absolute;
+		}
+
+		a { color: @white; }
+
         h4 {
-            a { color: @white; }
             text-decoration: none;
             font-size: 16px;
-			margin-bottom: 8px;
+			margin-bottom: 3px;
 			margin-top: 18px;
         }
 
@@ -259,6 +269,10 @@ header {
 			margin-top: 0;
 			margin-bottom: 16px;
 			line-height: 1.4rem;
+
+			&.intro-text {
+				margin-bottom: 1.5rem;
+			}
 		}
 
 		@media @screen-small {
@@ -318,18 +332,17 @@ header {
 		}
 
 		.song-art {
-			flex-basis: 25%;
 			float: left;
 
 			img {
 				width: 100%;
-				max-width: 150px;
+				max-width: 65px;
 				cursor: pointer;
 			}
 		}
 
 		.song-info {
-			flex-basis: 65%;
+			flex-basis: 75%;
 			margin-left: 5%;
 			float: left;
 			cursor: pointer;
@@ -347,7 +360,7 @@ header {
 
 			span.arrow-more {
 				float: right;
-				margin-top: -10px;
+				margin-top: -5px;
 			}
 		}
 	}
@@ -365,6 +378,10 @@ header {
 
 		.song-wrapper {
 			flex-basis: 100%;
+
+			.song-info {
+				flex-basis: 85%;
+			}
 
 			&:last-child {
 				border-bottom: none;
@@ -498,18 +515,27 @@ footer {
     background: @blue-darker;
     border-top: @music-blue-lighter 3px solid;
     margin-top: 20px;
-    padding: 20px 0;
-    .footer-wrapper {
-        max-width: 960px;
-        margin: 0 auto;
-
-        @media @screen-medium {
-            width: 90%;
-        }
-    }
+    padding: 20px 0 30px;
 
     h5 {
         color: @white;
         text-transform: uppercase;
+		font-size: 15px;
     }
+
+	p {
+		font-size: 0.9rem;
+		margin-bottom: 0px;
+
+		&:last-child {
+			margin-top: 0px;
+		}
+	}
+
+	@media @screen-small {
+		p {
+			font-size: 0.8rem;
+			line-height: 1.1rem;
+		}
+	}
 }

@@ -3,61 +3,64 @@
 <div class="list-container container">
 
     {% for row in COPY.best_lists %}
-    {% if row.slug == slug %}
-    <h2>{{ row.list_name }}</h2>
-    <p>{{ row.description }}</p>
-    {% endif %}
+        {% if row.slug == slug %}
+            <h2>{{ row.list_name }}</h2>
+            <p>{{ row.description }}</p>
+        {% endif %}
     {% endfor %}
 
     {% for row in COPY.deeper_lists %}
-    {% if row.slug == slug %}
-    <h2>{{ row.list_name }}</h2>
-    <p>{{ row.description }}</p>
-    {% endif %}
+        {% if row.slug == slug %}
+            <h2>{{ row.list_name }}</h2>
+            <p>{{ row.description }}</p>
+        {% endif %}
     {% endfor %}
+
     <hr class="line" />
 
     {% if types == 'both' %}
     <div class="albums">
         <h3>Albums</h3>
         <div class="songs-container">
-        {% for song in COPY[slug] %}
-        {% if song.type == 'album' %}
-        <div class="song-wrapper">
-            <div class="song-art">
-                <a href="#"><img class="coverart" src="{{ song.art }}"></a>
+            {% for song in COPY[slug] %}
+            {% if song.type == 'album' %}
+            <div class="song-wrapper">
+                <div class="song-art">
+                    <a href="#"><img class="coverart" src="{{ song.art }}"></a>
+                </div>
+                <div class="song-info">
+                    <h6>{{ song.artist }}</h6>
+                    <h5>"{{ song.title }}"<span class="arrow-more"></span></h5>
+                </div>
             </div>
-            <div class="song-info">
-                <h6>{{ song.artist }}</h6>
-                <h5>"{{ song.title }}"</h5>
-                <span class="arrow-more"></span>
-            </div>
+            {% endif %}
+            {% endfor %}
+            <hr class="line" />
         </div>
-        {% endif %}
-        {% endfor %}
-        <hr class="line" />
     </div>
+
     <div class="songs">
         <h3>Songs</h3>
         <div class="songs-container">
-        {% for song in COPY[slug] %}
-        {% if song.type == 'song' %}
-        <div class="song-wrapper">
-            <div class="song-art">
-                <a href="#"><img class="coverart" src="{{ song.art }}"></a>
+            {% for song in COPY[slug] %}
+            {% if song.type == 'song' %}
+            <div class="song-wrapper">
+                <div class="song-art">
+                    <a href="#"><img class="coverart" src="{{ song.art }}"></a>
+                </div>
+                <div class="song-info">
+                    <h6>{{ song.artist }}</h6>
+                    <h5>"{{ song.title }}"<span class="arrow-more"></span></h5>
+                </div>
             </div>
-            <div class="song-info">
-                <h6>{{ song.artist }}</h6>
-                <h5>"{{ song.title }}"</h5>
-                <span class="arrow-more"></span>
-            </div>
+            {% endif %}
+            {% endfor %}
+            <hr class="line" />
         </div>
-        {% endif %}
-        {% endfor %}
-        <hr class="line" />
     </div>
 
     {% else %}
+
     <div class="songs-container">
         {% for song in COPY[slug] %}
         <div class="song-wrapper">
@@ -66,14 +69,13 @@
             </div>
             <div class="song-info">
                 <h6>{{ song.artist }}</h6>
-                <h5>"{{ song.title }}"</h5>
-                <span class="arrow-more"></span>
+                <h5>"{{ song.title }}"<span class="arrow-more"></span></h5>
             </div>
         </div>
         {% endfor %}
-        </div>
-        {% endif %}
     </div>
+    
+    {% endif %}
 </div>
 
 {% include '_modal.html' %}
