@@ -16,17 +16,17 @@ const onWindowLoaded = function() {
     Barba.Pjax.start();
 }
 
-const attachEvents = function(currentStatus, prevStatus) {
+const attachEvents = function(currentStatus, prevStatus, container) {
     if (currentStatus.namespace === 'index') {
         listButton.style.display = "none";
     }
 
     if (currentStatus.namespace === 'list') {
         listButton.style.display = "block";
-        songContainers = document.querySelectorAll('.song-wrapper');
-        modal = document.querySelector('.modal');
-        modalOverlay = document.querySelector('.modal-overlay');
-        carousel = document.querySelector('.main-carousel');
+        songContainers = container.querySelectorAll('.song-wrapper');
+        modal = container.querySelector('.modal');
+        modalOverlay = container.querySelector('.modal-overlay');
+        carousel = container.querySelector('.main-carousel');
         flkty = new Flickity(carousel, {
             pageDots: false,
             draggable: isTouch,
