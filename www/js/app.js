@@ -5,6 +5,7 @@ let songContainers = null;
 let modal = null;
 let modalOverlay = null;
 let carousel = null;
+let carouselCells = null;
 let flkty = null;
 let listButton = null;
 
@@ -27,6 +28,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         modal = container.querySelector('.modal');
         modalOverlay = container.querySelector('.modal-overlay');
         carousel = container.querySelector('.main-carousel');
+        carouselCells = container.querySelectorAll('.carousel-cell');
         flkty = new Flickity(carousel, {
             pageDots: false,
             draggable: isTouch,
@@ -43,7 +45,34 @@ const attachEvents = function(currentStatus, prevStatus, container) {
             songContainers[i].addEventListener('click', onSongClick);
         }
         modalOverlay.addEventListener('click', onModalClick);
+
+        checkForPermalink();
     }
+}
+
+const checkForPermalink = function() {
+    const item = getParameterByName('item');
+
+    if (item) {
+        const cell = [].find.call(carouselCells, function(song) {
+            return song.getAttribute('data-slug') === item;
+        });
+
+        const index = [].indexOf.call(carouselCells, cell);
+
+        modal.style.display = 'block';
+        flkty.resize();
+        flkty.select(index);
+
+        window.history.replaceState('', '', document.location.href.split('?')[0]);
+    }
+}
+
+var getParameterByName = function(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 const loadEmbed = function() {
@@ -88,6 +117,32 @@ const onModalClick = function() {
     if (iframe) {
         iframe.setAttribute('src', '');
     }
+}
+
+if (!Array.prototype.find) {
+  Object.defineProperty(Array.prototype, 'find', {
+    value: function(predicate) {
+     'use strict';
+     if (this == null) {
+       throw new TypeError('Array.prototype.find called on null or undefined');
+     }
+     if (typeof predicate !== 'function') {
+       throw new TypeError('predicate must be a function');
+     }
+     var list = Object(this);
+     var length = list.length >>> 0;
+     var thisArg = arguments[1];
+     var value;
+
+     for (var i = 0; i < length; i++) {
+       value = list[i];
+       if (predicate.call(thisArg, value, i, list)) {
+         return value;
+       }
+     }
+     return undefined;
+    }
+  });
 }
 
 window.onload = onWindowLoaded;
