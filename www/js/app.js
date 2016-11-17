@@ -36,10 +36,41 @@ const attachEvents = function(currentStatus, prevStatus) {
             selectedAttraction: isTouch ? 0.025 : 1
         });
 
+        flkty.on('select', loadEmbed);
+        flkty.on('settle', unloadEmbed);
+
         for (var i = 0; i < songContainers.length; i++) {
             songContainers[i].addEventListener('click', onSongClick);
         }
         modalOverlay.addEventListener('click', onModalClick);
+    }
+}
+
+const loadEmbed = function() {
+    const item = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex];
+
+    const iframe = item.querySelector('iframe');
+
+    if (iframe) {
+        const src = iframe.getAttribute('data-src');
+        iframe.setAttribute('src', src);
+    }
+}
+
+const unloadEmbed = function() {
+    const itemBehind = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex - 1];
+    const itemAhead = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex + 1];
+
+    const items = [itemBehind, itemAhead];
+
+    for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        if (item) {
+            const iframe = items[i].querySelector('iframe');
+            if (iframe) {
+                iframe.setAttribute('src', '');
+            }
+        }
     }
 }
 
