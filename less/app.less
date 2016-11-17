@@ -38,7 +38,7 @@ body {
 	}
 
 	.container {
-		max-width: 800px;
+		max-width: @container-max;
 		width: 90%;
 		margin: 0 auto;
 	}
@@ -54,6 +54,82 @@ body {
 		content: '\E801';
 		color: @para-txt-light;
 		font-size: 25px;
+	}
+
+	button {
+		.gotham();
+		font-size: .9rem;
+		position: absolute;
+		padding: 7px 10px;
+		color: @white;
+		outline: none;
+		transition: all 0.2s;
+
+		&.favorites, &.lists {
+			background: #4E4F66;
+			border: 1px solid rgba(110, 110, 128, 0.85);
+		}
+
+		&.favorites {
+			top: 10px;
+			right: 0px;
+			.heart::before {
+				.fa-icon();
+				content: '\E808';
+			}
+		}
+
+		&.lists {
+			top: 10px;
+			right: 118px;
+			.list-menu::before {
+				.fa-icon();
+				content: '\F0C9';
+			}
+		}
+
+		&.modal-favorites {
+			top: -8px;
+			right: -5px;
+			background: @bg-dark;
+			border: 0;
+			border-bottom: 2px solid @music-red;
+			.heart::before {
+				.fa-icon();
+				content: '\E808';
+			}
+			.heart.filled::before {
+			    .fa-icon();
+			    content: '\E809';
+			    color: @music-red;
+			}
+		}
+
+		@media @screen-medium-above {
+			&:hover {
+				background: #45418C;
+			}
+		}
+
+		@media @screen-small {
+			border: 0;
+			background: @bg-medium;
+			padding: 7px 5px;
+
+			&.favorites, &.lists {
+				top: 7px;
+				background: @bg-medium;
+				border: 0;
+			}
+
+			&.lists {
+				right: 105px;
+			}
+
+			&.modal-favorites {
+				border-bottom: 0;
+			}
+		}
 	}
 
 	@media @screen-small-above {
@@ -308,12 +384,14 @@ header {
 .sponsorship {
 	width: 100%;
 	min-height: 250px;
-	background-color: @gray-medium;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 
-	h1 { color: #333; font-weight: bold;}
+	#amazon1{
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 250px;
+	  background-color:#7c9bd3;
+	}
 }
 
 // LIST
@@ -409,6 +487,10 @@ header {
 
 	.albums .song-wrapper h5{
 		font-style: italic;
+
+		span {
+			font-style: normal;
+		}
 	}
 
 	@media @screen-medium {
@@ -459,8 +541,9 @@ header {
     }
 
     .modal-content {
-		background-color: @music-hp-dark;
-		min-height: 400px;
+		background-color: @bg-dark;
+		min-height: 500px;
+		max-width: (@container-max + 300);
 		width: 90%;
 		opacity: 1;
 		z-index: 2;
@@ -503,8 +586,27 @@ header {
 		}
 
 		.modal-container {
-			width: 80%;
+			// width: 80%;
+			max-width: (@container-max + 150);
 			margin: 0 auto;
+			padding: 25px 0;
+			height: 400px;
+    		overflow-y: auto;
+			padding-right: 25px;
+
+			&::-webkit-scrollbar-track {
+				background-color: @music-grey-borders;
+				border: 0.25px solid @bg-medium;
+			}
+
+			&::-webkit-scrollbar {
+				width: 10px;
+				background-color: @bg-medium;
+			}
+
+			&::-webkit-scrollbar-thumb {
+				background-color: @bg-medium;
+			}
 
 			h6.artist {
 				font-weight: 700;
@@ -519,7 +621,7 @@ header {
 
 			p.author {
 				.gotham();
-				font-size: 1rem;
+				font-size: .9rem;
 
 				&::before {
 					content: '\2014';
@@ -532,13 +634,17 @@ header {
 				}
 			}
 
+			.song-titleinfo {
+				margin-bottom: 16px;
+				position: relative;
+			}
+
 			.song-player {
-				background-color: @music-dark;
-				display: flex;
 				height: 85px;
 
 				div.art-cover {
-					flex-basis: 25%;
+					float: left;
+					margin-right: 10px;
 
 					img {
 						width: 100%;
@@ -546,14 +652,39 @@ header {
 					}
 				}
 				div.play-box {
-					flex-basis: 70%;
-					padding: 8px 10px;
+					padding-top: 8px;
 
 					p {
 						color: @para-txt-light;
-
-						&:first-child { margin-bottom: 5px; }
+						&.play {
+							text-transform: uppercase;
+							font-weight: 700;
+							margin-bottom: -5px;
+						}
 					}
+
+					span.question::before {
+						.fa-icon();
+						content: '\E80A';
+						color: @para-txt-light;
+						font-size: 15px;
+						float: right;
+						margin-right: 8px;
+						cursor: pointer;
+					}
+				}
+			}
+
+			@media @screen-medium {
+				width: 85%;
+			}
+
+			@media @screen-small {
+				width: 85%;
+
+				.song-player {
+					background-color: @music-grey-borders;
+
 				}
 			}
 		}
@@ -565,7 +696,7 @@ header {
         z-index: -1;
         &.is-selected {
             z-index: 0;
-            background-color: @music-hp-dark;
+            background-color: @bg-dark;
         }
     }
 

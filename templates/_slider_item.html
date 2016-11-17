@@ -1,18 +1,17 @@
 <div class="carousel-cell" data-slug="{{ item.song_slug }}">
     <div class="modal-container">
-        <div class="favorite-button">
-            <button class="favorite-btn"><span class="heart"></span> Favorite</button>
-        </div>
         <div class="song-titleinfo">
             <h6 class="artist">{{ item.artist }}</h6>
             <h5 class="title">{{ item.title }}</h5>
+            <button class="modal-favorites"><span class="heart"></span> Favorite</button>
         </div>
         <div class="song-player">
             <div class="art-cover">
                 <img src="{{ item.art }}" />
             </div>
             <div class="play-box">
-                <p>Play this {{ item.type }}</p>
+                <span class="question"></span>
+                <p class="play">Play this {{ item.type }}</p>
                 <p>{{ item.smarturl }}</p>
             </div>
         </div>

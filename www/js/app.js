@@ -33,6 +33,7 @@ const onWindowLoaded = function() {
 const attachEvents = function(currentStatus, prevStatus, container) {
     if (currentStatus.namespace === 'index') {
         listButton.style.display = "none";
+        initSponsorship();
     }
 
     if (currentStatus.namespace === 'favorites') {
@@ -48,7 +49,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         modal = container.querySelector('.modal');
         modalOverlay = container.querySelector('.modal-overlay');
         carousel = container.querySelector('.main-carousel');
-        favoriteButtons = container.querySelectorAll('.favorite-btn');
+        favoriteButtons = container.querySelectorAll('.modal-favorites');
         carouselCells = container.querySelectorAll('.carousel-cell');
         
         flkty = new Flickity(carousel, {
@@ -70,6 +71,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
             const el = favoriteButtons[i];
 
             if (favorites.indexOf(el.parentNode.parentNode.parentNode.getAttribute('data-slug')) !== -1) {
+                console.log('favorite found');
                 el.querySelector('span').classList.add('filled');
             }
 
@@ -172,6 +174,13 @@ const onModalClick = function() {
     if (iframe) {
         iframe.setAttribute('src', '');
     }
+}
+
+const initSponsorship = function() {
+    refreshSlot('amazon1');
+    googletag.cmd.push(function() {
+      googletag.display('amazon1');
+    });
 }
 
 if (!Array.prototype.find) {
