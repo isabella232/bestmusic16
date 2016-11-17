@@ -624,8 +624,19 @@ header {
     }
 
     .flickity-viewport {
-        min-height: 400px;
+        min-height: 500px;
     }
+
+	.bottom-gradient {
+		position: absolute;
+		bottom: 45px;
+		left: 0px;
+		width: 90%;
+		height: 50px;
+		background: -moz-linear-gradient(top,  @bg-dark-gradient-start 0%, @bg-dark-gradient-end 100%); /* FF3.6+ */
+		background: -webkit-linear-gradient(top,  @bg-dark-gradient-start 0%, @bg-dark-gradient-end 100%); /* Chrome10+,Safari5.1+ */
+		background: -ms-linear-gradient(top,  @bg-dark-gradient-start 0%, @bg-dark-gradient-end 100%); /* IE10+ */
+	}
 }
 
 footer {
