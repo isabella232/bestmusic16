@@ -39,7 +39,8 @@ def update():
 
         for row in all_lists:
             if row['slug']:
-                songs = sheet[row['slug']]
+                slug = row['slug'].replace('-', '_')
+                songs = sheet[slug]
                 for song in songs:
                     if all_songs.get(song['song_slug']):
                         continue
