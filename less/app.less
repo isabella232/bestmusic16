@@ -12,7 +12,7 @@ body {
 
 	h2 {
 		color: @white;
-		font-size: 1.8rem;
+		font-size: 2.25rem;
 		text-transform: uppercase;
 		margin-bottom: 12px;
 		font-weight: 400;
@@ -34,17 +34,19 @@ body {
 
 	a {
 	    text-decoration: none;
+		color: @para-txt-dark;
 	}
 
 	.container {
-		max-width: 960px;
+		max-width: 800px;
 		width: 90%;
+		margin: 0 auto;
 	}
 
 	hr {
 		margin: 16px 0 0;
 		border-color: @music-blue-lighter;
-		border-width: 0 1px 1px 1px;
+		border-width: 0 1px 2.25px 1px;
 	}
 
 	span.arrow-more::before {
@@ -54,7 +56,7 @@ body {
 		font-size: 25px;
 	}
 
-	@media @screen-medium-above {
+	@media @screen-small-above {
 		hr.line {
 			display: none;
 		}
@@ -63,13 +65,13 @@ body {
 	@media @screen-small {
 		h2 {
 			font-size: 1.3rem;
-			margin-bottom: 6px;
-			font-weight: bold;
+			margin-bottom: 0px;
 		}
 
 		p {
 			.gotham();
 			font-size: .9rem;
+			margin-top: 4px;
 		}
 
 		.container {
@@ -85,10 +87,6 @@ header {
     border-bottom: @music-blue-lighter 3px solid;
 
 	.header-wrapper {
-		max-width: 960px;
-		margin: 0 auto;
-		width: 90%;
-
 		img {
 	        max-width: 150px;
 	        width: 100%;
@@ -97,9 +95,10 @@ header {
 	    }
 
 	    h1 {
-	        font-size: 2rem;
+	        font-size: 1.25rem;
 	        text-transform: uppercase;
 	        font-weight: normal;
+			margin-top: 12px;
 	        a { color: @white; }
 	    }
 
@@ -170,7 +169,7 @@ header {
 					padding: 7px 5px;
 
 					&.favorites, &.lists {
-						top: -5px;
+						top: 7px;
 					}
 
 					&.lists {
@@ -196,7 +195,7 @@ header {
 
         &:last-child {
             padding-top: 30px;
-			border-bottom: 2.25px solid rgba(63, 63, 82, 0.95);
+			border-bottom: 2.25px solid @music-grey-borders;
 			//Take border away when sponsorship comes in and use borders on that space instead
         }
 
@@ -248,12 +247,25 @@ header {
 
 		.dlist {
 			margin-bottom: 18px;
+			border-bottom: 1.75px solid @music-grey-borders;
+
+			&:last-child {
+				border-bottom: 0;
+			}
 		}
+
+		span.arrow-more::before {
+			font-size: 16px;
+			margin-left: 4px;
+			position: absolute;
+		}
+
+		a { color: @white; }
+
         h4 {
-            a { color: @white; }
             text-decoration: none;
             font-size: 16px;
-			margin-bottom: 8px;
+			margin-bottom: 3px;
 			margin-top: 18px;
         }
 
@@ -262,6 +274,10 @@ header {
 			margin-top: 0;
 			margin-bottom: 16px;
 			line-height: 1.4rem;
+
+			&.intro-text {
+				margin-bottom: 1.5rem;
+			}
 		}
 
 		@media @screen-small {
@@ -282,11 +298,52 @@ header {
 
 }
 
+.lists-continue {
+	text-align: center;
+	.gotham();
+	margin: 10px 0;
+	font-size: 14px;
+}
+
+.sponsorship {
+	width: 100%;
+	min-height: 250px;
+	background-color: @gray-medium;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	h1 { color: #333; font-weight: bold;}
+}
+
 // LIST
 .list-container {
 	max-width: 960px;
 	margin: 0 auto;
 	width: 100%;
+
+	h2 {
+		text-transform: capitalize;
+	}
+
+	h3 {
+		color: @white;
+		font-size: 1.25rem;
+		margin-left: 55px;
+		margin-top: 2.75rem;
+		text-transform: uppercase;
+		position: relative;
+
+		&.album-header::before {
+			.header-icons();
+			background-image: url('../assets/album-icon.svg');
+		}
+
+		&.song-header::before {
+			.header-icons();
+			background-image: url('../assets/song-icon.svg');
+		}
+	}
 
 	.songs-container {
 		display: flex;
@@ -295,11 +352,16 @@ header {
 	}
 
 	.song-wrapper {
-		border-bottom: 2.5px solid @music-blue-lighter;
+		border-bottom: 2.25px solid @music-blue-lighter;
 		clear: both;
 		padding: 20px 0;
 		display: flex;
 		flex-basis: 48%;
+		cursor: pointer;
+
+		&:last-child, &:nth-last-child(2) {
+			border-bottom: none;
+		}
 
 		p {
 			line-height: 18px;
@@ -312,19 +374,20 @@ header {
 		}
 
 		.song-art {
-			flex-basis: 25%;
 			float: left;
 
 			img {
 				width: 100%;
-				max-width: 150px;
+				max-width: 65px;
+				cursor: pointer;
 			}
 		}
 
 		.song-info {
-			flex-basis: 65%;
+			flex-basis: 75%;
 			margin-left: 5%;
 			float: left;
+			cursor: pointer;
 
 			h6 {
 				font-weight: 700;
@@ -339,9 +402,13 @@ header {
 
 			span.arrow-more {
 				float: right;
-				margin-top: -10px;
+				margin-top: -5px;
 			}
 		}
+	}
+
+	.albums .song-wrapper h5{
+		font-style: italic;
 	}
 
 	@media @screen-medium {
@@ -357,6 +424,18 @@ header {
 
 		.song-wrapper {
 			flex-basis: 100%;
+
+			.song-info {
+				flex-basis: 85%;
+			}
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			&:nth-last-child(2) {
+				border-bottom: 2.25px solid @music-blue-lighter;
+			}
 		}
 	}
 }
@@ -380,15 +459,15 @@ header {
     }
 
     .modal-content {
-        background-color: @music-hp-dark;
-        min-height: 400px;
-        width: 90%;
-        opacity: 1;
-        z-index: 2;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+		background-color: @music-hp-dark;
+		min-height: 400px;
+		width: 90%;
+		opacity: 1;
+		z-index: 2;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 		padding: 15px;
 
         .favorite-btn {
@@ -408,33 +487,73 @@ header {
 			color: @music-red;
 			margin: 0;
 		}
+		// FLICKITY CUTSOM STYLES
+		.flickity-prev-next-button {
+			border-radius: 0;
+			height: 55px;
+			width: 25px;
 
-		h5.title {
-			color: @para-txt-light;
-			margin: 8px 0;
+			&.previous {
+				left: -15px;
+			}
+
+			&.next {
+				right: -15px;
+			}
 		}
 
-		.song-player {
-			background-color: @music-dark;
-			display: flex;
-			height: 85px;
+		.modal-container {
+			width: 80%;
+			margin: 0 auto;
 
-			div.art-cover {
-				flex-basis: 25%;
+			h6.artist {
+				font-weight: 700;
+				color: @music-red;
+				margin: 0;
+			}
 
-				img {
-					width: 100%;
-					max-width: 85px;
+			h5.title {
+				color: @para-txt-light;
+				margin: 8px 0;
+			}
+
+			p.author {
+				.gotham();
+				font-size: 1rem;
+
+				&::before {
+					content: '\2014';
+					margin-right: 5px;
+				}
+
+				span.affiliation {
+					font-weight: bold;
+					font-style: italic;
 				}
 			}
-			div.play-box {
-				flex-basis: 70%;
-				padding: 8px 10px;
 
-				p {
-					color: @para-txt-light;
+			.song-player {
+				background-color: @music-dark;
+				display: flex;
+				height: 85px;
 
-					&:first-child { margin-bottom: 5px; }
+				div.art-cover {
+					flex-basis: 25%;
+
+					img {
+						width: 100%;
+						max-width: 85px;
+					}
+				}
+				div.play-box {
+					flex-basis: 70%;
+					padding: 8px 10px;
+
+					p {
+						color: @para-txt-light;
+
+						&:first-child { margin-bottom: 5px; }
+					}
 				}
 			}
 		}
@@ -459,18 +578,27 @@ footer {
     background: @blue-darker;
     border-top: @music-blue-lighter 3px solid;
     margin-top: 20px;
-    padding: 20px 0;
-    .footer-wrapper {
-        max-width: 960px;
-        margin: 0 auto;
-
-        @media @screen-medium {
-            width: 90%;
-        }
-    }
+    padding: 20px 0 30px;
 
     h5 {
         color: @white;
         text-transform: uppercase;
+		font-size: 15px;
     }
+
+	p {
+		font-size: 0.9rem;
+		margin-bottom: 0px;
+
+		&:last-child {
+			margin-top: 0px;
+		}
+	}
+
+	@media @screen-small {
+		p {
+			font-size: 0.8rem;
+			line-height: 1.1rem;
+		}
+	}
 }

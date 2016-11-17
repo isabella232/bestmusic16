@@ -1,7 +1,7 @@
 {% extends '_base.html' %}
 {% block content %}
 
-<div class="no-content">
+<div class="no-content container">
   <h2>You Haven't Added Any Favorites Yet.</h2>
   <p>
     Select the Favorite button on a song or album page to create your own list.
@@ -15,38 +15,36 @@
     <div class="list-container">
         <% if (types === 'both') { %>
         <div class="albums">
-            <h3>Albums</h3>
+            <h3 class="album-header">Favorite Albums</h3>
             <div class="songs-container">
             <% favoriteItems.forEach(function(item) {
                if (item.type === 'album') { 
             %>
-                <div class="song-wrapper">
+                <div class="song-wrapper" id="<%= item.song_slug %>">
                     <div class="song-art">
                         <a href="#"><img class="coverart" src="<%= item.art %>"></a>
                     </div>
                     <div class="song-info">
                         <h6><%= item.artist %></h6>
-                        <h5><%= item.title %></h5>
-                        <span class="arrow-more"></span>
+                        <h5><%= item.title %><span class="arrow-more"></span></h5>
                     </div>
                 </div>
             <% }}); %>
             </div>
         </div>
         <div class="songs">
-            <h3>Songs</h3>
+            <h3 class="song-header">Favorite Songs</h3>
             <div class="songs-container">
             <% favoriteItems.forEach(function(item) { 
                if (item.type === 'song') { 
             %>
-                <div class="song-wrapper">
+                <div class="song-wrapper" id="<%= item.song_slug %>">
                     <div class="song-art">
                         <a href="#"><img class="coverart" src="<%= item.art %>"></a>
                     </div>
                     <div class="song-info">
                         <h6><%= item.artist %></h6>
-                        <h5><%= item.title %></h5>
-                        <span class="arrow-more"></span>
+                        <h5><%= item.title %><span class="arrow-more"></span></h5>
                     </div>
                 </div>
             <% }}); %>
@@ -55,14 +53,13 @@
         <% } else { %>
         <div class="songs-container">
         <% favoriteItems.forEach(function(item) { %>
-            <div class="song-wrapper">
+            <div class="song-wrapper" id="<%= item.song_slug %>">
                 <div class="song-art">
                     <a href="#"><img class="coverart" src="<%= item.art %>"></a>
                 </div>
                 <div class="song-info">
                     <h6><%= item.artist %></h6>
-                    <h5><%= item.title %></h5>
-                    <span class="arrow-more"></span>
+                    <h5><%= item.title %><span class="arrow-more"></span></h5>
                 </div>
             </div>
         <% })}; %>
@@ -75,24 +72,26 @@
         <div class="main-carousel">
             <% favoriteItems.forEach(function(item) { %>
             <div class="carousel-cell" data-slug="<%= item.song_slug %>">
-                <div class="favorite-button">
-                    <button class="favorite-btn"><span class="heart"></span> Favorite</button>
-                </div>
-                <div class="song-titleinfo">
-                    <h6 class="artist"><%= item.artist %></h6>
-                    <h5 class="title"><%= item.title %></h5>
-                </div>
-                <div class="song-player">
-                    <div class="art-cover">
-                        <img src="<%= item.art %>" />
+                <div class="modal-container">
+                    <div class="favorite-button">
+                        <button class="favorite-btn"><span class="heart"></span> Favorite</button>
                     </div>
-                    <div class="play-box">
-                        <p>Play this song</p>
-                        <p><%= item.smarturl %></p>
+                    <div class="song-titleinfo">
+                        <h6 class="artist"><%= item.artist %></h6>
+                        <h5 class="title"><%= item.title %></h5>
                     </div>
-                </div>
-                <div class="song-information">
-                    <p class="desc"><%= item.description %></p>
+                    <div class="song-player">
+                        <div class="art-cover">
+                            <img src="<%= item.art %>" />
+                        </div>
+                        <div class="play-box">
+                            <p>Play this song</p>
+                            <p><%= item.smarturl %></p>
+                        </div>
+                    </div>
+                    <div class="song-information">
+                        <p class="desc"><%= item.description %></p>
+                    </div>
                 </div>
             </div>
             <% }); %>

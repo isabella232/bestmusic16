@@ -7,6 +7,7 @@ let songContainers = null;
 let modal = null;
 let modalOverlay = null;
 let carousel = null;
+let carouselCells = null;
 let flkty = null;
 let listButton = null;
 let headerFavoriteButton = null;
@@ -42,11 +43,13 @@ const attachEvents = function(currentStatus, prevStatus, container) {
 
     if (currentStatus.namespace === 'list' || currentStatus.namespace === 'favorites') {
         listButton.style.display = "block";
-        songContainers = document.querySelectorAll('.song-wrapper');
-        modal = document.querySelector('.modal');
-        modalOverlay = document.querySelector('.modal-overlay');
-        carousel = document.querySelector('.main-carousel');
-        favoriteButtons = document.querySelectorAll('.favorite-btn');
+
+        songContainers = container.querySelectorAll('.song-wrapper');
+        modal = container.querySelector('.modal');
+        modalOverlay = container.querySelector('.modal-overlay');
+        carousel = container.querySelector('.main-carousel');
+        favoriteButtons = container.querySelectorAll('.favorite-btn');
+        carouselCells = container.querySelectorAll('.carousel-cell');
         
         flkty = new Flickity(carousel, {
             pageDots: false,
@@ -56,6 +59,8 @@ const attachEvents = function(currentStatus, prevStatus, container) {
             friction: isTouch ? 0.28 : 1,
             selectedAttraction: isTouch ? 0.025 : 1
         });
+        flkty.on('select', loadEmbed);
+        flkty.on('settle', unloadEmbed);
 
         for (var i = 0; i < songContainers.length; i++) {
             songContainers[i].addEventListener('click', onSongClick);
@@ -64,7 +69,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         for (var i = 0; i < favoriteButtons.length; i++) {
             const el = favoriteButtons[i];
 
-            if (favorites.indexOf(el.parentNode.parentNode.getAttribute('data-slug')) !== -1) {
+            if (favorites.indexOf(el.parentNode.parentNode.parentNode.getAttribute('data-slug')) !== -1) {
                 el.querySelector('span').classList.add('filled');
             }
 
@@ -72,6 +77,61 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         }
 
         modalOverlay.addEventListener('click', onModalClick);
+
+        checkForPermalink();
+    }
+}
+
+const checkForPermalink = function() {
+    const item = getParameterByName('item');
+
+    if (item) {
+        const cell = [].find.call(carouselCells, function(song) {
+            return song.getAttribute('data-slug') === item;
+        });
+
+        const index = [].indexOf.call(carouselCells, cell);
+
+        modal.style.display = 'block';
+        flkty.resize();
+        flkty.select(index);
+
+        window.history.replaceState('', '', document.location.href.split('?')[0]);
+    }
+}
+
+var getParameterByName = function(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+const loadEmbed = function() {
+    const item = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex];
+
+    const iframe = item.querySelector('iframe');
+
+    if (iframe) {
+        const src = iframe.getAttribute('data-src');
+        iframe.setAttribute('src', src);
+    }
+}
+
+const unloadEmbed = function() {
+    const itemBehind = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex - 1];
+    const itemAhead = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex + 1];
+
+    const items = [itemBehind, itemAhead];
+
+    for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        if (item) {
+            const iframe = items[i].querySelector('iframe');
+            if (iframe) {
+                iframe.setAttribute('src', '');
+            }
+        }
     }
 }
 
@@ -82,7 +142,7 @@ const onSongClick = function() {
 }
 
 const onFavoriteButtonClick = function() {
-    const slug = this.parentNode.parentNode.getAttribute('data-slug');
+    const slug = this.parentNode.parentNode.parentNode.getAttribute('data-slug');
     const favoriteIndex = favorites.indexOf(slug);
     
     // not a favorite yet
@@ -106,11 +166,42 @@ const onFavoriteButtonClick = function() {
 
 const onModalClick = function() {
     modal.style.display = 'none';
+    const item = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex];
+    const iframe = item.querySelector('iframe');
+
+    if (iframe) {
+        iframe.setAttribute('src', '');
+    }
+}
+
+if (!Array.prototype.find) {
+  Object.defineProperty(Array.prototype, 'find', {
+    value: function(predicate) {
+     'use strict';
+     if (this == null) {
+       throw new TypeError('Array.prototype.find called on null or undefined');
+     }
+     if (typeof predicate !== 'function') {
+       throw new TypeError('predicate must be a function');
+     }
+     var list = Object(this);
+     var length = list.length >>> 0;
+     var thisArg = arguments[1];
+     var value;
+
+     for (var i = 0; i < length; i++) {
+       value = list[i];
+       if (predicate.call(thisArg, value, i, list)) {
+         return value;
+       }
+     }
+     return undefined;
+    }
+  });
 }
 
 const layoutFavorites = function(container) {
     const storedFavorites = JSON.parse(localStorage.getItem('favorites'));
-    console.log(storedFavorites);
     if (storedFavorites.length > 0) {
         container.querySelector('.no-content').style.display = 'none';
         const parser = new DOMParser();
@@ -128,21 +219,32 @@ const layoutFavorites = function(container) {
         });
 
         const songTemplateCompiled = template(songContainerTemplate.innerHTML);
-        const modalTemplateCompiled = template(modalTemplate.innerHTML);
-
         const songDOM = parser.parseFromString(songTemplateCompiled({
            'favoriteItems': songObjects,
            'types': songTypes.length > 1 ? 'both' : 'single'
         }), 'text/html');
-        const modalDOM = parser.parseFromString(modalTemplateCompiled({
-           'favoriteItems': songObjects
-        }), 'text/html');
-
         const songHTML = songDOM.querySelector('.list-container');
+        container.querySelector('.favorites').append(songHTML);
+
+
+        // build the modal in the order that the page was laid out
+        const items = container.querySelectorAll('.song-wrapper');
+        let orderedItems = [];
+        [].forEach.call(items, function(item) {
+            orderedItems.push(item.getAttribute('id'));
+        });
+        let modalObjects = [];
+        orderedItems.forEach(function(item) {
+            modalObjects.push(SONGS[item]);
+        });
+
+        const modalTemplateCompiled = template(modalTemplate.innerHTML);
+        const modalDOM = parser.parseFromString(modalTemplateCompiled({
+           'favoriteItems': modalObjects
+        }), 'text/html');
         const modalOverlayHTML = modalDOM.querySelector('.modal-overlay')
         const modalContentHTML = modalDOM.querySelector('.modal-content')
 
-        container.querySelector('.favorites').append(songHTML);
         container.querySelector('.modal').append(modalOverlayHTML);
         container.querySelector('.modal').append(modalContentHTML);
     } else {
