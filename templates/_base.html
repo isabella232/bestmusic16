@@ -53,7 +53,6 @@
     });
 
     function refreshSlot(slotName) {
-        console.log('refreshing')
       googletag.cmd.push(function() {
         googletag.pubads().refresh([adSlots[slotName]]);
       });
@@ -92,6 +91,7 @@
         </div>
     </footer>
     <script type="text/javascript" src="{{ S3_BASE_URL }}/js/rendered/app.js"></script>
+
     {# Setup Chartbeat last! #}
     <script type="text/javascript">
         // ANALYTICS.setupChartbeat();

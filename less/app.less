@@ -98,6 +98,11 @@ body {
 				.fa-icon();
 				content: '\E808';
 			}
+			.heart.filled::before {
+			    .fa-icon();
+			    content: '\E809';
+			    color: @music-red;
+			}
 		}
 
 		@media @screen-medium-above {
@@ -193,6 +198,61 @@ header {
 			@media @screen-small {
 				top: -80px;
 			}
+
+			button {
+				.gotham();
+				font-size: .9rem;
+		        position: absolute;
+				background: #4E4F66;
+				border: 1px solid rgba(110, 110, 128, 0.85);
+				padding: 7px 10px;
+				color: @white;
+				outline: none;
+				transition: all 0.2s;
+
+				&.favorites {
+					top: 10px;
+					right: 0px;
+					.heart::before {
+						.fa-icon();
+						content: '\E808';
+					}
+                    .heart.filled::before {
+                        .fa-icon();
+                        content: '\E809';
+                        color: @music-red;
+                    }
+				}
+
+				&.lists {
+					top: 10px;
+					right: 118px;
+					.list-menu::before {
+						.fa-icon();
+						content: '\F0C9';
+					}
+				}
+
+				@media @screen-medium-above {
+					&:hover {
+						background: #45418C;
+					}
+				}
+
+				@media @screen-small {
+					border: 0;
+					background: @bg-medium;
+					padding: 7px 5px;
+
+					&.favorites, &.lists {
+						top: 7px;
+					}
+
+					&.lists {
+						right: 105px;
+					}
+				}
+		    }
 		}
 	}
 }
@@ -493,6 +553,23 @@ header {
 		transform: translate(-50%, -50%);
 		padding: 15px;
 
+        .favorite-btn {
+            .heart::before {
+                .fa-icon();
+                content: '\E808';
+            }
+            .heart.filled::before {
+                .fa-icon();
+                content: '\E809';
+                color: @music-red;
+            }
+        }
+
+		h6.artist {
+			font-weight: 700;
+			color: @music-red;
+			margin: 0;
+		}
 		// FLICKITY CUTSOM STYLES
 		.flickity-prev-next-button {
 			border-radius: 0;
