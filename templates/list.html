@@ -20,7 +20,7 @@
 
     {% if types == 'both' %}
     <div class="albums">
-        <h3>Albums</h3>
+        <h3 class="album-header">Albums</h3>
         <div class="songs-container">
             {% for song in COPY[slug] %}
             {% if song.type == 'album' %}
@@ -30,7 +30,7 @@
                 </div>
                 <div class="song-info">
                     <h6>{{ song.artist }}</h6>
-                    <h5>"{{ song.title }}"<span class="arrow-more"></span></h5>
+                    <h5>{{ song.title }}<span class="arrow-more"></span></h5>
                 </div>
             </div>
             {% endif %}
@@ -40,7 +40,7 @@
     </div>
 
     <div class="songs">
-        <h3>Songs</h3>
+        <h3 class="song-header">Songs</h3>
         <div class="songs-container">
             {% for song in COPY[slug] %}
             {% if song.type == 'song' %}

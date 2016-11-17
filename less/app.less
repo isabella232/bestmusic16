@@ -12,7 +12,7 @@ body {
 
 	h2 {
 		color: @white;
-		font-size: 1.8rem;
+		font-size: 2.25rem;
 		text-transform: uppercase;
 		margin-bottom: 12px;
 		font-weight: 400;
@@ -95,7 +95,7 @@ header {
 	    }
 
 	    h1 {
-	        font-size: 2rem;
+	        font-size: 1.25rem;
 	        text-transform: uppercase;
 	        font-weight: normal;
 			margin-top: 12px;
@@ -303,6 +303,25 @@ header {
 		text-transform: capitalize;
 	}
 
+	h3 {
+		color: @white;
+		font-size: 1.25rem;
+		margin-left: 55px;
+		margin-top: 2.75rem;
+		text-transform: uppercase;
+		position: relative;
+
+		&.album-header::before {
+			.header-icons();
+			background-image: url('../assets/album-icon.svg');
+		}
+
+		&.song-header::before {
+			.header-icons();
+			background-image: url('../assets/song-icon.svg');
+		}
+	}
+
 	.songs-container {
 		display: flex;
 		flex-wrap: wrap;
@@ -363,6 +382,10 @@ header {
 				margin-top: -5px;
 			}
 		}
+	}
+
+	.albums .song-wrapper h5{
+		font-style: italic;
 	}
 
 	@media @screen-medium {
