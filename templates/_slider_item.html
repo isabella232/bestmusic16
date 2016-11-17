@@ -16,6 +16,11 @@
         <div class="song-information">
             <p class="desc">{{ item.description }}</p>
             <p class="author">{{ item.author }} <span class="affiliation">{{ item.affiliation }}</span></p>
+            {% if item.embed %}
+            <div class="embed">
+                {{ item.embed|safe }}
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
