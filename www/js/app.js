@@ -20,6 +20,7 @@ const onWindowLoaded = function() {
 const attachEvents = function(currentStatus, prevStatus, container) {
     if (currentStatus.namespace === 'index') {
         listButton.style.display = "none";
+        initSponsorship();
     }
 
     if (currentStatus.namespace === 'list') {
@@ -117,6 +118,13 @@ const onModalClick = function() {
     if (iframe) {
         iframe.setAttribute('src', '');
     }
+}
+
+const initSponsorship = function() {
+    refreshSlot('amazon1');
+    googletag.cmd.push(function() {
+      googletag.display('amazon1');
+    });
 }
 
 if (!Array.prototype.find) {
