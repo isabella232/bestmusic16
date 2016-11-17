@@ -143,8 +143,8 @@ def render_all():
                 all_lists = get_lists()
 
                 for item in all_lists:
-                    if item['url']:
-                        slug = item['url'].split('/')[-1]
+                    if item['slug']:
+                        slug = item['slug']
                         filename = 'www/list/{0}/index.html'.format(slug)
                         dirname = os.path.dirname(filename)
 
@@ -157,7 +157,7 @@ def render_all():
                         with open(filename, 'w') as f:
                             f.write(content)
                     else:
-                        logger.warn('no url found for {0}'.format(item['list_name']))
+                        logger.warn('no path found for {0}'.format(item['list_name']))
             else:
                 content = view().data
                 compiled_includes = g.compiled_includes

@@ -7,13 +7,13 @@
         {% for list in COPY.best_lists %}
             <div class="list">
                 <div class="list-art">
-                    <a href="list/{{ list.slug }}">
-                        <img src="assets/{{ list.art }}">
+                    <a href="{{ S3_BASE_URL }}/list/{{ list.slug }}">
+                        <img src="{{ S3_BASE_URL }}/assets/{{ list.art }}">
                     </a>
                 </div>
                 <div class="list-info">
-                    <h3><a href="list/{{ list.slug }}">{{ list.list_name }}</a></h3>
-                    <p><a href="list/{{ list.slug }}">{{ list.description }}<span class="arrow-more"></span></a></p>
+                    <h3><a href="{{ S3_BASE_URL }}/list/{{ list.slug }}">{{ list.list_name }}</a></h3>
+                    <p><a href="{{ S3_BASE_URL }}/list/{{ list.slug }}">{{ list.description }}<span class="arrow-more"></span></a></p>
                 </div>
             </div>
         {% endfor %}
@@ -25,7 +25,7 @@
         <div class="lists">
             {% for list in COPY.deeper_lists %}
             <div class="dlist">
-                <a href="list/{{ list.slug }}">
+                <a href="{{ S3_BASE_URL }}/list/{{ list.slug }}">
                     <h4>{{ list.list_name }}</h4>
                     <p class="list-desc">{{ list.description }}<span class="arrow-more"></span></p>
                 </a>
