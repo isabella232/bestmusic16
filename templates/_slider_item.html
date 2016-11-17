@@ -3,13 +3,15 @@
         <div class="song-titleinfo">
             <h6 class="artist">{{ item.artist }}</h6>
             <h5 class="title">{{ item.title }}</h5>
+            <a href="{{ S3_BASE_URL }}/favorites"><button class="modal-favorites"><span class="heart"></span> Favorites</button></a>
         </div>
         <div class="song-player">
             <div class="art-cover">
                 <img src="{{ item.art }}" />
             </div>
             <div class="play-box">
-                <p>Play this {{ item.type }}</p>
+                <span class="question"></span>
+                <p class="play">Play this {{ item.type }}</p>
                 <p>{{ item.smarturl }}</p>
             </div>
         </div>
