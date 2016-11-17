@@ -44,10 +44,11 @@ def list(slug):
     Example view demonstrating rendering a simple HTML page.
     """
     context = make_context(asset_depth=2)
-    context['slug'] = slug
+    underscores = slug.replace('-', '_')
 
+    context['slug'] = underscores
     types_found = []
-    for row in context['COPY'][slug]:
+    for row in context['COPY'][underscores]:
         if row['type'] not in types_found:
             types_found.append(row['type'])
 
