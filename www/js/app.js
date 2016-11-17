@@ -82,6 +82,12 @@ const onSongClick = function() {
 
 const onModalClick = function() {
     modal.style.display = 'none';
+    const item = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex];
+    const iframe = item.querySelector('iframe');
+
+    if (iframe) {
+        iframe.setAttribute('src', '');
+    }
 }
 
 window.onload = onWindowLoaded;
