@@ -51,11 +51,11 @@ def update():
                     song_obj['smarturl'] = song['smarturl']
                     song_obj['description'] = song['description']
                     song_obj['art'] = song['art']
-                    song_obj['other_tags'] = song['other_tags']
+                    song_obj['filed_under'] = song['filed_under']
                     song_obj['song_slug'] = song['song_slug']
                     song_obj['type'] = song['type']
 
                     all_songs[song['song_slug']] = song_obj
-        
+
         output = json.dumps(all_songs)
         f.write(output)
