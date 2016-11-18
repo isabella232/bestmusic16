@@ -1,20 +1,18 @@
 {% extends '_base.html' %}
 {% block content %}
+
 <div class="list-container container">
+    <div class="list-header">
+        <div class="list-title">
+            <h2>{{ list_name }}</h2>
+            <p>{{ list_description }}</p>
+        </div>
 
-    {% for row in COPY.best_lists %}
-        {% if row.slug == slug %}
-            <h2>{{ row.list_name }}</h2>
-            <p>{{ row.description }}</p>
-        {% endif %}
-    {% endfor %}
-
-    {% for row in COPY.deeper_lists %}
-        {% if row.slug == slug %}
-            <h2>{{ row.list_name }}</h2>
-            <p>{{ row.description }}</p>
-        {% endif %}
-    {% endfor %}
+        <div class="playlist-wrapper">
+            <a class="spotify-playlist" href="{{ playlist }}">Playlist</a>
+            <p>Listen to highlights from this playlist on Spotify</p>
+        </div>
+    </div>
 
     <hr class="line" />
 
@@ -24,15 +22,7 @@
         <div class="songs-container">
             {% for song in COPY[slug] %}
             {% if song.type == 'album' %}
-            <div class="song-wrapper">
-                <div class="song-art">
-                    <a href="#"><img class="coverart" src="{{ song.art }}"></a>
-                </div>
-                <div class="song-info">
-                    <h6>{{ song.artist }}</h6>
-                    <h5>{{ song.title }}<span class="arrow-more"></span></h5>
-                </div>
-            </div>
+            {% include '_song_wrapper.html' %}
             {% endif %}
             {% endfor %}
             <hr class="line" />
@@ -44,15 +34,7 @@
         <div class="songs-container">
             {% for song in COPY[slug] %}
             {% if song.type == 'song' %}
-            <div class="song-wrapper">
-                <div class="song-art">
-                    <a href="#"><img class="coverart" src="{{ song.art }}"></a>
-                </div>
-                <div class="song-info">
-                    <h6>{{ song.artist }}</h6>
-                    <h5>"{{ song.title }}"<span class="arrow-more"></span></h5>
-                </div>
-            </div>
+            {% include '_song_wrapper.html' %}
             {% endif %}
             {% endfor %}
             <hr class="line" />
@@ -63,15 +45,7 @@
 
     <div class="songs-container">
         {% for song in COPY[slug] %}
-        <div class="song-wrapper">
-            <div class="song-art">
-                <a href="#"><img class="coverart" src="{{ song.art }}"></a>
-            </div>
-            <div class="song-info">
-                <h6>{{ song.artist }}</h6>
-                <h5>"{{ song.title }}"<span class="arrow-more"></span></h5>
-            </div>
-        </div>
+        {% include '_song_wrapper.html' %}
         {% endfor %}
     </div>
 

@@ -406,6 +406,25 @@ header {
 		text-transform: capitalize;
 	}
 
+	.list-header {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		align-content: space-between;
+
+		.list-title {
+			@media @screen-small-above {
+				width: 66%;
+			}
+		}
+		.playlist-wrapper {
+			@media @screen-small-above {
+				width: 33%;
+			}
+		}
+	}
+
 	h3 {
 		color: @white;
 		font-size: 1.25rem;
