@@ -1,29 +1,24 @@
 {% extends '_base.html' %}
 {% block content %}
+
 <div class="list-container container">
+    {% for row in COPY.best_lists %}
+        {% if row.slug.replace('-', '_') == slug %}
+            {% set list_name = row.list_name %}
+            {% set list_desc = row.description %}
+            {% set spotify = row.spotify %}
+            {% include '_list_header.html' %}
+        {% endif %}
+    {% endfor %}
 
-    <div class="list-header">
-        <div class="list-title">
-            {% for row in COPY.best_lists %}
-                {% if row.slug.replace('-', '_') == slug %}
-                    <h2>{{ row.list_name }}</h2>
-                    <p>{{ row.description }}</p>
-                {% endif %}
-            {% endfor %}
-
-            {% for row in COPY.deeper_lists %}
-                {% if row.slug.replace('-', '_') == slug %}
-                    <h2>{{ row.list_name }}</h2>
-                    <p>{{ row.description }}</p>
-                {% endif %}
-            {% endfor %}
-        </div>
-
-        <div class="playlist-wrapper">
-            <a class="spotify-playlist" href="#">Playlist</a>
-            <p>Listen to highlights from this playlist on Spotify</p>
-        </div>
-    </div>
+    {% for row in COPY.deeper_lists %}
+        {% if row.slug.replace('-', '_') == slug %}
+            {% set list_name = row.list_name %}
+            {% set list_desc = row.description %}
+            {% set spotify = row.spotify %}
+            {% include '_list_header.html' %}
+        {% endif %}
+    {% endfor %}
 
     <hr class="line" />
 
