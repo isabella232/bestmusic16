@@ -12,7 +12,7 @@
             <div class="play-box">
                 <span class="question"></span>
                 <p class="play">Play this {{ item.type }}</p>
-                <p>{{ item.smarturl }}</p>
+                <p class="url">{{ item.smarturl }}</p>
             </div>
         </div>
         <div class="song-information">
@@ -20,7 +20,10 @@
             <p class="author">{{ item.author }} <span class="affiliation">{{ item.affiliation }}</span></p>
             {% if item.embed %}
             <div class="embed">
-                {{ item.embed|safe }}
+                <div class="embed-container">
+                    {{ item.embed|safe }}
+                </div>
+                <p class="embed-source">{{ item.embed_type }}</p>
             </div>
             {% endif %}
         </div>

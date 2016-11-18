@@ -8,7 +8,7 @@
 
 // GENERAL
 body {
-	background-color: @bg-dark;
+	background-color: @bg-dark-purple;
 
 	h2 {
 		color: @white;
@@ -91,7 +91,7 @@ body {
 		&.modal-favorites {
 			top: -8px;
 			right: -5px;
-			background: @bg-dark;
+			background: @bg-dark-purple;
 			border: 0;
 			border-bottom: 2px solid @music-red;
 			.heart::before {
@@ -113,12 +113,12 @@ body {
 
 		@media @screen-small {
 			border: 0;
-			background: @bg-medium;
+			background: @bg-light-purple;
 			padding: 7px 5px;
 
 			&.favorites, &.lists {
 				top: 7px;
-				background: @bg-medium;
+				background: @bg-light-purple;
 				border: 0;
 			}
 
@@ -159,7 +159,7 @@ body {
 
 // HEADER
 header {
-    background: @bg-medium;
+    background: @bg-light-purple;
     border-bottom: @music-blue-lighter 3px solid;
 
 	.header-wrapper {
@@ -241,7 +241,7 @@ header {
 
 				@media @screen-small {
 					border: 0;
-					background: @bg-medium;
+					background: @bg-light-purple;
 					padding: 7px 5px;
 
 					&.favorites, &.lists {
@@ -320,6 +320,8 @@ header {
 
     .deeper-lists {
 		margin-bottom: 3rem;
+		padding-top: 5px;
+		border-top: 2.25px solid @music-grey-borders;
 
 		.dlist {
 			margin-bottom: 18px;
@@ -541,7 +543,7 @@ header {
     }
 
     .modal-content {
-		background-color: @bg-dark;
+		background-color: @bg-dark-purple;
 		min-height: 500px;
 		max-width: (@container-max + 300);
 		width: 90%;
@@ -585,6 +587,30 @@ header {
 			}
 		}
 
+		.embed {
+			max-width: 300px;
+
+			.embed-source {
+				font-style: italic;
+				font-size: 0.8rem;
+			}
+			.embed-container {
+				position: relative;
+				padding-bottom: 56.25%;
+				height: 0;
+				overflow: hidden;
+				max-width: 100%;
+			}
+
+			.embed-container iframe, .embed-container object, .embed-container embed {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+		}
+
 		.modal-container {
 			// width: 80%;
 			max-width: (@container-max + 150);
@@ -592,20 +618,21 @@ header {
 			padding: 25px 0;
 			height: 400px;
     		overflow-y: auto;
-			padding-right: 25px;
+			// overflow-x: hidden;
+			padding-right: 10px;
 
 			&::-webkit-scrollbar-track {
 				background-color: @music-grey-borders;
-				border: 0.25px solid @bg-medium;
+				border: 0.25px solid @bg-light-purple;
 			}
 
 			&::-webkit-scrollbar {
 				width: 10px;
-				background-color: @bg-medium;
+				background-color: @bg-light-purple;
 			}
 
 			&::-webkit-scrollbar-thumb {
-				background-color: @bg-medium;
+				background-color: @bg-light-purple;
 			}
 
 			h6.artist {
@@ -661,6 +688,11 @@ header {
 							font-weight: 700;
 							margin-bottom: -5px;
 						}
+						&.url {
+							width: 50%;
+						    float: left;
+						    font-size: 0.8rem;
+						}
 					}
 
 					span.question::before {
@@ -696,7 +728,7 @@ header {
         z-index: -1;
         &.is-selected {
             z-index: 0;
-            background-color: @bg-dark;
+            background-color: @bg-dark-purple;
         }
     }
 
@@ -710,14 +742,14 @@ header {
 		left: 0px;
 		width: 90%;
 		height: 50px;
-		background: -moz-linear-gradient(top,  @bg-dark-gradient-start 0%, @bg-dark-gradient-end 100%); /* FF3.6+ */
-		background: -webkit-linear-gradient(top,  @bg-dark-gradient-start 0%, @bg-dark-gradient-end 100%); /* Chrome10+,Safari5.1+ */
-		background: -ms-linear-gradient(top,  @bg-dark-gradient-start 0%, @bg-dark-gradient-end 100%); /* IE10+ */
+		background: -moz-linear-gradient(top,  @bg-dark-purple-gradient-start 0%, @bg-dark-purple-gradient-end 100%); /* FF3.6+ */
+		background: -webkit-linear-gradient(top,  @bg-dark-purple-gradient-start 0%, @bg-dark-purple-gradient-end 100%); /* Chrome10+,Safari5.1+ */
+		background: -ms-linear-gradient(top,  @bg-dark-purple-gradient-start 0%, @bg-dark-purple-gradient-end 100%); /* IE10+ */
 	}
 }
 
 footer {
-    background: @blue-darker;
+    background: @bg-darker-purple;
     border-top: @music-blue-lighter 3px solid;
     margin-top: 20px;
     padding: 20px 0 30px;
