@@ -61,6 +61,18 @@ def list(slug):
 
     context['namespace'] = 'list'
 
+    for row in context['COPY']['best_lists']:
+        if row['slug'] == slug:
+            context['list_name'] = row['list_name']
+            context['list_description'] = row['description']
+            context['playlist'] = row['spotify']
+
+    for row in context['COPY']['deeper_lists']:
+        if row['slug'] == slug:
+            context['list_name'] = row['list_name']
+            context['list_description'] = row['description']
+            context['playlist'] = row['spotify']
+
     return make_response(render_template('list.html', **context))
 
 @app.route('/favorites/')
