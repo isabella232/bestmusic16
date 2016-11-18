@@ -3,14 +3,14 @@
 <div class="list-container container">
 
     {% for row in COPY.best_lists %}
-        {% if row.slug == slug %}
+        {% if row.slug.replace('-', '_') == slug %}
             <h2>{{ row.list_name }}</h2>
             <p>{{ row.description }}</p>
         {% endif %}
     {% endfor %}
 
     {% for row in COPY.deeper_lists %}
-        {% if row.slug == slug %}
+        {% if row.slug.replace('-', '_') == slug %}
             <h2>{{ row.list_name }}</h2>
             <p>{{ row.description }}</p>
         {% endif %}
