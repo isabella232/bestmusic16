@@ -70,8 +70,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         for (var i = 0; i < favoriteButtons.length; i++) {
             const el = favoriteButtons[i];
 
-            if (favorites.indexOf(el.parentNode.parentNode.parentNode.getAttribute('data-slug')) !== -1) {
-                console.log('favorite found');
+            if (favorites && favorites.indexOf(el.parentNode.parentNode.parentNode.getAttribute('data-slug')) !== -1) {
                 el.querySelector('span').classList.add('filled');
             }
 
