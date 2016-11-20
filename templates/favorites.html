@@ -73,22 +73,65 @@
             <% favoriteItems.forEach(function(item) { %>
             <div class="carousel-cell" data-slug="<%= item.song_slug %>">
                 <div class="modal-container">
-                    <div class="song-titleinfo">
-                        <h6 class="artist"><%= item.artist %></h6>
-                        <h5 class="title"><%= item.title %></h5>
-                        <button class="modal-favorites"><span class="heart"></span> Favorite</button>
-                    </div>
-                    <div class="song-player">
-                        <div class="art-cover">
-                            <img src="<%= item.art %>" />
-                        </div>
-                        <div class="play-box">
-                            <p>Play this song</p>
-                            <p><%= item.smarturl %></p>
+                    <div class="modal-top">
+                        <a href="http://npr.org/music"><img src="{{ S3_BASE_URL }}/assets/music-logo-outline-thick.svg"></a>
+                        <h1>Favorites</h1>
+                        <div class="header-btns">
+                            <a href="#"><button class="window-close"><span class="x-close"></span></button></a>
                         </div>
                     </div>
-                    <div class="song-information">
-                        <p class="desc"><%= item.description %></p>
+                    <div class="scroll-container">
+                        <div class="<% if (item.type === 'album') { %>album-top<% } %> <% if (item.type === 'song') { %>song-top<% } %> desktop">
+                            <div class="art-cover">
+                                <img src="<%= item.art %>" />
+                            </div>
+                            <div class="song-titleinfo">
+                                <h6 class="artist"><%= item.artist %></h6>
+                                <h5 class="title"><%= item.title %></h5>
+                                <div class="play-box">
+                                    <p class="play">Play this <%= item.type %> <span class="url"><%= item.smarturl %></span><a href="#question"><span class="question"></span></a></p>
+                                </div>
+                                <button class="modal-favorites" data-slug="<%= item.song_slug %>"><span class="heart"></span> Favorite</button>
+                            </div>
+                        </div>
+                        <div class="<% if (item.type === 'album') { %>album-top<% } %> <% if (item.type === 'song') { %>song-top<% } %> mobile">
+                            <div class="song-titleinfo">
+                                <h6 class="artist"><%= item.artist %></h6>
+                                <h5 class="title"><%= item.title %></h5>
+                                <button class="modal-favorites" data-slug="<%= item.song_slug %>"><span class="heart"></span> Favorite</button>
+                            </div>
+                            <div class="song-player">
+                                <div class="art-cover">
+                                    <img src="<%= item.art %>" />
+                                </div>
+                                <div class="play-box">
+                                    <span class="question"></span>
+                                    <p class="play">Play this <%= item.type %></p>
+                                    <p class="url"><%= item.smarturl %></p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="song-information">
+                            <% if (item.embed) { %>
+                            <div class="embed">
+                                <div class="embed-container">
+                                    <%= item.embed|safe %>
+                                </div>
+                                <p class="embed-source"><%= item.embed_type %></p>
+                            </div>
+                            <% } %>
+                            <p class="desc"><%= item.description %></p>
+                            <p class="author"><%= item.author %> <span class="affiliation"><%= item.affiliation %></span></p>
+                            <p class="filed"><b>Filed under:</b> <%= item.filed_under %></p>
+                        </div>
+                        <hr />
+                        <p class="explainer" id="question">
+                            We're using <b class="emphasis">smartURL</b> to make it easier to play songs using the service of your choice. When you select
+                            the <b class="emphasis">PLAY THIS SONG</b> link you will be redirected to a page where you can choose Spotify, Apple Music
+                            or your preferred music service.
+                        </p>
+                        <!-- <div class="bottom-gradient"></div> -->
                     </div>
                 </div>
             </div>

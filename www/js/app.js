@@ -21,7 +21,7 @@ const isTouch = Modernizr.touchevents;
 const onWindowLoaded = function() {
     listButton = document.querySelector('button.lists');
     headerFavoriteButton = document.querySelector('button.favorites');
-    favorites = JSON.parse(localStorage.getItem('favorites'));
+    favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     if (favorites) {
         headerFavoriteButton.querySelector('span').classList.add('filled');
     }
@@ -143,19 +143,20 @@ const onSongClick = function() {
 }
 
 const onFavoriteButtonClick = function() {
-    const slug = this.parentNode.parentNode.parentNode.getAttribute('data-slug');
-    const favoriteIndex = favorites.indexOf(slug);
-    
+    const slug = this.getAttribute('data-slug');
+    if (favorites) {
+        var favoriteIndex = favorites.indexOf(slug);
+    }    
     // not a favorite yet
-    if (favoriteIndex === -1) {
-        favorites.push(slug);
-        this.querySelector('span').classList.add('filled');
-    } else {
+    if (favorites && favoriteIndex > -1) {
         favorites.splice(favoriteIndex, 1);
         this.querySelector('span').classList.remove('filled');
+    } else {
+        favorites.push(slug);
+        this.querySelector('span').classList.add('filled');
     }
 
-    if (favorites.length > 0) {
+    if (favorites) {
         headerFavoriteButton.querySelector('span').classList.add('filled');
     } else {
         headerFavoriteButton.querySelector('span').classList.remove('filled');
@@ -221,6 +222,7 @@ const layoutFavorites = function(container) {
 
         let songTypes = [];
         songObjects.forEach(function(item) {
+            console.log(item);
             if (songTypes.indexOf(item.type) === -1) {
                 songTypes.push(item.type);
             }
