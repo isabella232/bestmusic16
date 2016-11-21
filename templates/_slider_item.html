@@ -8,23 +8,23 @@
             </div>
         </div>
         <div class="scroll-container">
-            <div class="{% if item.type == 'album' %}album-top{% endif %}{% if item.type == 'song' %}song-top{% endif %} desktop">
+            <div class="item-top desktop">
                 <div class="art-cover">
                     <img src="{{ item.art }}" />
                 </div>
                 <div class="song-titleinfo">
                     <h6 class="artist">{{ item.artist }}</h6>
-                    <h5 class="title">{{ item.title }}</h5>
+                    <h5 class="title {% if item.type == 'song' %}song-title{% endif %}{% if item.type == 'album' %}album-title{% endif %}">{{ item.title }}</h5>
                     <div class="play-box">
                         <p class="play">Play this {{ item.type }} <span class="url">{{ item.smarturl }}</span><a href="#question"><span class="question"></span></a></p>
                     </div>
                     <button class="modal-favorites" data-slug="{{ item.song_slug }}"><span class="heart"></span> Favorite</button>
                 </div>
             </div>
-            <div class="{% if item.type == 'album' %}album-top{% endif %}{% if item.type == 'song' %}song-top{% endif %} mobile">
+            <div class="item-top mobile">
                 <div class="song-titleinfo">
                     <h6 class="artist">{{ item.artist }}</h6>
-                    <h5 class="title">{{ item.title }}</h5>
+                    <h5 class="title {% if item.type == 'song' %}song-title{% endif %}{% if item.type == 'album' %}album-title{% endif %}">{{ item.title }}</h5>
                     <button class="modal-favorites" data-slug="{{ item.song_slug }}"><span class="heart"></span> Favorite</button>
                 </div>
                 <div class="song-player">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <hr />
+            <hr class="hr-embed" />
             <div class="song-information">
                 {% if item.embed %}
                 <div class="embed">
@@ -50,6 +50,7 @@
                 {% endif %}
                 <p class="desc">{{ item.description }}</p>
                 <p class="author">{{ item.author }} <span class="affiliation">{{ item.affiliation }}</span></p>
+                <hr />
                 <p class="filed"><b>Filed under:</b> {{ item.filed_under }}</p>
             </div>
             <hr />

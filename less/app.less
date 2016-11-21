@@ -91,6 +91,7 @@ body {
 		&.window-close {
 			top: 25px;
 			right: 45px;
+			width: 33px;
 			.x-close::before {
 				.fa-icon();
 				content: '\E80B';
@@ -105,7 +106,6 @@ body {
 			padding-left: 0;
 			padding-right: 0;
 			position: relative;
-
 
 			.heart::before {
 				.fa-icon();
@@ -152,6 +152,12 @@ body {
 			&.modal-favorites {
 				border-bottom: 0;
 				position: absolute;
+				top: -9px;
+    			right: 0;
+			}
+
+			&.window-close {
+				right: 25px;
 			}
 		}
 	}
@@ -609,9 +615,9 @@ header {
 				border-bottom: none;
 			}
 
-			&:nth-last-child(2) {
-				border-bottom: 2.25px solid @music-blue-lighter;
-			}
+			// &:nth-last-child(2) {
+			// 	border-bottom: 2.25px solid @music-blue-lighter;
+			// }
 		}
 	}
 }
@@ -669,7 +675,26 @@ header {
 		.flickity-prev-next-button {
 			border-radius: 0;
 			height: 55px;
-			width: 25px;
+			width: 40px;
+			background-color: rgba(255, 255, 255, 0.25);
+
+			.arrow {
+				fill: @white;
+			}
+
+			&:hover {
+				background-color: rgba(255, 255, 255, 0.85);
+				.arrow {
+					fill: @music-red;
+				}
+			}
+
+			&:disabled {
+				background-color: rgba(255, 255, 255, 0.25);
+				.arrow {
+					fill: @white;
+				}
+			}
 
 			&.previous {
 				left: -15px;
@@ -677,6 +702,14 @@ header {
 
 			&.next {
 				right: -15px;
+			}
+
+			@media @screen-large {
+				width: 55px;
+			}
+
+			@media @screen-small {
+				width: 25px;
 			}
 		}
 
@@ -776,6 +809,10 @@ header {
 					border: 0.25px solid @bg-dark-purple;
 					display: none;
 				}
+
+				@media screen and (min-width: 991px) and (max-width: 1200px) {
+					max-width: 800px;
+				}
 			}
 
 			.modal-top {
@@ -791,13 +828,24 @@ header {
 				    margin-left: 150px;
 				    margin-top: 7px;
 				}
+				@media @screen-small {
+					img {
+						position: relative;
+					}
+					h1 {
+						display: block;
+						font-size: 1rem;
+						margin-top: 7px;
+						margin-left: 0;
+					}
+				}
 			}
 
 			div.art-cover {
 				float: left;
 			}
 
-			.song-top, .album-top {
+			.item-top {
 				.clearfix();
 				margin: 15px 0;
 
@@ -839,27 +887,21 @@ header {
 				}
 			}
 
-			.song-top {
-				div.art-cover img {
-					width: 100%;
-					max-width: 85px;
-				}
-
-				&.desktop {
-					.modal-favorites {
-						margin-left: 120px;
+			h5.title {
+				&.song-title {
+					&::before, &::after {
+						content: '"';
 					}
+				}
+				&.album-title {
+					font-style: italic;
 				}
 			}
 
-			.album-top {
+			.item-top {
 				div.art-cover img {
 					width: 100%;
 					max-width: 185px;
-				}
-
-				&.desktop {
-
 				}
 			}
 
@@ -903,12 +945,17 @@ header {
 
 			@media @screen-small {
 				width: 85%;
-
 				.desktop {
 					display: none;
 				}
 				.mobile {
 					display: block;
+				}
+				.song-titleinfo {
+					h5.title {
+						font-size: 1.55rem;
+						margin-bottom: 12px;
+					}
 				}
 				.song-player {
 					height: 85px;
@@ -918,6 +965,12 @@ header {
 						float: left;
 						margin-right: 10px;
 					}
+
+					div.art-cover img {
+						width: 100%;
+						max-width: 85px;
+					}
+
 					div.play-box {
 						padding-top: 8px;
 
@@ -927,14 +980,30 @@ header {
 								text-transform: uppercase;
 								font-weight: 700;
 								margin-bottom: -5px;
+								font-size: 0.75rem;
+								margin-top: 8px;
 							}
 							&.url {
 								width: 50%;
 							    float: left;
 							    font-size: 0.8rem;
+								text-transform: inherit;
+								font-weight: 400;
+							}
+						}
+
+						span.question {
+							float: right;
+							margin-right: 10px;
+
+							&::before {
+								margin-left: 0;
 							}
 						}
 					}
+				}
+				hr.hr-embed {
+					display: none;
 				}
 			}
 		}
@@ -953,17 +1022,6 @@ header {
     .flickity-viewport {
         min-height: 500px;
     }
-
-	.bottom-gradient {
-		position: absolute;
-		bottom: 45px;
-		left: 0px;
-		width: 90%;
-		height: 50px;
-		background: -moz-linear-gradient(top,  @bg-medium-purple-gradient-start 0%, @bg-medium-purple-gradient-end 100%); /* FF3.6+ */
-		background: -webkit-linear-gradient(top,  @bg-medium-purple-gradient-start 0%, @bg-medium-purple-gradient-end 100%); /* Chrome10+,Safari5.1+ */
-		background: -ms-linear-gradient(top,  @bg-medium-purple-gradient-start 0%, @bg-medium-purple-gradient-end 100%); /* IE10+ */
-	}
 }
 
 footer {
