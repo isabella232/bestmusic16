@@ -526,7 +526,7 @@ header {
 		color: @white;
 		font-size: 1.25rem;
 		margin-left: 55px;
-		margin-top: 2.75rem;
+		margin-top: 1rem;
 		text-transform: uppercase;
 		position: relative;
 
@@ -635,16 +635,6 @@ header {
 
 			&:nth-last-child(2) {
 				border-bottom: 2.25px solid @music-blue-lighter;
-			}
-		}
-	}
-}
-
-.mixed-list {
-	@media @screen-small {
-		.song-wrapper {
-			&:nth-last-child(2) {
-				border-bottom: 0;
 			}
 		}
 	}
@@ -823,19 +813,16 @@ header {
 				&::-webkit-scrollbar-track {
 					background-color: @music-grey-borders;
 					border: 0.25px solid @bg-light-purple;
-					display: none;
 				}
 
 				&::-webkit-scrollbar {
 					width: 8px;
 					background-color: @bg-dark-purple;
-					display: none;
 				}
 
 				&::-webkit-scrollbar-thumb {
 					background-color: @bg-medium-purple;
-					border: 0.25px solid @bg-dark-purple;
-					display: none;
+					border: 0.25px solid @bg-light-purple;
 				}
 
 				@media screen and (min-width: 991px) and (max-width: 1200px) {
@@ -875,7 +862,7 @@ header {
 
 			.item-top {
 				.clearfix();
-				margin: 15px 0;
+				margin: 25px 0 15px;
 
 				div.art-cover {
 					margin-right: 35px;
@@ -959,7 +946,7 @@ header {
 			}
 
 			@media @screen-medium {
-				width: 85%;
+				width: 95%;
 			}
 
 			@media @screen-small-above {
@@ -1036,6 +1023,7 @@ header {
 			}
 		}
     }
+	.carousel { height: 100%; }
 
     .carousel-cell {
         width: 100%;
@@ -1048,7 +1036,8 @@ header {
     }
 
     .flickity-viewport {
-        min-height: 500px;
+        min-height: 600px;
+		height: 100%;
     }
 }
 
