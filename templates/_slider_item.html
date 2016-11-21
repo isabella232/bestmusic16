@@ -42,7 +42,7 @@
             <div class="song-information">
                 {% if item.embed %}
                 <div class="embed">
-                    <div class="embed-container">
+                    <div class="{% if item.embed_type == 'YouTube' %}embed-container{% endif %}">
                         {{ item.embed|safe }}
                     </div>
                     <p class="embed-source">{{ item.embed_type }}</p>
