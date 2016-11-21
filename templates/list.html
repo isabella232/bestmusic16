@@ -17,27 +17,29 @@
     <hr class="line" />
 
     {% if types == 'both' %}
-    <div class="albums">
-        <h3 class="album-header">Albums</h3>
-        <div class="songs-container">
-            {% for song in COPY[slug] %}
-            {% if song.type == 'album' %}
-            {% include '_song_wrapper.html' %}
-            {% endif %}
-            {% endfor %}
-            <hr class="line" />
+    <div class="mixed-list">
+        <div class="albums">
+            <h3 class="album-header">Albums</h3>
+            <div class="songs-container">
+                {% for song in COPY[slug] %}
+                {% if song.type == 'album' %}
+                {% include '_song_wrapper.html' %}
+                {% endif %}
+                {% endfor %}
+                <hr class="line" />
+            </div>
         </div>
-    </div>
 
-    <div class="songs">
-        <h3 class="song-header">Songs</h3>
-        <div class="songs-container">
-            {% for song in COPY[slug] %}
-            {% if song.type == 'song' %}
-            {% include '_song_wrapper.html' %}
-            {% endif %}
-            {% endfor %}
-            <hr class="line" />
+        <div class="songs">
+            <h3 class="song-header">Songs</h3>
+            <div class="songs-container">
+                {% for song in COPY[slug] %}
+                {% if song.type == 'song' %}
+                {% include '_song_wrapper.html' %}
+                {% endif %}
+                {% endfor %}
+                <hr class="line" />
+            </div>
         </div>
     </div>
 

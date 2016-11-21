@@ -615,9 +615,19 @@ header {
 				border-bottom: none;
 			}
 
-			// &:nth-last-child(2) {
-			// 	border-bottom: 2.25px solid @music-blue-lighter;
-			// }
+			&:nth-last-child(2) {
+				border-bottom: 2.25px solid @music-blue-lighter;
+			}
+		}
+	}
+}
+
+.mixed-list {
+	@media @screen-small {
+		.song-wrapper {
+			&:nth-last-child(2) {
+				border-bottom: 0;
+			}
 		}
 	}
 }
