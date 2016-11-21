@@ -12,13 +12,13 @@
 <div class="modal"></div>
 
 <script type="text/template" id="song-container-template">
-    <div class="list-container">
+    <div class="list-container container">
         <% if (types === 'both') { %>
         <div class="albums">
             <h3 class="album-header">Favorite Albums</h3>
             <div class="songs-container">
             <% favoriteItems.forEach(function(item) {
-               if (item.type === 'album') { 
+               if (item.type === 'album') {
             %>
                 <div class="song-wrapper" id="<%= item.song_slug %>">
                     <div class="song-art">
@@ -35,8 +35,8 @@
         <div class="songs">
             <h3 class="song-header">Favorite Songs</h3>
             <div class="songs-container">
-            <% favoriteItems.forEach(function(item) { 
-               if (item.type === 'song') { 
+            <% favoriteItems.forEach(function(item) {
+               if (item.type === 'song') {
             %>
                 <div class="song-wrapper" id="<%= item.song_slug %>">
                     <div class="song-art">
@@ -63,7 +63,7 @@
                 </div>
             </div>
         <% })}; %>
-    </div>   
+    </div>
 </script>
 
 <script type="text/template" id="modal-template">
