@@ -5,16 +5,11 @@
         <h2>{{ COPY.content.index_best_title }}</h2>
         <p class="intro-text">{{ COPY.content.index_best_sub }}</p>
         {% for list in COPY.best_lists %}
-            <div class="list">
-                <div class="list-art">
-                    <a href="{{ S3_BASE_URL }}/list/{{ list.slug }}">
-                        <img src="{{ S3_BASE_URL }}/assets/{{ list.art }}">
-                    </a>
-                </div>
-                <div class="list-info">
-                    <h3><a href="{{ S3_BASE_URL }}/list/{{ list.slug }}">{{ list.list_name }}</a></h3>
-                    <p><a href="{{ S3_BASE_URL }}/list/{{ list.slug }}">{{ list.description }}<span class="arrow-more"></span></a></p>
-                </div>
+            <div class="list bestlist">
+                <a href="{{ S3_BASE_URL }}/list/{{ list.slug }}">
+                    <img src="{{ S3_BASE_URL }}/assets/{{ list.art }}">
+                    <h3>{{ list.list_name }}<span class="arrow-more"></span></h3>
+                </a>
             </div>
         {% endfor %}
     </div>

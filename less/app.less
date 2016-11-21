@@ -299,8 +299,26 @@ header {
         padding: 0 0 30px;
         border-bottom: 2.25px solid @music-blue-lighter;
 
+		&.bestlist {
+			position: relative;
+			width: 100%;
+
+			img {
+				width: 100%;
+				min-height: 150px;
+			}
+
+			h3 {
+				position: absolute;
+				top: 35px;
+				width: 100%;
+				color: @bg-medium-purple;
+				margin-left: 15px;
+			}
+		}
+
         &:last-child {
-            padding-top: 30px;
+            margin-top: 30px;
 			border-bottom: 2.25px solid @music-grey-borders;
 			//Take border away when sponsorship comes in and use borders on that space instead
         }
@@ -799,7 +817,7 @@ header {
 				margin: 0 auto;
 				overflow-y: auto;
 				overflow-x: hidden;
-				height: 400px;
+				height: 700px;
 				padding-right: 10px;
 
 				&::-webkit-scrollbar-track {
