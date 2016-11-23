@@ -89,8 +89,8 @@ body {
 		}
 
 		&.window-close {
-			top: 25px;
-			right: 45px;
+			top: 0;
+			right: 0;
 			width: 33px;
 			.x-close::before {
 				.fa-icon();
@@ -613,6 +613,15 @@ header {
 		}
 	}
 
+	.songs .song-wrapper h5{
+		&::before {
+			content: '"';
+		}
+		&::after {
+			content: '"';
+		}
+	}
+
 	@media @screen-medium {
 		width: 90%;
 
@@ -665,7 +674,6 @@ header {
 		min-height: 500px;
 		max-width: (@container-max + 300);
 		width: 90%;
-		height: 90%;
 		opacity: 1;
 		z-index: 2;
 		position: absolute;
@@ -729,14 +737,14 @@ header {
 				width: 55px;
 			}
 
-			@media @screen-small {
+			@media @screen-medium {
 				width: 25px;
 			}
 		}
 
 		.embed {
 			max-width: 300px;
-			min-width: 200px;
+			min-width: 300px;
 			float: right;
 			margin: 0 0 5px 15px;
 
@@ -765,16 +773,16 @@ header {
 			}
 
 			@media @screen-small {
+				min-width: 200px;
 				float: inherit;
 				margin: 0 auto;
 			}
 		}
 
 		.modal-container {
-			// width: 80%;
-			max-width: (@container-max + 215);
+			max-width: (@container-max + 300);
 			margin: 0 auto;
-			padding: 25px 0;
+			padding: 0 0 25px;
 			height: 400px;
 
 			hr {
@@ -815,7 +823,7 @@ header {
 				margin: 0 auto;
 				overflow-y: auto;
 				overflow-x: hidden;
-				height: 700px;
+				height: 500px;
 				padding-right: 10px;
 
 				&::-webkit-scrollbar-track {
@@ -931,6 +939,10 @@ header {
 			.song-titleinfo {
 				margin: 24px 0 8px;
 				position: relative;
+			}
+
+			.song-information hr {
+				clear: both;
 			}
 
 			.explainer {
@@ -1067,6 +1079,7 @@ footer {
 	p {
 		font-size: 0.9rem;
 		margin-bottom: 0px;
+		.gotham();
 
 		&:last-child {
 			margin-top: 0px;
