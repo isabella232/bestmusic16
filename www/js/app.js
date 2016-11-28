@@ -56,11 +56,11 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         modalOverlay = container.querySelector('.modal-overlay');
         carousel = container.querySelector('.main-carousel');
         favoriteButtons = container.querySelectorAll('.modal-favorites');
-        modalContent = container.querySelectorAll('.modal-content');
+        modalContent = container.querySelector('.modal-content');
         carouselCells = container.querySelectorAll('.carousel-cell');
         closeModalButtons = container.querySelectorAll('.window-close');
         loadableImages = container.querySelectorAll('img.art');
-        
+
         flkty = new Flickity(carousel, {
             pageDots: false,
             draggable: isTouch,
@@ -168,6 +168,8 @@ const unloadEmbed = function() {
 
 const onSongClick = function() {
     modal.style.display = 'block';
+    setTimeout( function() { modalContent.classList.add('modal-show') }, 0);
+
     document.body.style.overflow = 'hidden';
     flkty.resize();
     flkty.select([].indexOf.call(songContainers, this), false, true);
@@ -216,13 +218,9 @@ const onCloseModalButtonClick = function() {
 const closeModal = function() {
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
-
-    for (var i = 0; i < modalContent.length; i++) {
-        modalContent[i].classList.remove('modal-show');
-    }
-
     const item = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex];
     const iframe = item.querySelector('iframe');
+    setTimeout( function() { modalContent.classList.remove('modal-show') }, 0);
 
     if (iframe) {
         iframe.setAttribute('src', '');
