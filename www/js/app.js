@@ -72,8 +72,12 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         for (var i = 0; i < favoriteButtons.length; i++) {
             const el = favoriteButtons[i];
 
-            if (favorites && favorites.indexOf(el.parentNode.parentNode.parentNode.getAttribute('data-slug')) !== -1) {
-                el.querySelector('span').classList.add('filled');
+            if (favorites && favorites.indexOf(el.getAttribute('data-slug')) !== -1) {
+                const span = el.querySelector('span');
+                span.classList.add('filled');
+                el.innerHTML = '';
+                el.append(span); 
+                el.append(' Unfavorite');
             }
 
             favoriteButtons[i].addEventListener('click', onFavoriteButtonClick);
@@ -153,13 +157,21 @@ const onFavoriteButtonClick = function() {
     if (favorites) {
         var favoriteIndex = favorites.indexOf(slug);
     }    
-    // not a favorite yet
+
+    const span = this.querySelector('span');
+
     if (favorites && favoriteIndex > -1) {
         favorites.splice(favoriteIndex, 1);
-        this.querySelector('span').classList.remove('filled');
+        span.classList.remove('filled');
+        this.innerHTML = '';
+        this.append(span); 
+        this.append(' Favorite');
     } else {
         favorites.push(slug);
-        this.querySelector('span').classList.add('filled');
+        span.classList.add('filled');
+        this.innerHTML = '';
+        this.append(span); 
+        this.append(' Unfavorite');
     }
 
     if (favorites) {
