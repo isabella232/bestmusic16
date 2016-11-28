@@ -16,6 +16,7 @@ let favoriteButtons = null;
 let favorites = [];
 let songContainerTemplate = null;
 let modalTemplate = null;
+let navigateOverlay = null;
 
 const isTouch = Modernizr.touchevents;
 
@@ -53,6 +54,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         favoriteButtons = container.querySelectorAll('.modal-favorites');
         carouselCells = container.querySelectorAll('.carousel-cell');
         closeModalButtons = container.querySelectorAll('.window-close');
+        navigateOverlay = container.querySelectorAll('.instructable');
 
         flkty = new Flickity(carousel, {
             pageDots: false,
@@ -91,16 +93,23 @@ const attachEvents = function(currentStatus, prevStatus, container) {
 
         checkForPermalink();
 
-        modal.addEventListener('touchstart', onTouchStart);
-        // modal.addEventListener('touchstart', onTouchStart);
-        // modal.addEventListener('touchstart', onTouchStart);
+        modal.addEventListener('touchstart', onModalTouchStart);
+        // modal.addEventListener('touchmove', onModalTouchStart);
+        modal.addEventListener('touchend', onModalTouchStart);
 
     }
 }
 
-const onTouchStart = function() {
-    if (modal.style.display = 'block') {
-        console.log("here");
+const onModalTouchStart = function() {
+    var executed = false;
+    const instructable = document.body.querySelectorAll('.instructable');
+
+    if (!executed) {
+        for (var i = 0; i < instructable.length; i++) {
+            instructable[i].style.display = 'none';
+        }
+
+        executed = true;
     }
 }
 
