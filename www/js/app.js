@@ -91,6 +91,16 @@ const attachEvents = function(currentStatus, prevStatus, container) {
 
         checkForPermalink();
 
+        modal.addEventListener('touchstart', onTouchStart);
+        // modal.addEventListener('touchstart', onTouchStart);
+        // modal.addEventListener('touchstart', onTouchStart);
+
+    }
+}
+
+const onTouchStart = function() {
+    if (modal.style.display = 'block') {
+        console.log("here");
     }
 }
 
@@ -149,14 +159,6 @@ const unloadEmbed = function() {
 
 const onSongClick = function() {
     modal.style.display = 'block';
-
-    if (isTouch == true) {
-        console.log("Touch screen detected.");
-        const onTouchStart = function() {
-            
-        }
-    }
-
     flkty.resize();
     flkty.select([].indexOf.call(songContainers, this), false, true);
 }
