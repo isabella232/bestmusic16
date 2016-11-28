@@ -57,7 +57,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         flkty = new Flickity(carousel, {
             pageDots: false,
             draggable: isTouch,
-            dragThreshold: 20,
+            dragThreshold: 80,
             setGallerySize: false,
             friction: isTouch ? 0.28 : 1,
             selectedAttraction: isTouch ? 0.025 : 1
@@ -159,6 +159,7 @@ const unloadEmbed = function() {
 
 const onSongClick = function() {
     modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
     flkty.resize();
     flkty.select([].indexOf.call(songContainers, this), false, true);
 }
@@ -205,6 +206,7 @@ const onCloseModalButtonClick = function() {
 
 const closeModal = function() {
     modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
     const item = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex];
     const iframe = item.querySelector('iframe');
 
