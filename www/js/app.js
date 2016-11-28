@@ -17,6 +17,7 @@ let favorites = [];
 let songContainerTemplate = null;
 let modalTemplate = null;
 let navigateOverlay = null;
+let swipeInstructionsDismissed = false;
 
 const isTouch = Modernizr.touchevents;
 
@@ -93,27 +94,26 @@ const attachEvents = function(currentStatus, prevStatus, container) {
 
         checkForPermalink();
 
-        if (!isTouch) {
+        if (isTouch && !swipeInstructionsDismissed) {
+            modal.addEventListener('touchstart', onModalTouchStart);
+            modal.addEventListener('touchend', onModalTouchStart);
+        } else {
             for (var i = 0; i < navigateOverlay.length; i++) {
                 navigateOverlay[i].style.display = 'none';
             }
         }
-
-        modal.addEventListener('touchstart', onModalTouchStart);
-        modal.addEventListener('touchend', onModalTouchStart);
-
     }
 }
 
 const onModalTouchStart = function() {
     var executed = false;
-
     if (!executed) {
         for (var i = 0; i < navigateOverlay.length; i++) {
             navigateOverlay[i].style.display = 'none';
         }
 
         executed = true;
+        swipeInstructionsDismissed = true;
     }
 }
 
