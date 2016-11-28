@@ -1,0 +1,13 @@
+{% extends '_base.html' %}
+{% block content %}
+<div class="share-lists container">
+{% for slug, list in lists.iteritems() %}
+    <h2>{{ slug }}</h2>
+    {% for row in list %}
+        <h4>{{ row.artist }} - {{ row.title }}</h4>
+        <p>{{ S3_BASE_URL }}/list/{{ slug }}/?item={{ row.song_slug }}</p>
+    {% endfor %}
+
+{% endfor %}
+</div>
+{% endblock %}
