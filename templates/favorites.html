@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <div class="scroll-container">
-                        <div class="<% if (item.type === 'album') { %>album-top<% } %> <% if (item.type === 'song') { %>song-top<% } %> desktop">
+                        <div class="item-top desktop">
                             <div class="art-cover">
                                 <img src="<%= item.art %>" />
                             </div>
@@ -85,7 +85,7 @@
                                 <button class="modal-favorites" data-slug="<%= item.song_slug %>"><span class="heart"></span> Favorite</button>
                             </div>
                         </div>
-                        <div class="<% if (item.type === 'album') { %>album-top<% } %> <% if (item.type === 'song') { %>song-top<% } %> mobile">
+                        <div class="item-top mobile">
                             <div class="song-titleinfo">
                                 <h6 class="artist"><%= item.artist %></h6>
                                 <h5 class="title"><%= item.title %></h5>
@@ -122,7 +122,6 @@
                             the <b class="emphasis">PLAY THIS SONG</b> link you will be redirected to a page where you can choose Spotify, Apple Music
                             or your preferred music service.
                         </p>
-                        <!-- <div class="bottom-gradient"></div> -->
                     </div>
                 </div>
             </div>
