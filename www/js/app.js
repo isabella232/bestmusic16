@@ -8,6 +8,7 @@ let modal = null;
 let modalOverlay = null;
 let carousel = null;
 let carouselCells = null;
+let closeModalButtons = null;
 let flkty = null;
 let listButton = null;
 let headerFavoriteButton = null;
@@ -51,6 +52,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         carousel = container.querySelector('.main-carousel');
         favoriteButtons = container.querySelectorAll('.modal-favorites');
         carouselCells = container.querySelectorAll('.carousel-cell');
+        closeModalButtons = container.querySelectorAll('.window-close');
         
         flkty = new Flickity(carousel, {
             pageDots: false,
@@ -77,7 +79,11 @@ const attachEvents = function(currentStatus, prevStatus, container) {
             favoriteButtons[i].addEventListener('click', onFavoriteButtonClick);
         }
 
-        modalOverlay.addEventListener('click', onModalClick);
+        for (var i = 0; i < closeModalButtons.length; i++) {
+            closeModalButtons[i].addEventListener('click', onCloseModalButtonClick);
+        }
+
+        modalOverlay.addEventListener('click', onModalOverlayClick);
 
         checkForPermalink();
     }
@@ -166,7 +172,15 @@ const onFavoriteButtonClick = function() {
     localStorage.setItem('favorites', storageItem);
 }
 
-const onModalClick = function() {
+const onModalOverlayClick = function() {
+    closeModal();
+}
+
+const onCloseModalButtonClick = function() {
+    closeModal();
+}
+
+const closeModal = function() {
     modal.style.display = 'none';
     const item = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex];
     const iframe = item.querySelector('iframe');
