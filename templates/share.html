@@ -5,9 +5,17 @@
     <h2>{{ slug }}</h2>
     {% for row in list %}
         <h4>{{ row.artist }} - {{ row.title }}</h4>
-        <p>{{ S3_BASE_URL }}/list/{{ slug }}/?item={{ row.song_slug }}</p>
+
+        {% set url = S3_BASE_URL + '/list/' + slug + '/?item=' + row.song_slug|string %}
+        <p><a href="{{ url }}">{{ url }}</a> <button class="copy btn" data-clipboard-text="{{ url }}">Copy to clipboard</button></p>
     {% endfor %}
 
 {% endfor %}
 </div>
+
+<script src="{{ S3_BASE_URL }}/js/lib/clipboard.js"></script>
+
+<script type="text/javascript">
+    new Clipboard('.copy.btn');
+</script>
 {% endblock %}
