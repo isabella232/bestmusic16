@@ -913,6 +913,18 @@ header {
 						margin: 6px 0;
 					}
 
+                    &.explicit {
+						margin: 0 0 6px;
+                        font-size: 0.7rem;
+
+                        &::before {
+                            .fa-icon();
+                            content: '\E80C';
+                            margin-right: 5px;
+                            color: white;
+                        }
+					}
+
 					span.url {
 						text-transform: none;
 						font-weight: normal;
