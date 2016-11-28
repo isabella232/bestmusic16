@@ -6,6 +6,7 @@ import SONGS from './songs.json';
 let songContainers = null;
 let modal = null;
 let modalOverlay = null;
+let modalContent = null;
 let carousel = null;
 let carouselCells = null;
 let closeModalButtons = null;
@@ -51,9 +52,10 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         modalOverlay = container.querySelector('.modal-overlay');
         carousel = container.querySelector('.main-carousel');
         favoriteButtons = container.querySelectorAll('.modal-favorites');
+        modalContent = container.querySelectorAll('.modal-content');
         carouselCells = container.querySelectorAll('.carousel-cell');
         closeModalButtons = container.querySelectorAll('.window-close');
-        
+
         flkty = new Flickity(carousel, {
             pageDots: false,
             draggable: isTouch,
@@ -76,7 +78,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
                 const span = el.querySelector('span');
                 span.classList.add('filled');
                 el.innerHTML = '';
-                el.append(span); 
+                el.append(span);
                 el.append(' Unfavorite');
             }
 
@@ -157,7 +159,7 @@ const onFavoriteButtonClick = function() {
     const slug = this.getAttribute('data-slug');
     if (favorites) {
         var favoriteIndex = favorites.indexOf(slug);
-    }    
+    }
 
     const span = this.querySelector('span');
 
@@ -165,13 +167,13 @@ const onFavoriteButtonClick = function() {
         favorites.splice(favoriteIndex, 1);
         span.classList.remove('filled');
         this.innerHTML = '';
-        this.append(span); 
+        this.append(span);
         this.append(' Favorite');
     } else {
         favorites.push(slug);
         span.classList.add('filled');
         this.innerHTML = '';
-        this.append(span); 
+        this.append(span);
         this.append(' Unfavorite');
     }
 
@@ -196,6 +198,11 @@ const onCloseModalButtonClick = function() {
 const closeModal = function() {
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
+
+    for (var i = 0; i < modalContent.length; i++) {
+        modalContent[i].classList.remove('modal-show');
+    }
+
     const item = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex];
     const iframe = item.querySelector('iframe');
 

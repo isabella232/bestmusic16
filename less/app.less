@@ -1,6 +1,7 @@
 @import "less/lib/bootstrap/bootstrap";
 @import "less/lib/prefixer";
 @import "less/variables";
+@import "less/lib/modal-component";
 
 .barba-container {
     transition: visibility 0s linear 0s, opacity 0.25s;
@@ -685,13 +686,22 @@ header {
 		min-height: 500px;
 		max-width: (@container-max + 300);
 		width: 90%;
-		opacity: 1;
+		opacity: 0;
 		z-index: 2;
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%) scale(0.7);
 		padding: 15px;
+
+        &.modal-show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        &.transition {
+            transition: all 0.3s;
+        }
 
         .favorite-btn {
             .heart::before {
