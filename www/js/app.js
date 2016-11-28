@@ -148,6 +148,7 @@ const unloadEmbed = function() {
 
 const onSongClick = function() {
     modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
     flkty.resize();
     flkty.select([].indexOf.call(songContainers, this), false, true);
 }
@@ -194,6 +195,7 @@ const onCloseModalButtonClick = function() {
 
 const closeModal = function() {
     modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
     const item = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex];
     const iframe = item.querySelector('iframe');
 
