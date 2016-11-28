@@ -31,7 +31,7 @@
             %>
                 <div class="song-wrapper" id="<%= item.song_slug %>">
                     <div class="song-art">
-                        <a href="#"><img class="coverart" src="<%= item.art %>"></a>
+                        <a href="#"><img class="art coverart" data-src="<%= item.art %>"></a>
                     </div>
                     <div class="song-info">
                         <h6><%= item.artist %></h6>
@@ -51,7 +51,7 @@
             %>
                 <div class="song-wrapper" id="<%= item.song_slug %>">
                     <div class="song-art">
-                        <a href="#"><img class="coverart" src="<%= item.art %>"></a>
+                        <a href="#"><img class="art coverart" data-src="<%= item.art %>"></a>
                     </div>
                     <div class="song-info">
                         <h6><%= item.artist %></h6>
@@ -82,7 +82,7 @@
                     <div class="scroll-container">
                         <div class="item-top desktop">
                             <div class="art-cover">
-                                <img src="<%= item.art %>" />
+                                <img class="art" data-src="<%= item.art %>" />
                             </div>
                             <div class="song-titleinfo">
                                 <h6 class="artist"><%= item.artist %></h6>
@@ -102,7 +102,7 @@
                             <a href="<%= item.smarturl %>">
                                 <div class="song-player">
                                     <div class="art-cover">
-                                        <img src="<%= item.art %>" />
+                                        <img class="art" data-src="<%= item.art %>" />
                                     </div>
                                     <div class="play-box">
                                         <span class="question"></span>
