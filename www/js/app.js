@@ -93,8 +93,13 @@ const attachEvents = function(currentStatus, prevStatus, container) {
 
         checkForPermalink();
 
+        if (!isTouch) {
+            for (var i = 0; i < navigateOverlay.length; i++) {
+                navigateOverlay[i].style.display = 'none';
+            }
+        }
+
         modal.addEventListener('touchstart', onModalTouchStart);
-        // modal.addEventListener('touchmove', onModalTouchStart);
         modal.addEventListener('touchend', onModalTouchStart);
 
     }
@@ -102,11 +107,10 @@ const attachEvents = function(currentStatus, prevStatus, container) {
 
 const onModalTouchStart = function() {
     var executed = false;
-    const instructable = document.body.querySelectorAll('.instructable');
 
     if (!executed) {
-        for (var i = 0; i < instructable.length; i++) {
-            instructable[i].style.display = 'none';
+        for (var i = 0; i < navigateOverlay.length; i++) {
+            navigateOverlay[i].style.display = 'none';
         }
 
         executed = true;
