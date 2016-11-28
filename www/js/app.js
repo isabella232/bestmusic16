@@ -9,15 +9,19 @@ let modalOverlay = null;
 let carousel = null;
 let carouselCells = null;
 let closeModalButtons = null;
+let loadableImages = null;
 let flkty = null;
+
 let listButton = null;
 let headerFavoriteButton = null;
 let favoriteButtons = null;
 let favorites = [];
+
 let songContainerTemplate = null;
 let modalTemplate = null;
 
 const isTouch = Modernizr.touchevents;
+const imgRoot = 'http://media.npr.org/music/best-music-2016/'
 
 const onWindowLoaded = function() {
     listButton = document.querySelector('button.lists');
@@ -53,6 +57,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         favoriteButtons = container.querySelectorAll('.modal-favorites');
         carouselCells = container.querySelectorAll('.carousel-cell');
         closeModalButtons = container.querySelectorAll('.window-close');
+        loadableImages = container.querySelectorAll('img.art');
         
         flkty = new Flickity(carousel, {
             pageDots: false,
@@ -89,7 +94,20 @@ const attachEvents = function(currentStatus, prevStatus, container) {
 
         modalOverlay.addEventListener('click', onModalOverlayClick);
 
+        loadImages();
         checkForPermalink();
+    }
+}
+
+const loadImages = function() {
+    for (var i = 0; i < loadableImages.length; i++) {
+        const img = loadableImages[i];
+        const dataSrc = img.getAttribute('data-src');
+        const filename = dataSrc.split('.')[0];
+        const ext = dataSrc.split('.')[1];
+        const realSrc = imgRoot + '/' + filename + '-s200-c85.' + ext;
+
+        img.setAttribute('src', realSrc);
     }
 }
 
