@@ -14,7 +14,7 @@
 <script type="text/template" id="song-container-template">
     <h1>My Favorites</h1>
     <div class="list-container container">
-        <% if (types === 'both') { %>
+        <% if (types === 'both' || types === 'album') { %>
         <div class="albums">
             <h3 class="album-header">Favorite Albums</h3>
             <div class="songs-container">
@@ -33,6 +33,8 @@
             <% }}); %>
             </div>
         </div>
+        <% } %>
+        <% if (types === 'both' || types === 'song') { %>
         <div class="songs">
             <h3 class="song-header">Favorite Songs</h3>
             <div class="songs-container">
@@ -51,19 +53,7 @@
             <% }}); %>
             </div>
         </div>
-        <% } else { %>
-        <div class="songs-container">
-        <% favoriteItems.forEach(function(item) { %>
-            <div class="song-wrapper" id="<%= item.song_slug %>">
-                <div class="song-art">
-                    <a href="#"><img class="coverart" src="<%= item.art %>"></a>
-                </div>
-                <div class="song-info">
-                    <h6><%= item.artist %></h6>
-                    <h5><%= item.title %><span class="arrow-more"></span></h5>
-                </div>
-            </div>
-        <% })}; %>
+        <% } %>
     </div>
 </script>
 

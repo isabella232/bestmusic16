@@ -236,7 +236,6 @@ const layoutFavorites = function(container) {
 
         let songTypes = [];
         songObjects.forEach(function(item) {
-            console.log(item);
             if (songTypes.indexOf(item.type) === -1) {
                 songTypes.push(item.type);
             }
@@ -245,7 +244,7 @@ const layoutFavorites = function(container) {
         const songTemplateCompiled = template(songContainerTemplate.innerHTML);
         const songDOM = parser.parseFromString(songTemplateCompiled({
            'favoriteItems': songObjects,
-           'types': songTypes.length > 1 ? 'both' : 'single'
+           'types': songTypes.length > 1 ? 'both' : songTypes[0]
         }), 'text/html');
         const songHTML = songDOM.querySelector('.list-container');
         container.querySelector('.favorites').append(songHTML);
