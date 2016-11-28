@@ -95,6 +95,12 @@
       "css": "attention",
       "code": 59404,
       "src": "fontawesome"
+    },
+    {
+      "uid": "3c73d058e4589b65a8d959c0fc8f153d",
+      "css": "resize-horizontal",
+      "code": 59405,
+      "src": "fontawesome"
     }
   ]
 }

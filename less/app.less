@@ -1069,6 +1069,31 @@ header {
 					display: none;
 				}
 			}
+
+            //TRIAL
+            .instructable {
+                position: absolute;
+                top: 25%;
+                background-color: rgba(0,0,0,1);
+                padding: 15px;
+                left: 25%;
+                width: 45%;
+                height: 75px;
+                text-align: center;
+
+                .swipe-arrows {
+                    width: 2rem;
+                    margin: 0 auto;
+
+                    &::before {
+                        .fa-icon();
+                        content: '\E80D';
+                        color: @para-txt-light;
+                        font-size: 2rem;
+                        text-align: center;
+                    }
+                }
+            }
 		}
     }
 	.carousel { height: 100%; }

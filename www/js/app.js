@@ -53,7 +53,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         favoriteButtons = container.querySelectorAll('.modal-favorites');
         carouselCells = container.querySelectorAll('.carousel-cell');
         closeModalButtons = container.querySelectorAll('.window-close');
-        
+
         flkty = new Flickity(carousel, {
             pageDots: false,
             draggable: isTouch,
@@ -76,7 +76,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
                 const span = el.querySelector('span');
                 span.classList.add('filled');
                 el.innerHTML = '';
-                el.append(span); 
+                el.append(span);
                 el.append(' Unfavorite');
             }
 
@@ -90,6 +90,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         modalOverlay.addEventListener('click', onModalOverlayClick);
 
         checkForPermalink();
+
     }
 }
 
@@ -148,6 +149,14 @@ const unloadEmbed = function() {
 
 const onSongClick = function() {
     modal.style.display = 'block';
+
+    if (isTouch == true) {
+        console.log("Touch screen detected.");
+        const onTouchStart = function() {
+            
+        }
+    }
+
     flkty.resize();
     flkty.select([].indexOf.call(songContainers, this), false, true);
 }
@@ -156,7 +165,7 @@ const onFavoriteButtonClick = function() {
     const slug = this.getAttribute('data-slug');
     if (favorites) {
         var favoriteIndex = favorites.indexOf(slug);
-    }    
+    }
 
     const span = this.querySelector('span');
 
@@ -164,13 +173,13 @@ const onFavoriteButtonClick = function() {
         favorites.splice(favoriteIndex, 1);
         span.classList.remove('filled');
         this.innerHTML = '';
-        this.append(span); 
+        this.append(span);
         this.append(' Favorite');
     } else {
         favorites.push(slug);
         span.classList.add('filled');
         this.innerHTML = '';
-        this.append(span); 
+        this.append(span);
         this.append(' Unfavorite');
     }
 
