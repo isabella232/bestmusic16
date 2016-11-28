@@ -837,20 +837,20 @@ header {
 				height: 500px;
 				padding-right: 10px;
 
-				&::-webkit-scrollbar-track {
-					background-color: @music-grey-borders;
-					border: 0.25px solid @bg-light-purple;
-				}
-
-				&::-webkit-scrollbar {
-					width: 8px;
-					background-color: @bg-dark-purple;
-				}
-
-				&::-webkit-scrollbar-thumb {
-					background-color: @bg-medium-purple;
-					border: 0.25px solid @bg-light-purple;
-				}
+				// &::-webkit-scrollbar-track {
+				// 	background-color: @music-grey-borders;
+				// 	border: 0.25px solid @bg-light-purple;
+				// }
+                //
+				// &::-webkit-scrollbar {
+				// 	width: 8px;
+				// 	background-color: @bg-dark-purple;
+				// }
+                //
+				// &::-webkit-scrollbar-thumb {
+				// 	background-color: @bg-medium-purple;
+				// 	border: 0.25px solid @bg-light-purple;
+				// }
 
 				@media screen and (min-width: 991px) and (max-width: 1200px) {
 					max-width: 800px;
@@ -911,6 +911,18 @@ header {
 
 					&.play {
 						margin: 6px 0;
+					}
+
+                    &.explicit {
+						margin: 0 0 6px;
+                        font-size: 0.7rem;
+
+                        &::before {
+                            .fa-icon();
+                            content: '\E80C';
+                            margin-right: 5px;
+                            color: white;
+                        }
 					}
 
 					span.url {

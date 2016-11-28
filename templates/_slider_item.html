@@ -17,6 +17,7 @@
                     <h5 class="title {% if item.type == 'song' %}song-title{% endif %}{% if item.type == 'album' %}album-title{% endif %}">{{ item.title }}</h5>
                     <div class="play-box">
                         <p class="play">Play this {{ item.type }} <span class="url">{{ item.smarturl }}</span><a href="#question"><span class="question"></span></a></p>
+                        <!-- <p class="explicit">Explicit content</p> -->
                     </div>
                     <button class="modal-favorites" data-slug="{{ item.song_slug }}"><span class="heart"></span> Favorite</button>
                 </div>
