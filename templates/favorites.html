@@ -12,8 +12,16 @@
 <div class="modal"></div>
 
 <script type="text/template" id="song-container-template">
-    <h1>My Favorites</h1>
     <div class="list-container container">
+        <div class="list-header">
+            <div class="favorites list-title">
+                <h2>My Favorites</h2>
+                <p>
+                    Here's a collection of the albums you love. The ones that spoke to you
+                    and let you relive all the emotion of 2016. Here are your favorites.
+                </p>
+            </div>
+        </div>
         <% if (types === 'both' || types === 'album') { %>
         <div class="albums">
             <h3 class="album-header">Favorite Albums</h3>
@@ -78,7 +86,7 @@
                             </div>
                             <div class="song-titleinfo">
                                 <h6 class="artist"><%= item.artist %></h6>
-                                <h5 class="title"><%= item.title %></h5>
+                                <h5 class="title <% if (item.type === 'album') { %>album-title<% } %> <% if (item.type === 'song') { %>song-title<% } %>"><%= item.title %></h5>
                                 <div class="play-box">
                                     <p class="play">Play this <%= item.type %> <span class="url"><%= item.smarturl %></span><a href="#question"><span class="question"></span></a></p>
                                 </div>
@@ -88,19 +96,20 @@
                         <div class="item-top mobile">
                             <div class="song-titleinfo">
                                 <h6 class="artist"><%= item.artist %></h6>
-                                <h5 class="title"><%= item.title %></h5>
+                                <h5 class="title <% if (item.type === 'album') { %>album-title<% } %> <% if (item.type === 'song') { %>song-title<% } %>"><%= item.title %></h5>
                                 <button class="modal-favorites" data-slug="<%= item.song_slug %>"><span class="heart"></span> Favorite</button>
                             </div>
-                            <div class="song-player">
-                                <div class="art-cover">
-                                    <img src="<%= item.art %>" />
+                            <a href="<%= item.smarturl %>">
+                                <div class="song-player">
+                                    <div class="art-cover">
+                                        <img src="<%= item.art %>" />
+                                    </div>
+                                    <div class="play-box">
+                                        <span class="question"></span>
+                                        <p class="play">Play this <%= item.type %></p>
+                                    </div>
                                 </div>
-                                <div class="play-box">
-                                    <span class="question"></span>
-                                    <p class="play">Play this <%= item.type %></p>
-                                    <p class="url"><%= item.smarturl %></p>
-                                </div>
-                            </div>
+                            </a>
                         </div>
                         <hr />
                         <div class="song-information">
