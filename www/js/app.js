@@ -216,15 +216,19 @@ const onCloseModalButtonClick = function() {
 }
 
 const closeModal = function() {
+    modalContent.addEventListener('transitionend', hideModal);
+    modalContent.classList.remove('modal-show');
+}
+
+const hideModal = function() {
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
     const item = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex];
-    const iframe = item.querySelector('iframe');
-    setTimeout( function() { modalContent.classList.remove('modal-show') }, 0);
-
+    const iframe = item.querySelector('iframe');  
     if (iframe) {
         iframe.setAttribute('src', '');
     }
+    modalContent.removeEventListener('transitionend', hideModal);
 }
 
 const initSponsorship = function() {
