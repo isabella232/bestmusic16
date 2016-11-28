@@ -32,7 +32,6 @@ def index():
     """
     Example view demonstrating rendering a simple HTML page.
     """
-    print('using index route')
     context = make_context()
     context['namespace'] = 'index'
     return make_response(render_template('index.html', **context))
@@ -85,6 +84,23 @@ def favorites():
     context['namespace'] = 'favorites'
 
     return make_response(render_template('favorites.html', **context))
+
+@app.route('/share/')
+@oauth.oauth_required
+def share():
+    context = make_context(asset_depth=1)
+
+    context['lists'] = {}
+
+    for row in context['COPY']['best_lists']:
+        underscores = row['slug'].replace('-', '_')
+        context['lists'][row['slug']] = context['COPY'][underscores]
+
+    for row in context['COPY']['deeper_lists']:
+        underscores = row['slug'].replace('-', '_')
+        context['lists'][row['slug']] = context['COPY'][underscores]
+
+    return make_response(render_template('share.html', **context))    
 
 app.register_blueprint(static.static)
 app.register_blueprint(oauth.oauth)

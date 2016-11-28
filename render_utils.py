@@ -61,7 +61,6 @@ class Includer(object):
             relative_path = '../%s' % relative_path
             depth -= 1
 
-        print(relative_path)
         return relative_path
 
     def render(self, path):
