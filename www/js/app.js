@@ -23,7 +23,7 @@ const onWindowLoaded = function() {
     listButton = document.querySelector('button.lists');
     headerFavoriteButton = document.querySelector('button.favorites');
     favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    if (favorites) {
+    if (favorites.length > 0) {
         headerFavoriteButton.querySelector('span').classList.add('filled');
     }
 
