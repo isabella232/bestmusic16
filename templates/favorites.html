@@ -89,6 +89,7 @@
                                 <h5 class="title <% if (item.type === 'album') { %>album-title<% } %> <% if (item.type === 'song') { %>song-title<% } %>"><%= item.title %></h5>
                                 <div class="play-box">
                                     <p class="play">Play this <%= item.type %> <span class="url"><%= item.smarturl %></span><a href="#question"><span class="question"></span></a></p>
+                                    <% if (item.explicit === 'yes') { %><p class="explicit">LANGUAGE ADVISORY: This <% if (item.type === 'song') { %>song<% } %> <% if (item.type == 'album') { %>album<% } %> contains profanity.</p><% } %>
                                 </div>
                                 <button class="modal-favorites" data-slug="<%= item.song_slug %>"><span class="heart"></span> Favorite</button>
                             </div>
