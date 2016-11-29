@@ -140,10 +140,9 @@ var getParameterByName = function(name) {
 
 const loadEmbed = function() {
     const item = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex];
-
     const iframe = item.querySelector('iframe');
 
-    if (iframe) {
+    if (iframe && !iframe.getAttribute('src')) {
         const src = iframe.getAttribute('data-src');
         iframe.setAttribute('src', src);
     }
