@@ -3,7 +3,7 @@
 <div class="index-lists container">
     <div class="best-lists">
         <h2>{{ COPY.content.index_best_title }}</h2>
-        <p class="intro-text">{{ COPY.content.index_best_sub }}</p>
+        <!-- <p class="intro-text">{{ COPY.content.index_best_sub }}</p> -->
         {% for list in COPY.best_lists %}
             <div class="list bestlist">
                 <a href="{{ S3_BASE_URL }}/list/{{ list.slug }}">
