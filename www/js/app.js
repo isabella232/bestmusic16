@@ -107,7 +107,7 @@ const loadImages = function() {
         const dataSrc = img.getAttribute('data-src');
         const filename = dataSrc.split('.')[0];
         const ext = dataSrc.split('.')[1];
-        const realSrc = imgRoot + '/' + filename + '-s200-c85.' + ext;
+        const realSrc = imgRoot + filename + '-s200-c85.' + ext;
 
         img.setAttribute('src', realSrc);
     }

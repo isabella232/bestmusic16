@@ -44,9 +44,15 @@
             <div class="song-information">
                 {% if item.embed %}
                 <div class="embed">
-                    <div class="{% if item.embed_type == 'YouTube' %}embed-container{% endif %}">
+                    {% if item.embed_type == 'YouTube' %}
+                    <div class="embed-container">
+                        <iframe width="560" height="315" data-src="{{ item.embed.replace('watch?v=', 'embed/')|safe }}" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    {% else %}
+                    <div>
                         {{ item.embed|safe }}
                     </div>
+                    {% endif %}
                     <p class="embed-source">{{ item.embed_type }}</p>
                 </div>
                 {% endif %}

@@ -6,7 +6,7 @@
     {% for row in list %}
         <h4>{{ row.artist }} - {{ row.title }}</h4>
 
-        {% set url = S3_BASE_URL + '/list/' + slug + '/?item=' + row.song_slug|string %}
+        {% set url = 'http://apps.npr.org/' + PROJECT_SLUG + '/list/' + slug + '/?item=' + row.song_slug|string %}
         <p><a href="{{ url }}">{{ url }}</a> <button class="copy btn" data-clipboard-text="{{ url }}">Copy to clipboard</button></p>
     {% endfor %}
 
