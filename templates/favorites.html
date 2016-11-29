@@ -73,11 +73,8 @@
             <div class="carousel-cell" data-slug="<%= item.song_slug %>">
                 <div class="modal-container">
                     <div class="modal-top">
-                        <a href="http://npr.org/music"><img src="{{ S3_BASE_URL }}/assets/music-logo-outline-thick.svg"></a>
+                        <img src="{{ S3_BASE_URL }}/assets/music-logo-outline-thick.svg">
                         <h1>Your Favorites</h1>
-                        <div class="header-btns">
-                            <a href="#"><button class="window-close"><span class="x-close"></span></button></a>
-                        </div>
                     </div>
                     <div class="scroll-container">
                         <div class="item-top desktop">
@@ -112,21 +109,29 @@
                                 </div>
                             </a>
                         </div>
-                        <hr />
+                        <hr class="hr-embed" />
                         <div class="song-information">
                             <% if (item.embed) { %>
                             <div class="embed">
-                                <div class="embed-container">
-                                    <%= item.embed|safe %>
-                                </div>
+                                <% if (item.embed_type === 'YouTube') { %>
+                                    <div class="embed-container">
+                                        <iframe width="560" height="315" data-src="<%= item.embed %>" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                <% } else { %>
+                                    <div>
+                                        <%= item.embed %>
+                                    </div>
+                                <% } %>
                                 <p class="embed-source"><%= item.embed_type %></p>
                             </div>
                             <% } %>
                             <p class="desc"><%= item.description %></p>
+
+                            <% if (item.author_twitter) { %><a href="https://twitter.com/<%= item.author_twitter %>"> <% } %>
                             <p class="author"><%= item.author %> <span class="affiliation"><%= item.affiliation %></span></p>
+                            <% if (item.author_twitter) { %></a> <% } %>
                             <p class="filed"><b>Filed under:</b> <%= item.filed_under %></p>
                         </div>
-                        <hr />
                         <p class="explainer" id="question">
                             We're using <b class="emphasis">smartURL</b> to make it easier to play songs using the service of your choice. When you select
                             the <b class="emphasis">PLAY THIS SONG</b> link you will be redirected to a page where you can choose Spotify, Apple Music

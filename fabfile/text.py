@@ -46,15 +46,21 @@ def update():
                         continue
 
                     song_obj = {}
+                    song_obj['sort'] = song['sort']
                     song_obj['artist'] = song['artist']
                     song_obj['title'] = song['title']
-                    song_obj['smarturl'] = song['smarturl']
+                    song_obj['song_slug'] = song['song_slug']
                     song_obj['description'] = song['description']
                     song_obj['art'] = song['art']
+                    song_obj['author'] = song['author']
+                    song_obj['author_twitter'] = song['author_twitter']
+                    song_obj['affiliation'] = song['affiliation']
+                    song_obj['explicit'] = song['explicit']
                     song_obj['filed_under'] = song['filed_under']
-                    song_obj['song_slug'] = song['song_slug']
-                    song_obj['type'] = song['type']
-
+                    song_obj['type'] = song['type']    
+                    song_obj['smarturl'] = song['smarturl']
+                    song_obj['embed'] = song['embed'].replace('watch?v=', 'embed/')
+                    song_obj['embed_type'] = song['embed_type']
                     all_songs[song['song_slug']] = song_obj
 
         output = json.dumps(all_songs)
