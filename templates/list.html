@@ -40,11 +40,12 @@
     </div>
 
     {% else %}
-
-    <div class="songs-container">
-        {% for song in COPY[slug] %}
-        {% include '_song_wrapper.html' %}
-        {% endfor %}
+    <div class="{{ types }}s">
+        <div class="songs-container">
+            {% for song in COPY[slug] %}
+            {% include '_song_wrapper.html' %}
+            {% endfor %}
+        </div>
     </div>
 
     {% endif %}
