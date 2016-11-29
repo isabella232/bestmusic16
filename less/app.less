@@ -753,7 +753,11 @@ header {
 			border-radius: 0;
 			height: 55px;
 			width: 40px;
-			background-color: rgba(255, 255, 255, 0.25);
+            background: transparent;
+
+            @media @screen-small-above {
+			    background-color: rgba(255, 255, 255, 0.25);
+            }
 
 			.arrow {
 				fill: @white;
@@ -767,18 +771,28 @@ header {
 			}
 
 			&:disabled {
-				background-color: rgba(255, 255, 255, 0.25);
+                background: transparent;
+
+                @media @screen-small-above {
+    			    background-color: rgba(255, 255, 255, 0.25);
+                }
 				.arrow {
 					fill: @white;
 				}
 			}
 
 			&.previous {
-				left: -7%;
+				left: 0;
+                @media @screen-small-above {
+                    right: -7%;
+                }
 			}
 
 			&.next {
-				right: -7%;
+				right: 0;
+                @media @screen-small-above {
+                    right: -7%;
+                }
 			}
 
 			// @media @screen-large {
@@ -883,7 +897,7 @@ header {
 
 			.scroll-container {
 				max-width: (@container-max + 125);
-                padding: 1rem;
+                padding: 20px 30px;
 				margin: 0 auto;
 				// overflow-y: auto;
 				// overflow-x: hidden;
@@ -892,11 +906,16 @@ header {
 
                 p {
                     font-size: .7rem;
-                    // line-height: 1.6rem;
+                    line-height: 1.6rem;
 
                 }
 
+                @media @screen-small-above {
+                    padding: 1rem;
+                }
+
                 .explainer {
+                    clear: both;
                     border-top: 1px solid @music-grey-borders;
                     font-size: .6rem;
                     padding-top: .3rem;
@@ -919,9 +938,9 @@ header {
     				}
     			}
 
-				@media screen and (min-width: 991px) and (max-width: 1200px) {
-					max-width: 800px;
-				}
+				// @media screen and (min-width: 991px) and (max-width: 1200px) {
+				// 	max-width: 800px;
+				// }
 			}
 
 			.modal-top {
