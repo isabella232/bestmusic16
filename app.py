@@ -54,7 +54,7 @@ def list(slug):
     if len(types_found) >= 2:
         context['types'] = 'both'
     else:
-        context['types'] = 'single'
+        context['types'] = types_found[0]
 
     print(context['types'])
 
