@@ -106,12 +106,17 @@ body {
 		}
 
 		&.window-close {
-			top: .4rem;
-			right: .4rem;
-			width: 33px;
+            z-index: 100;
+			top: .5rem;
+			right: .5rem;
+			width: 2rem;
+            height: 2rem;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.25);
 			.x-close::before {
 				.fa-icon();
 				content: '\E80B';
+                font-size: 1rem;
 			}
 		}
 
