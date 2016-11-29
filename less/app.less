@@ -333,6 +333,10 @@ header {
             display: flex;
             justify-content: space-between;
 
+            &:hover {
+                span.arrow-more::before { color: @music-red !important; }
+            }
+
             .list-artwork {
                 flex-basis: 35%;
                 float: left;
@@ -442,12 +446,17 @@ header {
 			&:last-child {
 				border-bottom: 0;
 			}
+
+            // &:hover {
+            //     span.arrow-more::before { color: @music-red; }
+            // }
 		}
 
 		span.arrow-more::before {
 			font-size: 16px;
 			margin-left: 4px;
 			position: absolute;
+            margin-top: -2px;
 		}
 
 		a { color: @white; }
