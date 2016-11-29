@@ -196,11 +196,13 @@ const onFavoriteButtonClick = function() {
         this.append(' Unfavorite');
     }
 
-    if (favorites) {
+    if (favorites.length > 0) {
         headerFavoriteButton.querySelector('span').classList.add('filled');
     } else {
         headerFavoriteButton.querySelector('span').classList.remove('filled');
     }
+
+
 
     const storageItem = JSON.stringify(favorites);
     localStorage.setItem('favorites', storageItem);
