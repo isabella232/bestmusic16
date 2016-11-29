@@ -938,7 +938,7 @@ header {
     					color: @para-txt-light;
     					font-size: .9rem;
     					cursor: pointer;
-    					margin-left: -1.5rem;
+    					margin-left: -1.2rem;
     					margin-right: .2rem;
     				}
     			}
@@ -1003,6 +1003,14 @@ header {
 
 					&.play {
 						margin: 6px 0;
+
+                        a {
+                            transition: all 0.4s;
+                        }
+
+                        a:hover {
+                            color: @white;
+                        }
 					}
 
                     &.explicit {
