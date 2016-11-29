@@ -64,7 +64,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         flkty = new Flickity(carousel, {
             pageDots: false,
             draggable: isTouch,
-            dragThreshold: 80,
+            dragThreshold: 50,
             setGallerySize: false,
             friction: isTouch ? 0.28 : 1,
             selectedAttraction: isTouch ? 0.025 : 1
