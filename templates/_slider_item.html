@@ -45,7 +45,7 @@
                 <div class="embed">
                     {% if item.embed_type == 'YouTube' %}
                     <div class="embed-container">
-                        <iframe width="560" height="315" data-src="{{ item.embed.replace('watch?v=', 'embed/')|safe }}/?showinfo=0&origin=http://apps.npr.org&playsinline=1" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" data-src="{{ item.embed.replace('watch?v=', 'embed/')|safe }}/?showinfo=0&playsinline=1&origin=http://apps.npr.org" frameborder="0" allowfullscreen></iframe>
                     </div>
                     {% else %}
                     <div>
