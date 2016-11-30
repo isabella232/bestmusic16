@@ -527,7 +527,7 @@ header {
 
 // LIST
 .list-container {
-	max-width: 960px;
+	max-width: 1200px;
 	margin: 0 auto;
 	width: 100%;
 
@@ -535,68 +535,68 @@ header {
 		text-transform: capitalize;
 	}
 
-	.list-header {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		align-items: center;
-		align-content: space-between;
-
-		@media @screen-small {
-			flex-direction: column;
-			align-items: baseline;
-		}
-
-		.list-title {
-			@media @screen-small-above {
-				width: 66%;
-			}
-		}
-        .favorites.list-title {
-            @media @screen-small-above {
-                width: 100%;
-            }
-        }
-		.playlist-wrapper {
-			margin-top: 8px;
-			h6, a, p {
-				.gotham();
-				color: @white;
-				text-align: right;
-			}
-			h6 {
-				text-transform: uppercase;
-				a {
-					border-bottom: 2px solid #bc453e;
-					padding-bottom: 3px;
-					font-weight: 700;
-				}
-			}
-			p {
-				font-size: 0.8rem;
-				line-height: 1.2rem;
-				max-width: 175px;
-				float: right;
-				margin-top: 0;
-			}
-			@media @screen-small-above {
-				width: 33%;
-			}
-			@media @screen-small {
-				margin-top: 0;
-				h6, a, p {
-					text-align: left;
-				}
-				p {
-					max-width: 100%;
-				}
-				h6 {
-					margin-top: 0;
-					text-transform: capitalize;
-				}
-			}
-		}
-	}
+	// .list-header {
+	// 	display: flex;
+	// 	flex-wrap: wrap;
+	// 	justify-content: space-between;
+	// 	align-items: center;
+	// 	align-content: space-between;
+    //
+	// 	@media @screen-small {
+	// 		flex-direction: column;
+	// 		align-items: baseline;
+	// 	}
+    //
+	// 	.list-title {
+	// 		@media @screen-small-above {
+	// 			width: 66%;
+	// 		}
+	// 	}
+    //     .favorites.list-title {
+    //         @media @screen-small-above {
+    //             width: 100%;
+    //         }
+    //     }
+	// 	.playlist-wrapper {
+	// 		margin-top: 8px;
+	// 		h6, a, p {
+	// 			.gotham();
+	// 			color: @white;
+	// 			text-align: right;
+	// 		}
+	// 		h6 {
+	// 			text-transform: uppercase;
+	// 			a {
+	// 				border-bottom: 2px solid #bc453e;
+	// 				padding-bottom: 3px;
+	// 				font-weight: 700;
+	// 			}
+	// 		}
+	// 		p {
+	// 			font-size: 0.8rem;
+	// 			line-height: 1.2rem;
+	// 			max-width: 175px;
+	// 			float: right;
+	// 			margin-top: 0;
+	// 		}
+	// 		@media @screen-small-above {
+	// 			width: 33%;
+	// 		}
+	// 		@media @screen-small {
+	// 			margin-top: 0;
+	// 			h6, a, p {
+	// 				text-align: left;
+	// 			}
+	// 			p {
+	// 				max-width: 100%;
+	// 			}
+	// 			h6 {
+	// 				margin-top: 0;
+	// 				text-transform: capitalize;
+	// 			}
+	// 		}
+	// 	}
+	// }
 
 	h3 {
 		color: @white;
@@ -649,10 +649,11 @@ header {
 
 		.song-art {
 			float: left;
+            max-width: 165px;
 
 			img {
 				width: 100%;
-				max-width: 65px;
+				height: auto;
 				cursor: pointer;
 			}
 		}
@@ -663,6 +664,17 @@ header {
 			float: left;
 			cursor: pointer;
 
+            &:hover {
+    			h5 {
+                    color: @music-red;
+
+                    &::after {
+                        color: @music-red;
+            		}
+                }
+    		}
+
+
 			h6 {
 				font-weight: 700;
 				color: @music-red;
@@ -672,11 +684,26 @@ header {
 			h5 {
 				color: @para-txt-light;
 				margin: 8px 0;
+                line-height: 1.5;
+                font-size: 14px;
+
+                @media @screen-small-above {
+                    font-size: 1.4rem;
+                }
+
+                &::after {
+                    font-family: "npr-app-template";
+            		content: '\E801';
+                    color: #fff;
+                    font-size: 1.2rem;
+                    margin-left: .7rem;
+        		}
 			}
 
 			span.arrow-more {
 				float: right;
 				margin-top: -5px;
+                margin-left: .5rem;
 			}
 		}
 
