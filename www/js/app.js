@@ -133,18 +133,19 @@ const loadImages = function() {
 }
 
 const checkForPermalink = function() {
-    const item = getParameterByName('item');
+    const slug = getParameterByName('item');
 
-    if (item) {
-        const cell = [].find.call(carouselCells, function(song) {
-            return song.getAttribute('data-slug') === item;
-        });
-
-        const index = [].indexOf.call(carouselCells, cell);
+    if (slug) {
+        const songContainer = [].find.call(songContainers, function(container) {
+            return container.getAttribute('data-slug') === slug; 
+        })
+        createSliderItem(songContainer);
 
         modal.style.display = 'block';
+        setTimeout( function() { modalContent.classList.add('modal-show') }, 0);
+        document.body.style.overflow = 'hidden';
         flkty.resize();
-        flkty.select(index);
+        flkty.select(1, false, true);
 
         window.history.replaceState('', '', document.location.href.split('?')[0]);
     }
@@ -249,14 +250,14 @@ const onSongClick = function() {
     handleEmbeds();
 }
 
-const createSliderItem = function(clickedItem) {
+const createSliderItem = function(selectedItem) {
     const parser = new DOMParser();
     const temp = template(sliderItemTemplate.innerHTML);
     const baseURL = document.location.host;
     const listName = document.querySelector('.list-title h2').textContent;
 
-    const i = [].indexOf.call(songContainers, clickedItem);
-    const items = [songContainers[i - 1], clickedItem, songContainers[i + 1]];
+    const i = [].indexOf.call(songContainers, selectedItem);
+    const items = [songContainers[i - 1], selectedItem, songContainers[i + 1]];
     const sliderItems = [];
     
     for (var j = 0; j < items.length; j++) {
@@ -276,7 +277,7 @@ const createSliderItem = function(clickedItem) {
     }
 
     for (var k = 0; k < sliderItems.length; k++) {
-        if (sliderItems[k].getAttribute('data-slug') === clickedItem.getAttribute('data-slug')) {
+        if (sliderItems[k].getAttribute('data-slug') === selectedItem.getAttribute('data-slug')) {
             var thisIndex = k;
         }
     }
