@@ -56,7 +56,7 @@
                 {% endif %}
                 <p class="desc">{{ item.description }}</p>
                 {% if item.author_twitter %}<a href="https://twitter.com/{{ item.author_twitter }}">{% endif %}
-                <p class="author">{{ item.author }} <span class="affiliation">{{ item.affiliation }}</span></p>
+                <p class="author">{{ item.author }}{% if item.affiliation %}<span class="affiliation"> {{ item.affiliation }}</span>{% endif %}</p>
                 {% if item.author_twitter %}</a>{% endif %}
 
                 <p class="filed"><b>Filed under:</b> {{ item.filed_under }}</p>
