@@ -697,10 +697,10 @@ header {
 
 	.songs .song-wrapper h5{
 		&::before {
-			content: '"';
+			content: '\201c';
 		}
 		&::after {
-			content: '"';
+			content: '\201d';
 		}
 	}
 
@@ -1186,9 +1186,12 @@ header {
 
 			h5.title {
 				&.song-title {
-					&::before, &::after {
-						content: '"';
+					&::before{
+						content: '\201c';
 					}
+                    &::after {
+                        content: '\201d';
+                    }
 				}
 				&.album-title {
 					font-style: italic;

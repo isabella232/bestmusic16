@@ -1,6 +1,7 @@
 import Barba from 'barba.js';
 import Flickity from 'flickity';
 import template from 'lodash.template';
+import Layzr from 'layzr.js';
 import SONGS from './songs.json';
 
 let songContainers = null;
@@ -23,6 +24,10 @@ let modalTemplate = null;
 
 const isTouch = Modernizr.touchevents;
 const imgRoot = 'http://media.npr.org/music/best-music-2016/'
+const layzrInstance = Layzr({
+    threshold: 10
+});
+
 
 const onWindowLoaded = function() {
     listButton = document.querySelector('button.lists');
@@ -32,7 +37,13 @@ const onWindowLoaded = function() {
         headerFavoriteButton.querySelector('span').classList.add('filled');
     }
 
+    layzrInstance
+        .update()
+        .check()
+        .handlers(true)
+
     Barba.Dispatcher.on('newPageReady', attachEvents);
+    Barba.Dispatcher.on('transitionCompleted', setUpLayzr);
     Barba.Pjax.start();
 }
 
@@ -49,6 +60,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
     }
 
     if (currentStatus.namespace === 'list' || currentStatus.namespace === 'favorites') {
+
         listButton.style.display = "block";
 
         songContainers = container.querySelectorAll('.song-wrapper');
@@ -67,7 +79,8 @@ const attachEvents = function(currentStatus, prevStatus, container) {
             dragThreshold: 50,
             setGallerySize: false,
             friction: isTouch ? 0.9 : 1,
-            selectedAttraction: isTouch ? 0.2 : 1
+            selectedAttraction: isTouch ? 0.2 : 1,
+            lazyLoad: 1
         });
         flkty.on('settle', handleEmbeds);
 
@@ -95,9 +108,14 @@ const attachEvents = function(currentStatus, prevStatus, container) {
 
         modalOverlay.addEventListener('click', onModalOverlayClick);
 
-        loadImages();
+        // loadImages();
         checkForPermalink();
     }
+}
+
+const setUpLayzr = function() {
+    layzrInstance.update();
+    layzrInstance.check();
 }
 
 const loadImages = function() {
