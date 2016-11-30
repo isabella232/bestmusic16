@@ -174,35 +174,39 @@ const updateSlider = function() {
     
     if (flkty.selectedIndex === 0 && carouselCells.length <= 3) {        
         var addItem = songContainers[listIndex - 1];
-        var addItemSlug = addItem.getAttribute('data-slug');
-        var item = SONGS[addItemSlug];
-        const itemDOM = parser.parseFromString(temp({
-           'item': item,
-           'baseURL': baseURL,
-           'listName': listName
-        }), 'text/html');
-        const itemHTML = itemDOM.querySelector('.carousel-cell');
 
-        flkty.prepend(itemHTML);
-        flkty.remove(carouselCells[carouselCells.length - 1]);
+        if (addItem) {
+            var addItemSlug = addItem.getAttribute('data-slug');
+            var item = SONGS[addItemSlug];
+            const itemDOM = parser.parseFromString(temp({
+               'item': item,
+               'baseURL': baseURL,
+               'listName': listName
+            }), 'text/html');
+            const itemHTML = itemDOM.querySelector('.carousel-cell');
+
+            flkty.prepend(itemHTML);
+            flkty.remove(carouselCells[carouselCells.length - 1]);
+        }
     } else if (flkty.selectedIndex === carouselCells.length - 1) {
         var addItem = songContainers[listIndex + 1];
-        var addItemSlug = addItem.getAttribute('data-slug');
-        var item = SONGS[addItemSlug];
-        const itemDOM = parser.parseFromString(temp({
-           'item': item,
-           'baseURL': baseURL,
-           'listName': listName
-        }), 'text/html');
-        const itemHTML = itemDOM.querySelector('.carousel-cell');
-        flkty.append(itemHTML);
 
-        if (document.querySelectorAll('carousel-cell').length > 3) {
-            flkty.remove(carouselCells[0]);
+        if (addItem) {
+            var addItemSlug = addItem.getAttribute('data-slug');
+            var item = SONGS[addItemSlug];
+            const itemDOM = parser.parseFromString(temp({
+               'item': item,
+               'baseURL': baseURL,
+               'listName': listName
+            }), 'text/html');
+            const itemHTML = itemDOM.querySelector('.carousel-cell');
+            flkty.append(itemHTML);
+
+            if (document.querySelectorAll('.carousel-cell').length > 3) {
+                flkty.remove(document.querySelectorAll('.carousel-cell')[0]);
+            }
         }
     }
-
-
 }
 
 const handleEmbeds = function() {
