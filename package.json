@@ -23,6 +23,7 @@
   "dependencies": {
     "barba.js": "^1.0.0",
     "flickity": "^2.0.5",
+    "layzr.js": "^2.2.1",
     "lodash.template": "^4.4.0"
   }
 }
