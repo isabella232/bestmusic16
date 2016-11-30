@@ -160,6 +160,48 @@ var getParameterByName = function(name) {
 const updateSlider = function() {
     handleEmbeds();
 
+    const parser = new DOMParser();
+    const temp = template(sliderItemTemplate.innerHTML);
+    const baseURL = document.location.host;
+    const listName = document.querySelector('.list-title h2').textContent;
+    
+    carouselCells = document.querySelectorAll('.carousel-cell');
+    const slug = carouselCells[flkty.selectedIndex].getAttribute('data-slug');
+    const listItem = [].find.call(songContainers, function(container) {
+        return container.getAttribute('data-slug') === slug;
+    })
+    const listIndex = [].indexOf.call(songContainers, listItem);
+    
+    if (flkty.selectedIndex === 0 && carouselCells.length <= 3) {        
+        var addItem = songContainers[listIndex - 1];
+        var addItemSlug = addItem.getAttribute('data-slug');
+        var item = SONGS[addItemSlug];
+        const itemDOM = parser.parseFromString(temp({
+           'item': item,
+           'baseURL': baseURL,
+           'listName': listName
+        }), 'text/html');
+        const itemHTML = itemDOM.querySelector('.carousel-cell');
+
+        flkty.prepend(itemHTML);
+        flkty.remove(carouselCells[carouselCells.length - 1]);
+    } else if (flkty.selectedIndex === carouselCells.length - 1) {
+        var addItem = songContainers[listIndex + 1];
+        var addItemSlug = addItem.getAttribute('data-slug');
+        var item = SONGS[addItemSlug];
+        const itemDOM = parser.parseFromString(temp({
+           'item': item,
+           'baseURL': baseURL,
+           'listName': listName
+        }), 'text/html');
+        const itemHTML = itemDOM.querySelector('.carousel-cell');
+        flkty.append(itemHTML);
+
+        if (document.querySelectorAll('carousel-cell').length > 3) {
+            flkty.remove(carouselCells[0]);
+        }
+    }
+
 
 }
 
