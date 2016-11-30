@@ -125,8 +125,7 @@ body {
 			border: 0;
 			// border-bottom: 2px solid @music-red;
 			transition: none;
-			padding-left: 0;
-			padding-right: 0;
+			padding: 0;
 			position: relative;
 
 			.heart::before {
@@ -754,6 +753,7 @@ header {
 
     .modal-content {
 		background-color: @bg-medium-purple;
+        box-shadow: 4px 2px 15px #000;
 		// min-height: 500px;
 		// max-width: (@container-max + 300);
         position: absolute;
@@ -770,7 +770,7 @@ header {
             transform: translate(-50%, -50%) scale(0.7);
             top: 50%;
     		left: 50%;
-    		max-height: 900px;
+    		max-height: 910px;
         }
 
         &.modal-show {
@@ -864,7 +864,7 @@ header {
 			.embed-source {
 				.gotham();
 				font-style: italic;
-				font-size: 0.8rem;
+				font-size: 10px;
 				margin: 0 auto;
 				color: @para-txt-darker;
 			}
@@ -972,6 +972,43 @@ header {
 
                 @media @screen-small-above {
                     padding: 1rem;
+                }
+
+                .stream-link {
+                    clear: both;
+                    border-top: 1px solid @music-grey-borders;
+                    padding-top: .5rem;
+
+                    h4 {
+                        font-size: .7rem;
+                        margin-bottom: .6rem;
+                        font-weight: bold;
+                        color: @para-txt-light;
+
+                        a {
+                            color: #fff;
+                            border-bottom: 2px solid @music-red;
+                            padding-bottom: .3rem;
+                            display: inline-block;
+                            margin-left: .2rem;
+                            font-weight: normal;
+                            font-size: .6rem;
+
+                            &:hover {
+                                color: @music-red;
+                			}
+                        }
+                    }
+
+                    p {
+                        line-height: 1.3;
+                        font-size: .6rem;
+
+                        a {
+                            font-weight: bold;
+                            color: #fff;
+                        }
+                    }
                 }
 
                 .explainer {
