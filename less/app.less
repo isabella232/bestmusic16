@@ -887,30 +887,7 @@ header {
                 }
 			}
 
-			p.author, p.filed {
-				.gotham();
-				font-size: .9rem;
-			}
 
-            a p.author {
-                transition: all 0.4s;
-
-                &:hover {
-                    color: white;
-                }
-            }
-
-			p.author {
-				&::before {
-					content: '\2014';
-					margin-right: 5px;
-				}
-
-				span.affiliation {
-					font-weight: bold;
-					font-style: italic;
-				}
-			}
 
 			.scroll-container {
 				max-width: (@container-max + 125);
@@ -926,8 +903,8 @@ header {
                     line-height: 2;
 
                     @media @screen-small-above {
-                        font-size: .8rem;
-                        line-height: 1.6rem;
+                        font-size: .75rem;
+                        line-height: 1.4rem;
                     }
 
                 }
@@ -935,6 +912,42 @@ header {
                 @media @screen-small-above {
                     padding: 1rem;
                 }
+
+                p.author, p.filed {
+                    font-size: 11px;
+                    line-height: 1;
+
+                    @media @screen-small-above {
+                        font-size: .7rem;
+                        line-height: 1;
+                    }
+    			}
+
+                .author {font-style: italic;}
+
+                .filed {
+                    b {color: #fff;}
+                }
+
+                a p.author {
+                    transition: all 0.4s;
+
+                    &:hover {
+                        color: white;
+                    }
+                }
+
+    			p.author {
+    				&::before {
+    					content: '\2014';
+    					margin-right: 5px;
+    				}
+
+    				span.affiliation {
+    					font-weight: bold;
+    					font-style: italic;
+    				}
+    			}
 
                 ///smart url link
                 .stream-link {
@@ -1068,7 +1081,7 @@ header {
 
                 @media @screen-small-above {
                     border: none;
-                    padding: 1rem;
+                    padding: 1rem 1rem 0 1rem;
                     margin: 0 auto;
                 }
 
@@ -1108,7 +1121,7 @@ header {
 
                 @media @screen-small-above {
                     float: left;
-                    max-width: 185px;
+                    max-width: 140px;
                     margin-right: 2rem;
                     margin-left: 0;
                 }
@@ -1128,11 +1141,12 @@ header {
 
 				h5.title {
                     font-size: 14px;
-                    line-height: 1.5;
+                    line-height: 1.2;
                     color: @para-txt-light;
-    				margin: 0;
+    				margin: 5px 0 5px 0;
                     @media @screen-small-above {
                         font-size: 2rem;
+                        margin: 0 0 .5rem 0;
                     }
 				}
 
@@ -1210,8 +1224,17 @@ header {
 				position: relative;
 			}
 
-			.song-information hr {
+			.song-information {
 				clear: both;
+                margin: 5px 0;
+                border-top: 1px solid @music-grey-borders;
+                padding: 10px 0 5px 0;
+
+                @media @screen-small-above {
+                    padding: 1rem 0 .2rem 0;
+                    margin: .5rem 0;
+                }
+
 			}
 
 			// @media @screen-small-above {
