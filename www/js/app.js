@@ -84,7 +84,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
             selectedAttraction: isTouch ? 0.2 : 1,
             lazyLoad: 1
         });
-        flkty.on('settle', handleEmbeds);
+        flkty.on('settle', updateSlider);
 
         for (var i = 0; i < songContainers.length; i++) {
             songContainers[i].addEventListener('click', onSongClick);
@@ -157,6 +157,12 @@ var getParameterByName = function(name) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+const updateSlider = function() {
+    handleEmbeds();
+
+
+}
+
 const handleEmbeds = function() {
     // load current embed
     const item = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex];
@@ -197,21 +203,20 @@ const onSongClick = function() {
     handleEmbeds();
 }
 
-const createSliderItem = function(item) {
+const createSliderItem = function(clickedItem) {
     const parser = new DOMParser();
     const temp = template(sliderItemTemplate.innerHTML);
+    const baseURL = document.location.host;
+    const listName = document.querySelector('.list-title h2').textContent;
 
-    const i = [].indexOf.call(songContainers, item);
-    const items = [songContainers[i - 1], item, songContainers[i + 1]];
+    const i = [].indexOf.call(songContainers, clickedItem);
+    const items = [songContainers[i - 1], clickedItem, songContainers[i + 1]];
     const sliderItems = [];
     
     for (var j = 0; j < items.length; j++) {
         if (items[j]) {
             const slug = items[j].getAttribute('data-slug');
             const itemData = SONGS[slug]
-            const baseURL = document.location.host;
-            console.log(baseURL);
-            const listName = document.querySelector('.list-title h2').textContent;
 
             const itemDOM = parser.parseFromString(temp({
                'item': itemData,
@@ -223,8 +228,17 @@ const createSliderItem = function(item) {
             sliderItems.push(itemHTML);
         }
     }
+
+    for (var k = 0; k < sliderItems.length; k++) {
+        if (sliderItems[k].getAttribute('data-slug') === clickedItem.getAttribute('data-slug')) {
+            var thisIndex = k;
+        }
+    }
+
     flkty.append(sliderItems);
-    flkty.select(1, false, true);
+    setTimeout(function() {
+        flkty.select(thisIndex, false, true);
+    }, 0);
 }
 
 const onFavoriteButtonClick = function() {
