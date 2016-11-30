@@ -66,11 +66,10 @@ const attachEvents = function(currentStatus, prevStatus, container) {
             draggable: isTouch,
             dragThreshold: 50,
             setGallerySize: false,
-            friction: isTouch ? 0.28 : 1,
-            selectedAttraction: isTouch ? 0.025 : 1
+            friction: isTouch ? 0.9 : 1,
+            selectedAttraction: isTouch ? 0.2 : 1
         });
-        flkty.on('select', loadEmbed);
-        flkty.on('settle', unloadEmbed);
+        flkty.on('settle', handleEmbeds);
 
         for (var i = 0; i < songContainers.length; i++) {
             songContainers[i].addEventListener('click', onSongClick);
@@ -138,7 +137,8 @@ var getParameterByName = function(name) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-const loadEmbed = function() {
+const handleEmbeds = function() {
+    // load current embed
     const item = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex];
     const iframe = item.querySelector('iframe');
 
@@ -146,9 +146,8 @@ const loadEmbed = function() {
         const src = iframe.getAttribute('data-src');
         iframe.setAttribute('src', src);
     }
-}
 
-const unloadEmbed = function() {
+    // unload adjacent embeds
     const itemBehind = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex - 1];
     const itemAhead = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex + 1];
 
@@ -172,6 +171,7 @@ const onSongClick = function() {
     document.body.style.overflow = 'hidden';
     flkty.resize();
     flkty.select([].indexOf.call(songContainers, this), false, true);
+    handleEmbeds();
 }
 
 const onFavoriteButtonClick = function() {
