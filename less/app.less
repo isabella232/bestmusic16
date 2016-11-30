@@ -171,15 +171,15 @@ body {
 				right: 105px;
 			}
 
-			&.modal-favorites {
-				border-bottom: 0;
-				position: absolute;
-				top: -9px;
-    			right: 0;
-			}
+			// &.modal-favorites {
+			// 	border-bottom: 0;
+			// 	position: absolute;
+			// 	top: -9px;
+    		// 	right: 0;
+			// }
 
 			&.window-close {
-				right: 25px;
+				right: 10px;
 			}
 		}
 	}
@@ -797,11 +797,7 @@ header {
             }
         }
 
-		h6.artist {
-			font-weight: 700;
-			color: @music-red;
-			margin: 0;
-		}
+
 
 		// FLICKITY CUTSOM STYLES
 		.flickity-prev-next-button {
@@ -915,9 +911,13 @@ header {
 			}
 
 			h6.artist {
-				font-weight: 700;
+				font-size: 11px;
 				color: @music-red;
 				margin: 0;
+                font-weight: bold;
+                @media @screen-small-above {
+                    font-size: 1rem;
+                }
 			}
 
 			h5.title {
@@ -1031,23 +1031,35 @@ header {
 			}
 
 			div.art-cover {
-				float: left;
+				float: right;
+                max-width: 100px;
+                margin-left: 15px;
+
+                @media @screen-small-above {
+                    float: left;
+                    max-width: 185px;
+                    margin-right: 2rem;
+                }
 			}
 
 			.item-top {
 				.clearfix();
 				// margin: 25px 0 15px;
 
-				div.art-cover {
-					margin-right: 35px;
-				}
+				// div.art-cover {
+				// 	margin-right: 35px;
+				// }
 
 				.song-titleinfo {
 					margin-top: 0;
 				}
 
 				h5.title {
-					font-size: 1.75rem;
+                    font-size: 13px;
+                    line-height: 1.5;
+                    @media @screen-small-above {
+                        font-size: 1.75rem;
+                    }
 				}
 
 				p {
@@ -1112,7 +1124,7 @@ header {
 			.item-top {
 				div.art-cover img {
 					width: 100%;
-					max-width: 185px;
+                    height: auto;
 				}
 			}
 
@@ -1125,87 +1137,81 @@ header {
 				clear: both;
 			}
 
+			// @media @screen-small-above {
+			// 	.desktop {
+			// 		display: block;
+			// 	}
+			// 	.mobile {
+			// 		display: none;
+			// 	}
+			// }
 
-
-			@media @screen-medium {
-				// width: 95%;
-			}
-
-			@media @screen-small-above {
-				.desktop {
-					display: block;
-				}
-				.mobile {
-					display: none;
-				}
-			}
-
-			@media @screen-small {
-				// width: 85%;
-				.desktop {
-					display: none;
-				}
-				.mobile {
-					display: block;
-				}
-				.song-titleinfo {
-					h6.artist {
-						font-size: .8rem;
-					}
-					h5.title {
-						font-size: 1rem;
-						margin-bottom: 22px;
-					}
-				}
-				.song-player {
-					height: 85px;
-					background-color: @music-grey-borders;
-
-					div.art-cover {
-						float: left;
-						margin-right: 10px;
-					}
-
-					div.art-cover img {
-						width: 100%;
-						max-width: 85px;
-					}
-
-					div.play-box {
-						padding-top: 8px;
-
-						p {
-							color: @para-txt-light;
-							&.play {
-								text-transform: uppercase;
-								font-weight: 700;
-								margin-bottom: -5px;
-								font-size: .9rem;
-								margin-top: 23px;
-							}
-							&.url {
-								width: 50%;
-							    float: left;
-							    font-size: 0.8rem;
-								text-transform: inherit;
-								font-weight: 400;
-							}
-						}
-
-						span.question {
-							float: right;
-							margin-right: 10px;
-
-							&::before {
-								margin-left: 0;
-							}
-						}
-					}
-				}
-				hr.hr-embed {
-					display: none;
-				}
-			}
+			// @media @screen-small {
+			// 	// width: 85%;
+			// 	.desktop {
+			// 		display: none;
+			// 	}
+			// 	.mobile {
+			// 		display: block;
+			// 	}
+			// 	.song-titleinfo {
+			// 		h6.artist {
+			// 			font-size: .8rem;
+			// 		}
+			// 		h5.title {
+			// 			font-size: 1rem;
+			// 			margin-bottom: 22px;
+			// 		}
+			// 	}
+			// 	.song-player {
+			// 		height: 85px;
+			// 		background-color: @music-grey-borders;
+            //
+			// 		div.art-cover {
+			// 			float: left;
+			// 			margin-right: 10px;
+			// 		}
+            //
+			// 		div.art-cover img {
+			// 			width: 100%;
+			// 			max-width: 85px;
+			// 		}
+            //
+			// 		div.play-box {
+			// 			padding-top: 8px;
+            //
+			// 			p {
+			// 				color: @para-txt-light;
+			// 				&.play {
+			// 					text-transform: uppercase;
+			// 					font-weight: 700;
+			// 					margin-bottom: -5px;
+			// 					font-size: .9rem;
+			// 					margin-top: 23px;
+			// 				}
+			// 				&.url {
+			// 					width: 50%;
+			// 				    float: left;
+			// 				    font-size: 0.8rem;
+			// 					text-transform: inherit;
+			// 					font-weight: 400;
+			// 				}
+			// 			}
+            //
+			// 			span.question {
+			// 				float: right;
+			// 				margin-right: 10px;
+            //
+			// 				&::before {
+			// 					margin-left: 0;
+			// 				}
+			// 			}
+			// 		}
+			// 	}
+			// 	hr.hr-embed {
+			// 		display: none;
+			// 	}
+			// }
 		}
     }
 	.carousel { height: 100%; }
