@@ -3,26 +3,6 @@
     <div class="modal-overlay"></div>
     <div class="modal-content">
         <div class="main-carousel">
-
-
-            {% if types == 'both' %}
-                {% for item in COPY[slug] %}
-                {% if item.type == 'album' %}
-                    {% include '_slider_item.html' %}
-                {% endif %}
-                {% endfor %}
-
-                {% for item in COPY[slug] %}
-                {% if item.type == 'song' %}
-                    {% include '_slider_item.html' %}
-                {% endif %}
-                {% endfor %}
-
-            {% else %}
-                {% for item in COPY[slug] %}
-                    {% include '_slider_item.html' %}
-                {% endfor %}
-            {% endif %}
         </div>
     </div>
 </div>

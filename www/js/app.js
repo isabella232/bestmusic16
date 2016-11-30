@@ -21,6 +21,7 @@ let favorites = [];
 
 let songContainerTemplate = null;
 let modalTemplate = null;
+let sliderItemTemplate = null;
 
 const isTouch = Modernizr.touchevents;
 const imgRoot = 'http://media.npr.org/music/best-music-2016/'
@@ -72,6 +73,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         carouselCells = container.querySelectorAll('.carousel-cell');
         closeModalButtons = container.querySelectorAll('.window-close');
         loadableImages = container.querySelectorAll('img.art');
+        sliderItemTemplate = container.querySelector('#slider-item');
 
         flkty = new Flickity(carousel, {
             pageDots: false,
@@ -183,13 +185,46 @@ const handleEmbeds = function() {
 }
 
 const onSongClick = function() {
+    createSliderItem(this);
+
     modal.style.display = 'block';
     setTimeout( function() { modalContent.classList.add('modal-show') }, 0);
 
     document.body.style.overflow = 'hidden';
+
     flkty.resize();
     flkty.select([].indexOf.call(songContainers, this), false, true);
     handleEmbeds();
+}
+
+const createSliderItem = function(item) {
+    const parser = new DOMParser();
+    const temp = template(sliderItemTemplate.innerHTML);
+
+    const i = [].indexOf.call(songContainers, item);
+    const items = [songContainers[i - 1], item, songContainers[i + 1]];
+    const sliderItems = [];
+    
+    for (var j = 0; j < items.length; j++) {
+        if (items[j]) {
+            const slug = items[j].getAttribute('data-slug');
+            const itemData = SONGS[slug]
+            const baseURL = document.location.host;
+            console.log(baseURL);
+            const listName = document.querySelector('.list-title h2').textContent;
+
+            const itemDOM = parser.parseFromString(temp({
+               'item': itemData,
+               'baseURL': baseURL,
+               'listName': listName
+            }), 'text/html');
+            const itemHTML = itemDOM.querySelector('.carousel-cell');
+
+            sliderItems.push(itemHTML);
+        }
+    }
+    flkty.append(sliderItems);
+    flkty.select(1, false, true);
 }
 
 const onFavoriteButtonClick = function() {
@@ -242,11 +277,10 @@ const closeModal = function() {
 const hideModal = function() {
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
-    const item = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex];
-    const iframe = item.querySelector('iframe');  
-    if (iframe) {
-        iframe.setAttribute('src', '');
-    }
+
+    const cells = document.querySelectorAll('.carousel-cell');
+    flkty.remove(cells);
+
     modalContent.removeEventListener('transitionend', hideModal);
 }
 
