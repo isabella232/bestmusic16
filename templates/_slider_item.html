@@ -21,7 +21,7 @@
                     <button class="modal-favorites" data-slug="<%= item.song_slug %>"><span class="heart"></span> Favorite</button>
                 </div>
             </div>
-            <hr class="hr-embed" />
+            
             <div class="song-information">
                 <% if (item.embed) { %>
                 <div class="embed">
@@ -42,15 +42,15 @@
                 <% } %>
                 <p class="desc"><%= item.description %></p>
                 <% if (item.author_twitter) { %>
-                    <a href="https://twitter.com/<%= item.author_twitter %>"> 
+                    <a href="https://twitter.com/<%= item.author_twitter %>">
                 <% } %>
                 <p class="author">
-                    <%= item.author %> 
+                    <%= item.author %>
                     <span class="affiliation"><%= item.affiliation %></span></p>
                 <% if (item.author_twitter) { %>
                     </a>
                 <% } %>
-                
+
                 <p class="filed"><b>Filed under:</b> <%= item.filed_under %></p>
             </div>
 
