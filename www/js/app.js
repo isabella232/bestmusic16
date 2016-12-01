@@ -9,7 +9,7 @@ let modal = null;
 let modalOverlay = null;
 let modalContent = null;
 let carousel = null;
-let closeModalButtons = null;
+let closeModalButton = null;
 let flkty = null;
 
 let listButton = null;
@@ -66,7 +66,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         modalOverlay = container.querySelector('.modal-overlay');
         carousel = container.querySelector('.main-carousel');
         modalContent = container.querySelector('.modal-content');
-        closeModalButtons = container.querySelectorAll('.window-close');
+        closeModalButton = container.querySelector('.window-close');
         
         sliderItemTemplate = template(container.querySelector('#slider-item').innerHTML);
 
@@ -85,10 +85,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
             songContainers[i].addEventListener('click', onSongClick);
         }
 
-        for (var i = 0; i < closeModalButtons.length; i++) {
-            closeModalButtons[i].addEventListener('click', onCloseModalButtonClick);
-        }
-
+        closeModalButton.addEventListener('click', onCloseModalButtonClick);
         modalOverlay.addEventListener('click', onModalOverlayClick);
 
         checkForPermalink();
@@ -152,14 +149,14 @@ const createSliderItems = function(selectedItem) {
 
     flkty.append(sliderItems);
 
-    bindFavoriteButtons();
+    bindClickEvents();
 
     setTimeout(function() {
         flkty.select(thisIndex, false, true);
     }, 0);
 }
 
-const bindFavoriteButtons = function() {
+const bindClickEvents = function() {
     favoriteButtons = document.querySelectorAll('.modal-favorites');
     for (var i = 0; i < favoriteButtons.length; i++) {
         const el = favoriteButtons[i];
@@ -173,6 +170,13 @@ const bindFavoriteButtons = function() {
         }
 
         favoriteButtons[i].addEventListener('click', onFavoriteButtonClick);
+    }
+
+    const smartURLs = document.querySelectorAll('.stream-link a');
+
+    for (var i = 0; i < smartURLs.length; i++) {
+        const el = smartURLs[i];
+        smartURLs[i].addEventListener('click', onSmartURLClick);
     }
 }
 
@@ -221,7 +225,7 @@ const updateSlider = function() {
         }
     }
 
-    bindFavoriteButtons();
+    bindClickEvents();
 }
 
 const handleEmbeds = function() {
@@ -262,6 +266,8 @@ const onSongClick = function() {
     flkty.resize();
     flkty.select([].indexOf.call(songContainers, this), false, true);
     handleEmbeds();
+
+    ANALYTICS.trackEvent('item-selected', this.getAttribute('data-slug'));
 }
 
 const onFavoriteButtonClick = function() {
@@ -292,10 +298,14 @@ const onFavoriteButtonClick = function() {
         headerFavoriteButton.querySelector('span').classList.remove('filled');
     }
 
-
-
     const storageItem = JSON.stringify(favorites);
     localStorage.setItem('favorites', storageItem);
+
+    ANALYTICS.trackEvent('item-favorited', slug);
+}
+
+const onSmartURLClick = function() {
+    ANALYTICS.trackEvent('smarturl-clicked', this.getAttribute('data-slug'));
 }
 
 const onModalOverlayClick = function() {

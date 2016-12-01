@@ -26,11 +26,11 @@
                 <% if (item.embed) { %>
                 <div class="embed">
                     <% if (item.embed_type == 'YouTube') { %>
-                        <div class="embed-container">
+                        <div class="embed-container" data-slug="<%= item.song_slug %>">
                             <iframe width="560" height="315" data-src="<%= item.embed %>/?showinfo=0&playsinline=1&origin=http://apps.npr.org" frameborder="0" allowfullscreen></iframe>
                         </div>
                     <% } else { %>
-                        <div>
+                        <div data-slug="<%= item.song_slug %>">
                             <%= item.embed %>
                         </div>
                     <% } %>
@@ -56,7 +56,7 @@
 
             <div class="stream-link">
                 <h4>Add this <%= item.type %> to your collection:
-                    <a href="<%= item.smarturl %>" target="_blank"><%= item.smarturl %></a>
+                    <a href="<%= item.smarturl %>" target="_blank" data-slug="<%= item.song_slug %>"><%= item.smarturl %></a>
                 </h4>
 
                 <p>We're using <a href="https://manage.smarturl.it/" target="_blank">smartURL</a> to make it easier to listen to songs and albums using the service of your choice. When you select
