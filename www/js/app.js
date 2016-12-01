@@ -91,8 +91,8 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         modalOverlay.addEventListener('click', onModalOverlayClick);
 
         checkForPermalink();
-        ANALYTICS.trackPageview(window.location.href);
     }
+    ANALYTICS.trackPageview(window.location.href);    
 }
 
 const setUpLayzr = function() {
