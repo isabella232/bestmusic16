@@ -24,41 +24,9 @@
     {% include '_social_tags.html' %}
 
     {% block extra_head %}
-    <script type='text/javascript'>
-      var googletag = googletag || {};
-      googletag.cmd = googletag.cmd || [];
-      (function() {
-        var gads = document.createElement('script');
-        gads.async = true;
-        gads.type = 'text/javascript';
-        var useSSL = 'https:' == document.location.protocol;
-        gads.src = (useSSL ? 'https:' : 'http:') +
-          '//www.googletagservices.com/tag/js/gpt.js';
-        var node = document.getElementsByTagName('script')[0];
-        node.parentNode.insertBefore(gads, node);
-      })();
-    </script>
     {% endblock extra_head %}
 </head>
 <body>
-    <script type="text/javascript">
-    var adSlots = [];
-    googletag.cmd.push(function() {
-      adSlots['amazon1'] = googletag.defineSlot('/6735/6735.npr.viz/music_best_of_2016', [301, 250], 'amazon1').addService(googletag.pubads());
-
-      googletag.pubads().enableSingleRequest();
-      googletag.pubads().collapseEmptyDivs();
-      googletag.pubads().disableInitialLoad();
-      googletag.enableServices();
-    });
-
-    function refreshSlot(slotName) {
-      googletag.cmd.push(function() {
-        googletag.pubads().refresh([adSlots[slotName]]);
-      });
-      return false;
-    }
-    </script>
     <!-- ANALYTICS JAVASCRIPT -->
     <script type="text/javascript" src="{{ S3_BASE_URL }}/js/lib/modernizr.js"></script>
     <script type="text/javascript" src="{{ S3_BASE_URL }}/js/lib/es6-promise.js"></script>
