@@ -31,7 +31,12 @@
     <script type="text/javascript" src="{{ S3_BASE_URL }}/js/lib/modernizr.js"></script>
     <script type="text/javascript" src="{{ S3_BASE_URL }}/js/lib/es6-promise.js"></script>
     <script type="text/javascript" src="{{ S3_BASE_URL }}/js/app_config.js"></script>
-    <script type="text/javascript" src="{{ S3_BASE_URL }}/js/rendered/analytics.js"></script>
+
+    {% if DEPLOYMENT_TARGET %}
+    <script src="{{ S3_BASE_URL }}/js/rendered/analytics.min.js"></script>
+    {% else %}
+    <script src="{{ S3_BASE_URL }}/js/rendered/analytics.js"></script>
+    {% endif %}
 
     <header>
         <div class="header-wrapper container">
@@ -50,7 +55,12 @@
             {% endblock content %}
         </div>
     </div>
+    
+    {% if DEPLOYMENT_TARGET %}
+    <script type="text/javascript" src="{{ S3_BASE_URL }}/js/rendered/app.min.js"></script>
+    {% else %}
     <script type="text/javascript" src="{{ S3_BASE_URL }}/js/rendered/app.js"></script>
+    {% endif %}
 
     {# Setup Chartbeat last! #}
     <script type="text/javascript">

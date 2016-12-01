@@ -4,7 +4,10 @@ var webpack = require('webpack');
 var glob_entries = require('webpack-glob-entries');
 
 module.exports = {
-    entry: glob_entries('./www/js/*.js'),
+    entry: {
+        app: './www/js/app.js',
+        analytics: './www/js/analytics.js'
+    },
     output: {
         path: './www/js/rendered',
         filename: '[name].min.js'
