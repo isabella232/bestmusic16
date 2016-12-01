@@ -51,6 +51,9 @@
                         {{ item.embed|safe }}
                     </div>
                     {% endif %}
+                    {% if item.embed_caption %}
+                    <p class="embed-caption">{{ item.embed_caption }}</p>
+                    {% endif %}
                     <p class="embed-source">{{ item.embed_type }}</p>
                 </div>
                 {% endif %}
