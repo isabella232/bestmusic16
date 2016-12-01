@@ -70,7 +70,7 @@ body {
 		.fa-icon();
 		content: '\E801';
 		color: @para-txt-light;
-		font-size: 25px;
+		font-size: 1rem;
 	}
 
 	button {
@@ -535,6 +535,34 @@ header {
 		text-transform: capitalize;
 	}
 
+    .list-header {
+        color: @para-txt-light;
+        padding: 10px 0;
+        border-bottom: 2px solid @music-blue-lighter;
+
+        @media @screen-small-above {
+            padding: 1rem 0;
+        }
+
+        .spotify-playlist {
+            margin-bottom: .5rem;
+
+            b {
+                color: #fff;
+            }
+
+            &:hover {
+                color: #fff;
+            }
+
+            &::after {
+                .fa-icon();
+				content: '\F08E';
+				margin-left: 5px;
+    		}
+        }
+    }
+
 	// .list-header {
 	// 	display: flex;
 	// 	flex-wrap: wrap;
@@ -637,6 +665,18 @@ header {
 			border-bottom: none;
 		}
 
+        &:hover {
+            .song-info {
+                h5 {
+                    color: @music-red;
+                }
+
+                span.arrow-more::before {
+    				color: @music-red;
+    			}
+            }
+        }
+
 		p {
 			line-height: 18px;
 
@@ -664,17 +704,6 @@ header {
 			float: left;
 			cursor: pointer;
 
-            &:hover {
-    			h5 {
-                    color: @music-red;
-
-                    &::after {
-                        color: @music-red;
-            		}
-                }
-    		}
-
-
 			h6 {
 				font-weight: 700;
 				color: @music-red;
@@ -684,33 +713,25 @@ header {
 			h5 {
 				color: @para-txt-light;
 				margin: 8px 0;
-                line-height: 1.5;
+                line-height: 1.2;
                 font-size: 14px;
+
+                b {font-weight: normal;}
+
+                span.arrow-more {
+                    margin-left: 10px;
+    			}
 
                 @media @screen-small-above {
                     font-size: 1.4rem;
+
+                    span.arrow-more {
+                        margin-left: 1rem;
+        			}
                 }
-
-                &::after {
-                    font-family: "npr-app-template";
-            		content: '\E801';
-                    color: #fff;
-                    font-size: 1.2rem;
-                    margin-left: .7rem;
-        		}
 			}
 
-			span.arrow-more {
-				float: right;
-				margin-top: -5px;
-                margin-left: .5rem;
-			}
-		}
 
-		&:hover {
-			span.arrow-more::before {
-				color: @music-red;
-			}
 		}
 	}
 
@@ -722,7 +743,7 @@ header {
 		}
 	}
 
-	.songs .song-wrapper h5{
+	.songs .song-wrapper h5 b {
 		&::before {
 			content: '\201c';
 		}
