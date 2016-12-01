@@ -5,7 +5,7 @@ var _gaq = _gaq || [];
 var _sf_async_config = {};
 var _comscore = _comscore || [];
 
-var ANALYTICS = (function () {
+window.ANALYTICS = (function () {
 
     // Global time tracking variables
     var slideStartTime =  new Date();
