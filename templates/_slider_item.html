@@ -1,87 +1,67 @@
-<div class="carousel-cell" data-slug="{{ item.song_slug }}">
+<div class="carousel-cell" data-slug="<%= item.song_slug %>">
     <div class="modal-container">
         <div class="modal-top">
-            <img src="{{ S3_BASE_URL }}/assets/music-logo-outline-thick.svg">
-            <h1>{{ list_name }}</h1>
+            <img src="http://<%= baseURL %>/assets/music-logo-outline-thick.svg">
+            <h1><%= listName %></h1>
 
         </div>
         <div class="scroll-container">
             <div class="item-top desktop">
                 <div class="art-cover">
-                    <img class="art" data-flickity-lazyload="http://media.npr.org/music/best-music-2016/{{ item.art.split('.')[0] }}-s200-c85.{{ item.art.split('.')[1] }}" />
+                    <img class="art" data-flickity-lazyload="http://media.npr.org/music/best-music-2016/<%= item.art.split('.')[0] %>-s200-c85.<%= item.art.split('.')[1] %>" />
                 </div>
                 <div class="song-titleinfo">
-                    <h6 class="artist">{{ item.artist }}</h6>
-                    <h5 class="title {% if item.type == 'song' %}song-title{% endif %}{% if item.type == 'album' %}album-title{% endif %}">{{ item.title }}</h5>
+                    <h6 class="artist"><%= item.artist %></h6>
+                    <h5 class="title <%= item.type %>-title"><%= item.title %></h5>
 
-                        {% if item.explicit == 'yes' %}<p class="explicit">LANGUAGE ADVISORY: This {% if item.type == 'song' %}song{% endif %}{% if item.type == 'album' %}album{% endif %} contains profanity.</p>{% endif %}
+                    <% if (item.explicit == 'yes') { %>
+                        <p class="explicit">LANGUAGE ADVISORY: This <%= item.type %> contains profanity.</p>
+                    <% } %>
 
-                    <button class="modal-favorites" data-slug="{{ item.song_slug }}"><span class="heart"></span> Favorite</button>
+                    <button class="modal-favorites" data-slug="<%= item.song_slug %>"><span class="heart"></span> Favorite</button>
                 </div>
             </div>
-            <!-- <div class="item-top mobile">
-                <div class="song-titleinfo">
-                    <h6 class="artist">{{ item.artist }}</h6>
-                    <h5 class="title {% if item.type == 'song' %}song-title{% endif %}{% if item.type == 'album' %}album-title{% endif %}">{{ item.title }}</h5>
-                    <button class="modal-favorites" data-slug="{{ item.song_slug }}"><span class="heart"></span> Favorite</button>
-                </div>
-                <a href="{{ item.smarturl }}">
-                    <div class="song-player">
-                        <div class="art-cover">
-                            <img class="art" data-src="{{ item.art }}" />
-                        </div>
-                        <div class="play-box">
-                            <span class="question"></span>
-                            <p class="play">Play this {{ item.type }}</p>
-                            {% if item.explicit == 'yes' %}<p class="explicit">LANGUAGE ADVISORY: This {% if item.type == 'song' %}song{% endif %}{% if item.type == 'album' %}album{% endif %} contains profanity.</p>{% endif %}
-                        </div>
-                    </div>
-                </a>
-            </div> -->
-
+            <hr class="hr-embed" />
             <div class="song-information">
-                {% if item.embed %}
+                <% if (item.embed) { %>
                 <div class="embed">
-                    {% if item.embed_type == 'YouTube' %}
-                    <div class="embed-container">
-                        <iframe width="560" height="315" data-src="{{ item.embed.replace('watch?v=', 'embed/')|safe }}/?showinfo=0&playsinline=1&origin=http://apps.npr.org" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    {% else %}
-                    <div>
-                        {{ item.embed|safe }}
-                    </div>
-                    {% endif %}
-                    {% if item.embed_caption %}
-                    <p class="embed-caption">{{ item.embed_caption }}</p>
-                    {% endif %}
-                    <p class="embed-source">{{ item.embed_type }}</p>
+                    <% if (item.embed_type == 'YouTube') { %>
+                        <div class="embed-container">
+                            <iframe width="560" height="315" data-src="<%= item.embed %>/?showinfo=0&playsinline=1&origin=http://apps.npr.org" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    <% } else { %>
+                        <div>
+                            <%= item.embed %>
+                        </div>
+                    <% } %>
+                    <% if (item.embed_caption) { %>
+                    <p class="embed-caption"><%= item.embed_caption %></p>
+                    <% } %>
+                    <p class="embed-source"><%= item.embed_type %></p>
                 </div>
-                {% endif %}
-                <p class="desc">{{ item.description }}</p>
-                {% if item.author_twitter %}<a href="https://twitter.com/{{ item.author_twitter }}">{% endif %}
-                <p class="author">{{ item.author }}{% if item.affiliation %}<span class="affiliation"> {{ item.affiliation }}</span>{% endif %}</p>
-                {% if item.author_twitter %}</a>{% endif %}
-
-                <p class="filed"><b>Filed under:</b> {{ item.filed_under }}</p>
+                <% } %>
+                <p class="desc"><%= item.description %></p>
+                <% if (item.author_twitter) { %>
+                    <a href="https://twitter.com/<%= item.author_twitter %>"> 
+                <% } %>
+                <p class="author">
+                    <%= item.author %> 
+                    <span class="affiliation"><%= item.affiliation %></span></p>
+                <% if (item.author_twitter) { %>
+                    </a>
+                <% } %>
+                
+                <p class="filed"><b>Filed under:</b> <%= item.filed_under %></p>
             </div>
 
             <div class="stream-link">
-                <h4>Add this {{ item.type }} to your collection:
-                    <a href="{{ item.smarturl }}" target="_blank">{{ item.smarturl }}</a>
+                <h4>Add this <%= item.type %> to your collection:
+                    <a href="<%= item.smarturl %>" target="_blank"><%= item.smarturl %></a>
                 </h4>
 
                 <p>We're using <a href="https://manage.smarturl.it/" target="_blank">smartURL</a> to make it easier to listen to songs and albums using the service of your choice. When you select
                 the link above, you will be redirected to a page where you can choose Spotify, Apple Music or your preferred music service.</p>
-
             </div>
-
-            <!-- <p class="play">Play this {{ item.type }} <a href="{{ item.smarturl }}"><span class="url">{{ item.smarturl }}</span></a><a href="#question"><span class="question"></span></a></p> -->
-
-            <!-- <p class="explainer" id="question">
-                We're using <b class="emphasis">smartURL</b> to make it easier to play songs using the service of your choice. When you select
-                the "play this song" link you will be redirected to a page where you can choose Spotify, Apple Music
-                or your preferred music service.
-            </p> -->
         </div>
     </div>
 </div>

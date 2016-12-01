@@ -61,6 +61,7 @@ def update():
                     song_obj['smarturl'] = song['smarturl']
                     song_obj['embed'] = song['embed'].replace('watch?v=', 'embed/')
                     song_obj['embed_type'] = song['embed_type']
+                    song_obj['embed_caption'] = song['embed_caption']
                     all_songs[song['song_slug']] = song_obj
 
         output = json.dumps(all_songs)
