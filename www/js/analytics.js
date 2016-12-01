@@ -21,7 +21,7 @@ window.ANALYTICS = (function () {
 
     var setupVizAnalytics = function() {
         ga('create', APP_CONFIG.VIZ_GOOGLE_ANALYTICS.ACCOUNT_ID, 'auto');
-        ga('send', 'pageview');
+        trackPageview();
     }
 
     var setupDotOrgAnalytics = function() {
@@ -316,6 +316,16 @@ window.ANALYTICS = (function () {
         trackEvent('slide-exit', slide_index, timeOnLastSlide);
     }
 
+    var trackPageview = function(url) {
+        ga('send', 'pageview', {
+            location: url
+        });
+
+        if (window.pSUPERFLY) {
+            pSUPERFLY.virtualPage(url, document.title);
+        }
+    }
+
     setupGoogle();
     setupComscore();
     setupNielson();
@@ -343,6 +353,7 @@ window.ANALYTICS = (function () {
         'begin': begin,
         'readyChromecast': readyChromecast,
         'startChromecast': startChromecast,
-        'stopChromecast': stopChromecast
+        'stopChromecast': stopChromecast,
+        'trackPageview': trackPageview
     };
 }());

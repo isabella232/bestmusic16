@@ -92,10 +92,15 @@ const attachEvents = function(currentStatus, prevStatus, container) {
 
         checkForPermalink();
     }
-    ANALYTICS.trackPageview(window.location.href);    
+
+    // track the pageview if this is not the initial page load
+    
+    if (Object.keys(prevStatus).length > 0) {
+        ANALYTICS.trackPageview(currentStatus.url);        
+    }
 }
 
-const setUpLayzr = function() {
+const setUpLayzr = function(currentStatus) {
     layzrInstance.update();
     layzrInstance.check();
 }
