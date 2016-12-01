@@ -51,7 +51,9 @@
                     </a>
                 <% } %>
 
-                <p class="filed"><b>Filed under:</b> <%= item.filed_under %></p>
+                <% if (item.filed_under) { %>
+                    <p class="filed"><b>Filed under:</b> <%= item.filed_under %></p>
+                <% } %>
             </div>
 
             <div class="stream-link">
