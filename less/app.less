@@ -454,9 +454,16 @@ header {
 				border-bottom: 0;
 			}
 
-            // &:hover {
-            //     span.arrow-more::before { color: @music-red; }
-            // }
+            &:hover {
+
+                h4, .list-desc {
+                    color: @music-red;
+                }
+
+                span.arrow-more::before {
+                    color: @music-red;
+                }
+            }
 		}
 
 		span.arrow-more::before {
@@ -476,14 +483,15 @@ header {
         }
 
 		p {
-			// font-size: 1rem;
 			margin-top: 0;
 			margin-bottom: 16px;
-			// line-height: 1.4rem;
+			max-width: 900px;
 
 			&.intro-text {
 				margin-bottom: 1.5rem;
 			}
+
+
 		}
 
 		@media @screen-small {
@@ -494,7 +502,7 @@ header {
 			}
 
 			p {
-				font-size: .9rem;
+				font-size: 11px;
 				margin-top: 0;
 				margin-bottom: 16px;
 				line-height: 22px;
