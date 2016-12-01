@@ -26,7 +26,6 @@ const layzrInstance = Layzr({
     threshold: 10
 });
 const parser = new DOMParser();
-const baseURL = document.location.host;
 
 
 const onWindowLoaded = function() {
@@ -118,7 +117,6 @@ const checkForPermalink = function() {
 
 const createSliderItems = function(selectedItem) {
     const parser = new DOMParser();
-    const baseURL = document.location.host;
     const listName = document.querySelector('.list-title h2').textContent;
 
     const i = [].indexOf.call(songContainers, selectedItem);
@@ -132,7 +130,7 @@ const createSliderItems = function(selectedItem) {
 
             const itemDOM = parser.parseFromString(sliderItemTemplate({
                'item': itemData,
-               'baseURL': baseURL,
+               'baseURL': APP_CONFIG.S3_BASE_URL,
                'listName': listName
             }), 'text/html');
             const itemHTML = itemDOM.querySelector('.carousel-cell');
@@ -188,7 +186,7 @@ const updateSlider = function() {
         var item = SONGS[addItemSlug];
         const itemDOM = parser.parseFromString(sliderItemTemplate({
            'item': item,
-           'baseURL': baseURL,
+           'baseURL': APP_CONFIG.S3_BASE_URL,
            'listName': listName
         }), 'text/html');
         const itemHTML = itemDOM.querySelector('.carousel-cell');
