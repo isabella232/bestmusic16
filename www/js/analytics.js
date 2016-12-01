@@ -2,7 +2,7 @@ import Cookies from './lib/cookie.js';
 import CrossStorageClient from './lib/cross-storage-client.js';
 
 var _gaq = _gaq || [];
-var _sf_async_config = {};
+window._sf_async_config = {};
 var _comscore = _comscore || [];
 
 window.ANALYTICS = (function () {
@@ -322,7 +322,7 @@ window.ANALYTICS = (function () {
         });
 
         if (window.pSUPERFLY) {
-            pSUPERFLY.virtualPage(url, document.title);
+            pSUPERFLY.virtualPage(window.location.path, document.title);
         }
     }
 
