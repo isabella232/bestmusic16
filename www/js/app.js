@@ -50,7 +50,6 @@ const onWindowLoaded = function() {
 const attachEvents = function(currentStatus, prevStatus, container) {
     if (currentStatus.namespace === 'index') {
         listButton.style.display = "none";
-        initSponsorship();
     }
 
     if (currentStatus.namespace === 'favorites') {
@@ -320,13 +319,6 @@ const hideModal = function() {
     flkty.remove(cells);
 
     modalContent.removeEventListener('transitionend', hideModal);
-}
-
-const initSponsorship = function() {
-    refreshSlot('amazon1');
-    googletag.cmd.push(function() {
-      googletag.display('amazon1');
-    });
 }
 
 const layoutFavorites = function(container) {
