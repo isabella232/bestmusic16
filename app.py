@@ -56,8 +56,6 @@ def list(slug):
     else:
         context['types'] = types_found[0]
 
-    print(context['types'])
-
     context['namespace'] = 'list'
 
     for row in context['COPY']['best_lists']:
@@ -71,6 +69,12 @@ def list(slug):
             context['list_name'] = row['list_name']
             context['list_description'] = row['description']
             context['playlist'] = row['spotify']
+
+    try:
+        test_float = float(context['COPY'][underscores][0]['sort'])
+        context['ranked'] = True
+    except:
+        context['ranked'] = False
 
     return make_response(render_template('list.html', **context))
 

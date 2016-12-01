@@ -11,6 +11,9 @@
                     <img class="art" data-flickity-lazyload="http://media.npr.org/music/best-music-2016/<%= item.art.split('.')[0] %>-s200-c85.<%= item.art.split('.')[1] %>" />
                 </div>
                 <div class="song-titleinfo">
+                    <% if (ranked) { %>
+                        <h4 class="rank">#<%= parseInt(item.sort) %></h4>
+                    <% } %>
                     <h6 class="artist"><%= item.artist %></h6>
                     <h5 class="title <%= item.type %>-title"><%= item.title %></h5>
 

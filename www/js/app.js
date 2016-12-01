@@ -140,7 +140,8 @@ const createSliderItems = function(selectedItem) {
             const itemDOM = parser.parseFromString(sliderItemTemplate({
                'item': itemData,
                'baseURL': APP_CONFIG.S3_BASE_URL,
-               'listName': listName
+               'listName': listName,
+               'ranked': items[j].querySelector('h4') ? true : false
             }), 'text/html');
             const itemHTML = itemDOM.querySelector('.carousel-cell');
 
@@ -190,13 +191,14 @@ const bindClickEvents = function() {
 const updateSlider = function() {
     handleEmbeds();
 
-    const createItemHTML = function() {
+    const createItemHTML = function(addItem) {
         var addItemSlug = addItem.getAttribute('data-slug');
         var item = SONGS[addItemSlug];
         const itemDOM = parser.parseFromString(sliderItemTemplate({
            'item': item,
            'baseURL': APP_CONFIG.S3_BASE_URL,
-           'listName': listName
+           'listName': listName,
+           'ranked': addItem.querySelector('h4') ? true : false
         }), 'text/html');
         const itemHTML = itemDOM.querySelector('.carousel-cell');
         return itemHTML;
