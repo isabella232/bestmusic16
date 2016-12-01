@@ -9,9 +9,7 @@ let modal = null;
 let modalOverlay = null;
 let modalContent = null;
 let carousel = null;
-let carouselCells = null;
 let closeModalButtons = null;
-let loadableImages = null;
 let flkty = null;
 
 let listButton = null;
@@ -20,13 +18,15 @@ let favoriteButtons = null;
 let favorites = [];
 
 let songContainerTemplate = null;
-let modalTemplate = null;
+let sliderItemTemplate = null;
 
 const isTouch = Modernizr.touchevents;
 const imgRoot = 'http://media.npr.org/music/best-music-2016/'
 const layzrInstance = Layzr({
     threshold: 10
 });
+const parser = new DOMParser();
+const baseURL = document.location.host;
 
 
 const onWindowLoaded = function() {
@@ -55,7 +55,6 @@ const attachEvents = function(currentStatus, prevStatus, container) {
 
     if (currentStatus.namespace === 'favorites') {
         songContainerTemplate = container.querySelector('#song-container-template');
-        modalTemplate = container.querySelector('#modal-template');
         layoutFavorites(container);
     }
 
@@ -67,11 +66,10 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         modal = container.querySelector('.modal');
         modalOverlay = container.querySelector('.modal-overlay');
         carousel = container.querySelector('.main-carousel');
-        favoriteButtons = container.querySelectorAll('.modal-favorites');
         modalContent = container.querySelector('.modal-content');
-        carouselCells = container.querySelectorAll('.carousel-cell');
         closeModalButtons = container.querySelectorAll('.window-close');
-        loadableImages = container.querySelectorAll('img.art');
+        
+        sliderItemTemplate = template(container.querySelector('#slider-item').innerHTML);
 
         flkty = new Flickity(carousel, {
             pageDots: false,
@@ -82,24 +80,10 @@ const attachEvents = function(currentStatus, prevStatus, container) {
             selectedAttraction: isTouch ? 0.2 : 1,
             lazyLoad: 1
         });
-        flkty.on('settle', handleEmbeds);
+        flkty.on('settle', updateSlider);
 
         for (var i = 0; i < songContainers.length; i++) {
             songContainers[i].addEventListener('click', onSongClick);
-        }
-
-        for (var i = 0; i < favoriteButtons.length; i++) {
-            const el = favoriteButtons[i];
-
-            if (favorites && favorites.indexOf(el.getAttribute('data-slug')) !== -1) {
-                const span = el.querySelector('span');
-                span.classList.add('filled');
-                el.innerHTML = '';
-                el.append(span);
-                el.append(' Unfavorite');
-            }
-
-            favoriteButtons[i].addEventListener('click', onFavoriteButtonClick);
         }
 
         for (var i = 0; i < closeModalButtons.length; i++) {
@@ -108,7 +92,6 @@ const attachEvents = function(currentStatus, prevStatus, container) {
 
         modalOverlay.addEventListener('click', onModalOverlayClick);
 
-        // loadImages();
         checkForPermalink();
     }
 }
@@ -118,41 +101,128 @@ const setUpLayzr = function() {
     layzrInstance.check();
 }
 
-const loadImages = function() {
-    for (var i = 0; i < loadableImages.length; i++) {
-        const img = loadableImages[i];
-        const dataSrc = img.getAttribute('data-src');
-        const filename = dataSrc.split('.')[0];
-        const ext = dataSrc.split('.')[1];
-        const realSrc = imgRoot + filename + '-s200-c85.' + ext;
-
-        img.setAttribute('src', realSrc);
-    }
-}
-
 const checkForPermalink = function() {
-    const item = getParameterByName('item');
+    const slug = getParameterByName('item');
 
-    if (item) {
-        const cell = [].find.call(carouselCells, function(song) {
-            return song.getAttribute('data-slug') === item;
-        });
-
-        const index = [].indexOf.call(carouselCells, cell);
+    if (slug) {
+        const songContainer = [].find.call(songContainers, function(container) {
+            return container.getAttribute('data-slug') === slug; 
+        })
+        createSliderItems(songContainer);
 
         modal.style.display = 'block';
+        setTimeout( function() { modalContent.classList.add('modal-show') }, 0);
+        document.body.style.overflow = 'hidden';
         flkty.resize();
-        flkty.select(index);
+        flkty.select(1, false, true);
 
         window.history.replaceState('', '', document.location.href.split('?')[0]);
     }
 }
 
-var getParameterByName = function(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+const createSliderItems = function(selectedItem) {
+    const parser = new DOMParser();
+    const baseURL = document.location.host;
+    const listName = document.querySelector('.list-title h2').textContent;
+
+    const i = [].indexOf.call(songContainers, selectedItem);
+    const items = [songContainers[i - 1], selectedItem, songContainers[i + 1]];
+    const sliderItems = [];
+    
+    for (var j = 0; j < items.length; j++) {
+        if (items[j]) {
+            const slug = items[j].getAttribute('data-slug');
+            const itemData = SONGS[slug]
+
+            const itemDOM = parser.parseFromString(sliderItemTemplate({
+               'item': itemData,
+               'baseURL': baseURL,
+               'listName': listName
+            }), 'text/html');
+            const itemHTML = itemDOM.querySelector('.carousel-cell');
+
+            sliderItems.push(itemHTML);
+        }
+    }
+
+    for (var k = 0; k < sliderItems.length; k++) {
+        if (sliderItems[k].getAttribute('data-slug') === selectedItem.getAttribute('data-slug')) {
+            var thisIndex = k;
+        }
+    }
+
+    flkty.append(sliderItems);
+
+    bindFavoriteButtons();
+
+    setTimeout(function() {
+        flkty.select(thisIndex, false, true);
+    }, 0);
+}
+
+const bindFavoriteButtons = function() {
+    favoriteButtons = document.querySelectorAll('.modal-favorites');
+    for (var i = 0; i < favoriteButtons.length; i++) {
+        const el = favoriteButtons[i];
+
+        if (favorites && favorites.indexOf(el.getAttribute('data-slug')) !== -1) {
+            const span = el.querySelector('span');
+            span.classList.add('filled');
+            el.innerHTML = '';
+            el.append(span);
+            el.append(' Unfavorite');
+        }
+
+        favoriteButtons[i].addEventListener('click', onFavoriteButtonClick);
+    }
+}
+
+const updateSlider = function() {
+    handleEmbeds();
+
+    const createItemHTML = function() {
+        var addItemSlug = addItem.getAttribute('data-slug');
+        var item = SONGS[addItemSlug];
+        const itemDOM = parser.parseFromString(sliderItemTemplate({
+           'item': item,
+           'baseURL': baseURL,
+           'listName': listName
+        }), 'text/html');
+        const itemHTML = itemDOM.querySelector('.carousel-cell');
+        return itemHTML;
+    }
+    
+    const listName = document.querySelector('.list-title h2').textContent;
+    const carouselCells = document.querySelectorAll('.carousel-cell');
+    const slug = carouselCells[flkty.selectedIndex].getAttribute('data-slug');
+    const listItem = [].find.call(songContainers, function(container) {
+        return container.getAttribute('data-slug') === slug;
+    })
+    const listIndex = [].indexOf.call(songContainers, listItem);
+    
+    if (flkty.selectedIndex === 0 && carouselCells.length <= 3) {        
+        var addItem = songContainers[listIndex - 1];
+
+        if (addItem) {
+            const itemHTML = createItemHTML(addItem);
+
+            flkty.prepend(itemHTML);
+            flkty.remove(carouselCells[carouselCells.length - 1]);
+        }
+    } else if (flkty.selectedIndex === carouselCells.length - 1) {
+        var addItem = songContainers[listIndex + 1];
+
+        if (addItem) {
+            const itemHTML = createItemHTML(addItem);
+            flkty.append(itemHTML);
+
+            if (document.querySelectorAll('.carousel-cell').length > 3) {
+                flkty.remove(document.querySelectorAll('.carousel-cell')[0]);
+            }
+        }
+    }
+
+    bindFavoriteButtons();
 }
 
 const handleEmbeds = function() {
@@ -183,10 +253,13 @@ const handleEmbeds = function() {
 }
 
 const onSongClick = function() {
+    createSliderItems(this);
+
     modal.style.display = 'block';
     setTimeout( function() { modalContent.classList.add('modal-show') }, 0);
 
     document.body.style.overflow = 'hidden';
+
     flkty.resize();
     flkty.select([].indexOf.call(songContainers, this), false, true);
     handleEmbeds();
@@ -242,11 +315,10 @@ const closeModal = function() {
 const hideModal = function() {
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
-    const item = document.querySelectorAll('.carousel-cell')[flkty.selectedIndex];
-    const iframe = item.querySelector('iframe');  
-    if (iframe) {
-        iframe.setAttribute('src', '');
-    }
+
+    const cells = document.querySelectorAll('.carousel-cell');
+    flkty.remove(cells);
+
     modalContent.removeEventListener('transitionend', hideModal);
 }
 
@@ -255,32 +327,6 @@ const initSponsorship = function() {
     googletag.cmd.push(function() {
       googletag.display('amazon1');
     });
-}
-
-if (!Array.prototype.find) {
-  Object.defineProperty(Array.prototype, 'find', {
-    value: function(predicate) {
-     'use strict';
-     if (this == null) {
-       throw new TypeError('Array.prototype.find called on null or undefined');
-     }
-     if (typeof predicate !== 'function') {
-       throw new TypeError('predicate must be a function');
-     }
-     var list = Object(this);
-     var length = list.length >>> 0;
-     var thisArg = arguments[1];
-     var value;
-
-     for (var i = 0; i < length; i++) {
-       value = list[i];
-       if (predicate.call(thisArg, value, i, list)) {
-         return value;
-       }
-     }
-     return undefined;
-    }
-  });
 }
 
 const layoutFavorites = function(container) {
@@ -308,31 +354,44 @@ const layoutFavorites = function(container) {
         }), 'text/html');
         const songHTML = songDOM.querySelector('.list-container');
         container.querySelector('.favorites').append(songHTML);
-
-
-        // build the modal in the order that the page was laid out
-        const items = container.querySelectorAll('.song-wrapper');
-        let orderedItems = [];
-        [].forEach.call(items, function(item) {
-            orderedItems.push(item.getAttribute('id'));
-        });
-        let modalObjects = [];
-        orderedItems.forEach(function(item) {
-            modalObjects.push(SONGS[item]);
-        });
-
-        const modalTemplateCompiled = template(modalTemplate.innerHTML);
-        const modalDOM = parser.parseFromString(modalTemplateCompiled({
-           'favoriteItems': modalObjects
-        }), 'text/html');
-        const modalOverlayHTML = modalDOM.querySelector('.modal-overlay')
-        const modalContentHTML = modalDOM.querySelector('.modal-content')
-
-        container.querySelector('.modal').append(modalOverlayHTML);
-        container.querySelector('.modal').append(modalContentHTML);
     } else {
         container.querySelector('.no-content').style.display = 'block';
     }
+}
+
+// utils
+
+if (!Array.prototype.find) {
+  Object.defineProperty(Array.prototype, 'find', {
+    value: function(predicate) {
+     'use strict';
+     if (this == null) {
+       throw new TypeError('Array.prototype.find called on null or undefined');
+     }
+     if (typeof predicate !== 'function') {
+       throw new TypeError('predicate must be a function');
+     }
+     var list = Object(this);
+     var length = list.length >>> 0;
+     var thisArg = arguments[1];
+     var value;
+
+     for (var i = 0; i < length; i++) {
+       value = list[i];
+       if (predicate.call(thisArg, value, i, list)) {
+         return value;
+       }
+     }
+     return undefined;
+    }
+  });
+}
+
+var getParameterByName = function(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 window.onload = onWindowLoaded;
