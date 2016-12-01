@@ -88,7 +88,9 @@ const attachEvents = function(currentStatus, prevStatus, container) {
             songContainers[i].addEventListener('click', onSongClick);
         }
 
-        spotifyPlaylist.addEventListener('click', onSpotifyPlaylistClick);
+        if (spotifyPlaylist) {
+            spotifyPlaylist.addEventListener('click', onSpotifyPlaylistClick);        
+        }
         closeModalButton.addEventListener('click', onCloseModalButtonClick);
         modalOverlay.addEventListener('click', onModalOverlayClick);
 
