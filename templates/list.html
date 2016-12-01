@@ -6,12 +6,13 @@
         <div class="list-title">
             <h2>{{ list_name }}</h2>
             <p>{{ list_description }}</p>
+
+            <p><a class="spotify-playlist" href="{{ playlist }}" target="_blank">Listen to highlights from this playlist on Spotify</a></p>
+
         </div>
 
-        <div class="playlist-wrapper">
-            <h6><a class="spotify-playlist" href="{{ playlist }}">Playlist</a></h6>
-            <p>Listen to highlights from this playlist on Spotify</p>
-        </div>
+
+
     </div>
 
     {% if types == 'both' %}

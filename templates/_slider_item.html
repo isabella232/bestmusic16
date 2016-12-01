@@ -34,6 +34,9 @@
                             <%= item.embed %>
                         </div>
                     <% } %>
+                    <% if (item.embed_caption) { %>
+                    <p class="embed-caption"><%= item.embed_caption %></p>
+                    <% } %>
                     <p class="embed-source"><%= item.embed_type %></p>
                 </div>
                 <% } %>
@@ -47,7 +50,7 @@
                 <% if (item.author_twitter) { %>
                     </a>
                 <% } %>
-
+                
                 <p class="filed"><b>Filed under:</b> <%= item.filed_under %></p>
             </div>
 
