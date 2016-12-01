@@ -13,6 +13,8 @@ let carousel = null;
 let closeModalButton = null;
 let flkty = null;
 
+let modalOpened = null;
+
 let listButton = null;
 let headerFavoriteButton = null;
 let favoriteButtons = null;
@@ -188,9 +190,7 @@ const bindClickEvents = function() {
     }
 }
 
-const updateSlider = function() {
-    handleEmbeds();
-
+const getNewSlides = function() {
     const createItemHTML = function(addItem) {
         var addItemSlug = addItem.getAttribute('data-slug');
         var item = SONGS[addItemSlug];
@@ -233,8 +233,18 @@ const updateSlider = function() {
             }
         }
     }
+}
 
+const updateSlider = function() {
+    handleEmbeds();
+
+    if (modalOpened) {
+        getNewSlides();    
+    }
     bindClickEvents();
+
+    // don't have this set to true until we've settled once
+    modalOpened = true;
 }
 
 const handleEmbeds = function() {
@@ -275,7 +285,6 @@ const onSongClick = function() {
     flkty.resize();
     flkty.select([].indexOf.call(songContainers, this), false, true);
     handleEmbeds();
-
     ANALYTICS.trackEvent('item-selected', this.getAttribute('data-slug'));
 }
 
@@ -340,7 +349,7 @@ const hideModal = function() {
 
     const cells = document.querySelectorAll('.carousel-cell');
     flkty.remove(cells);
-
+    modalOpened = false;
     modalContent.removeEventListener('transitionend', hideModal);
 }
 
