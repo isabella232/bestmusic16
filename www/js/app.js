@@ -5,6 +5,7 @@ import Layzr from 'layzr.js';
 import SONGS from './songs.json';
 
 let songContainers = null;
+let spotifyPlaylist = null;
 let modal = null;
 let modalOverlay = null;
 let modalContent = null;
@@ -61,6 +62,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         listButton.style.display = "block";
 
         songContainers = container.querySelectorAll('.song-wrapper');
+        spotifyPlaylist = container.querySelector('.spotify-playlist');
         modal = container.querySelector('.modal');
         modalOverlay = container.querySelector('.modal-overlay');
         carousel = container.querySelector('.main-carousel');
@@ -84,6 +86,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
             songContainers[i].addEventListener('click', onSongClick);
         }
 
+        spotifyPlaylist.addEventListener('click', onSpotifyPlaylistClick);
         closeModalButton.addEventListener('click', onCloseModalButtonClick);
         modalOverlay.addEventListener('click', onModalOverlayClick);
 
@@ -304,6 +307,10 @@ const onFavoriteButtonClick = function() {
 
 const onSmartURLClick = function() {
     ANALYTICS.trackEvent('smarturl-clicked', this.getAttribute('data-slug'));
+}
+
+const onSpotifyPlaylistClick = function() {
+    ANALYTICS.trackEvent('spotify-playlist-clicked', this.getAttribute('data-slug'));
 }
 
 const onModalOverlayClick = function() {
