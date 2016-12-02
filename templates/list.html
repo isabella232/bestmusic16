@@ -1,4 +1,30 @@
 {% extends '_base.html' %}
+
+{% block meta %}
+<title>{{ list_name }}</title>
+<meta name="description" content="{{ list_description }}">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="http://media.npr.org/favicon.ico" />
+{# Twitter #}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="{{ COPY.share.twitter_handle }}">
+<meta name="twitter:image" content="{{ S3_BASE_URL }}/assets/{{ art }}" />
+
+{# Facebook #}
+<meta property="og:title" content="{{ list_name }}" />
+<meta property="og:url" content="{{ S3_BASE_URL }}/list/{{ slug.replace('_', '-') }}" />
+<meta property="og:type" content="article" />
+<meta property="og:description" content="{{ list_description }}" />
+<meta property="og:image" content="{{ S3_BASE_URL}}/assets/{{ art }}" />
+<meta property="og:site_name" content="NPR.org" />
+<meta property="fb:app_id" content="{{ COPY.share.facebook_app_id }}" />
+
+{# Google News #}
+<meta name="thumbnail" content="{{ COPY.share.google_news_image_url }}" />
+{% endblock %}
+
 {% block content %}
 
 <div class="list-container container">

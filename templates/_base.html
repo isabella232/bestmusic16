@@ -7,10 +7,11 @@
         var _sf_startpt=(new Date()).getTime();
     </script>
 
+    {% block meta %}
     <title>{{ COPY.content.project_name }}</title>
-
-    <!-- META TAGS -->
     {% include '_meta.html' %}
+    {% include '_social_tags.html' %}
+    {% endblock %}
 
     <!-- FONTS -->
     {% include '_fonts.html' %}
@@ -21,7 +22,6 @@
     {% block extra_css %}{% endblock extra_css %}
     {{ CSS.render('css/rendered/app.min.css') }}
 
-    {% include '_social_tags.html' %}
 
     {% block extra_head %}
     {% endblock extra_head %}

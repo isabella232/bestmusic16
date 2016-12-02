@@ -138,15 +138,17 @@ body {
 			    color: @music-red;
 			}
 
-			&:hover {
-				background-color: @bg-medium-purple;
+            .no-touchevents & {
+                &:hover {
+                    background-color: @bg-medium-purple;
 
-				.heart::before {
-					.fa-icon();
-					content: '\E809';
-					color: @music-red;
-				}
-			}
+                    .heart::before {
+                        .fa-icon();
+                        content: '\E809';
+                        color: @music-red;
+                    }
+                }
+            }
 		}
 
 		@media @screen-medium-above {
@@ -340,8 +342,10 @@ header {
             display: flex;
             justify-content: space-between;
 
-            &:hover {
-                span.arrow-more::before { color: @music-red !important; }
+            .no-touchevents & {
+                &:hover {
+                    span.arrow-more::before { color: @music-red !important; }
+                }
             }
 
             .list-artwork {
@@ -464,14 +468,16 @@ header {
 				border-bottom: 0;
 			}
 
-            &:hover {
+            .no-touchevents & {
+                &:hover {
 
-                h4, .list-desc {
-                    color: @music-red;
-                }
+                    h4, .list-desc {
+                        color: @music-red;
+                    }
 
-                span.arrow-more::before {
-                    color: @music-red;
+                    span.arrow-more::before {
+                        color: @music-red;
+                    }
                 }
             }
 		}
@@ -581,8 +587,10 @@ header {
                 color: #fff;
             }
 
-            &:hover {
-                color: #fff;
+            .no-touchevents & {
+                &:hover {
+                    color: #fff;
+                }
             }
 
             &::after {
@@ -665,15 +673,17 @@ header {
 			border-bottom: none;
 		}
 
-        &:hover {
-            .song-info {
-                h5 {
-                    color: @music-red;
-                }
+        .no-touchevents & {
+            &:hover {
+                .song-info {
+                    h5 {
+                        color: @music-red;
+                    }
 
-                span.arrow-more::before {
-    				color: @music-red;
-    			}
+                    span.arrow-more::before {
+                        color: @music-red;
+                    }
+                }
             }
         }
 
@@ -873,12 +883,14 @@ header {
 				fill: @white;
 			}
 
-			&:hover {
-				background-color: rgba(255, 255, 255, 0.85);
-				.arrow {
-					fill: @music-red;
-				}
-			}
+            .no-touchevents & {
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.85);
+                    .arrow {
+                        fill: @music-red;
+                    }
+                }
+            }
 
 			&:disabled {
                 background: transparent;
@@ -986,9 +998,10 @@ header {
 
                 a p.author {
                     transition: all 0.4s;
-
-                    &:hover {
-                        color: white;
+                    .no-touchevents & {
+                        &:hover {
+                            color: white;
+                        }
                     }
                 }
 
@@ -1031,10 +1044,11 @@ header {
                             display: inline-block;
                             font-weight: normal;
                             font-size: 11px;
-
-                            &:hover {
-                                color: @music-red;
-                			}
+                            .no-touchevents & {
+                                &:hover {
+                                    color: @music-red;
+                                }
+                            }
 
                             @media @screen-small-above {
                                 display: inline-block;
