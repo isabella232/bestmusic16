@@ -125,7 +125,7 @@ body {
 			border: 0;
 			// border-bottom: 2px solid @music-red;
 			transition: none;
-			padding: 0;
+			padding: 0 0 1rem 0;
 			position: relative;
 
 			.heart::before {
@@ -443,8 +443,18 @@ header {
     .deeper-lists {
 		margin-bottom: 3rem;
 		margin-top: 2rem;
-		padding-top: 5px;
-		border-top: 2.25px solid @music-grey-borders;
+
+        h2 {
+            font-size: 22px;
+            margin-bottom: 0;
+
+            @media @screen-medium-above {
+                font-size: 1.7rem;
+            }
+
+        }
+
+
 
 		.dlist {
 			margin-bottom: 18px;
@@ -694,11 +704,13 @@ header {
 			float: left;
 			cursor: pointer;
 
-			h6 {
-				font-weight: 700;
-				color: @music-red;
-				margin: 0;
-			}
+			h4 {
+                color: @para-txt-light;
+                font-size: 1.1rem;
+                margin: 0 0 1.5rem 0;
+                line-height: 1;
+                opacity: .4;
+            }
 
 			h5 {
 				color: @para-txt-light;
@@ -713,7 +725,8 @@ header {
     			}
 
                 @media @screen-small-above {
-                    font-size: 1.4rem;
+                    font-size: 1.2rem;
+                    margin: .3rem 0;
 
                     span.arrow-more {
                         margin-left: 1rem;
@@ -721,6 +734,12 @@ header {
                 }
 			}
 
+            h6 {
+				font-weight: 700;
+				color: @music-red;
+				margin: 0;
+                font-size: 1rem;
+			}
 
 		}
 	}
@@ -931,12 +950,8 @@ header {
 
 			.scroll-container {
 				max-width: (@container-max + 125);
-                padding: 20px 30px;
+                padding: 15px 30px;
 				margin: 0 auto;
-				// overflow-y: auto;
-				// overflow-x: hidden;
-				// height: 500px;
-				// padding-right: 10px;
 
                 p {
                     font-size: 12px;
@@ -1144,6 +1159,10 @@ header {
 				    margin-left: 140px;
 				    margin-top: 7px;
 				}
+
+
+
+
 				@media @screen-small {
 					img {
 						position: relative;
@@ -1159,14 +1178,13 @@ header {
 
 			div.art-cover {
 				float: right;
-                max-width: 100px;
-                margin-left: 15px;
+                max-width: 120px;
+                margin: 0 0 5px 15px;
 
                 @media @screen-small-above {
                     float: left;
-                    max-width: 140px;
-                    margin-right: 2rem;
-                    margin-left: 0;
+                    max-width: 160px;
+                    margin: 0 2rem .3rem 0;
                 }
 			}
 
@@ -1179,17 +1197,34 @@ header {
 				// }
 
 				.song-titleinfo {
-					margin-top: 0;
+					margin: 0;
+
+                    @media @screen-small-above {
+                        margin: 0 0 0 10.5rem;
+                    }
 				}
 
+                h4 {
+                    color: @para-txt-light;
+                    font-size: 12px;
+                    margin: 0 0 10px 0;
+                    line-height: 1;
+                    opacity: .7;
+
+                    @media @screen-small-above {
+                        font-size: 1.2rem;
+                        margin: 0 0 1rem 0;
+                    }
+                }
+
 				h5.title {
-                    font-size: 14px;
+                    font-size: 13px;
                     line-height: 1.2;
                     color: @para-txt-light;
     				margin: 5px 0 5px 0;
                     @media @screen-small-above {
-                        font-size: 2rem;
-                        margin: 0 0 .5rem 0;
+                        font-size: 1.7rem;
+                        margin: 0 0 .3rem 0;
                     }
 				}
 
@@ -1216,6 +1251,7 @@ header {
                         font-size: 0.7rem;
                         text-transform: inherit;
                         font-weight: normal;
+                        line-height: 1.4;
 
                         &::before {
                             .fa-icon();
@@ -1269,7 +1305,7 @@ header {
 
 			.song-information {
 				clear: both;
-                margin: 5px 0;
+                margin: 10px 0;
                 border-top: 1px solid @music-grey-borders;
                 padding: 10px 0 5px 0;
 
