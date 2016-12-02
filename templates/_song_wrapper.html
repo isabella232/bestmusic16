@@ -10,7 +10,7 @@
     </div>
     <div class="song-info">
         {% if ranked %}
-        <h4>{{ song.sort|int }}</h4>
+        <h4 class="rank">{{ song.sort|int }}.</h4>
         {% endif %}
         <h6>{{ song.artist }}</h6>
         <h5><b>{{ song.title }}</b><span class="arrow-more"></span></h5>

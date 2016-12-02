@@ -12,7 +12,7 @@
 
                 <div class="song-titleinfo">
                     <% if (ranked) { %>
-                        <h4 class="rank"><%= parseInt(item.sort) %></h4>
+                        <h4 class="rank"><%= parseInt(item.sort) %>.</h4>
                     <% } %>
 
                     <h6 class="artist"><%= item.artist %></h6>
@@ -55,7 +55,7 @@
                     <% if (item.author_twitter) { %>
                         </a>
                     <% } %>
-                    
+
                     <span class="affiliation"><%= item.affiliation %></span></p>
 
 
@@ -65,9 +65,9 @@
             </div>
 
             <div class="stream-link">
-                <h4>Add this <%= item.type %> to your collection:
-                    <a href="<%= item.smarturl %>" target="_blank" data-slug="<%= item.song_slug %>"><%= item.smarturl %></a>
-                </h4>
+                <h4><a href="<%= item.smarturl %>" target="_blank" data-slug="<%= item.song_slug %>">
+                    Add this <%= item.type %> to your collection
+                </a></h4>
 
                 <p>We're using <a href="https://manage.smarturl.it/" target="_blank">smartURL</a> to make it easier to listen to songs and albums using the service of your choice. When you select
                 the link above, you will be redirected to a page where you can choose Spotify, Apple Music or your preferred music service.</p>
