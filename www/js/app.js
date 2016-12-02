@@ -193,6 +193,8 @@ const bindClickEvents = function() {
 }
 
 const getNewSlides = function() {
+    const carouselCells = document.querySelectorAll('.carousel-cell');
+
     const createItemHTML = function(addItem) {
         var addItemSlug = addItem.getAttribute('data-slug');
         var item = SONGS[addItemSlug];
@@ -207,7 +209,6 @@ const getNewSlides = function() {
     }
     
     const listName = document.querySelector('.list-title h2').textContent;
-    const carouselCells = document.querySelectorAll('.carousel-cell');
     const slug = carouselCells[flkty.selectedIndex].getAttribute('data-slug');
     const listItem = [].find.call(songContainers, function(container) {
         return container.getAttribute('data-slug') === slug;
@@ -223,6 +224,8 @@ const getNewSlides = function() {
             flkty.prepend(itemHTML);
             flkty.remove(carouselCells[carouselCells.length - 1]);
         }
+
+        trackViewedSlide();
     } else if (flkty.selectedIndex === carouselCells.length - 1) {
         var addItem = songContainers[listIndex + 1];
 
@@ -234,7 +237,14 @@ const getNewSlides = function() {
                 flkty.remove(document.querySelectorAll('.carousel-cell')[0]);
             }
         }
+
+        trackViewedSlide();
     }
+}
+
+const trackViewedSlide = function() {
+    const carouselCells = document.querySelectorAll('.carousel-cell');
+    ANALYTICS.trackEvent('slide-viewed', carouselCells[flkty.selectedIndex].getAttribute('data-slug'));
 }
 
 const updateSlider = function() {
@@ -284,10 +294,10 @@ const onSongClick = function() {
 
     document.body.style.overflow = 'hidden';
 
-    flkty.resize();
     flkty.select([].indexOf.call(songContainers, this), false, true);
     handleEmbeds();
     ANALYTICS.trackEvent('item-selected', this.getAttribute('data-slug'));
+    trackViewedSlide();
 }
 
 const onFavoriteButtonClick = function() {
