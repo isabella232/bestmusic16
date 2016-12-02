@@ -4,19 +4,21 @@
     <div class="best-lists">
         <!-- <h2>{{ COPY.content.index_best_title }}</h2> -->
         <!-- <p class="intro-text">{{ COPY.content.index_best_sub }}</p> -->
-        {% for list in COPY.best_lists %}
-            <a href="{{ S3_BASE_URL }}/list/{{ list.slug }}">
+
+
                 <div class="list bestlist">
-                    <div class="list-artwork">
-                        <img src="{{ S3_BASE_URL }}/assets/{{ list.art }}" />
-                    </div>
-                    <div class="list-desc">
-                        <h4>{{ list.list_name }}<span class="arrow-more"></span></h4>
-                        <!-- <p class="list-desc">{{ list.description }}<span class="arrow-more"></span></p> -->
-                    </div>
+
+                    {% for list in COPY.best_lists %}
+                    <a href="{{ S3_BASE_URL }}/list/{{ list.slug }}">
+                        <div class="bestlist-item">
+                            <img src="{{ S3_BASE_URL }}/assets/{{ list.art }}" />
+                            <h4>{{ list.list_name }}</h4>
+                        </div>
+                    </a>
+                    {% endfor %}
+
                 </div>
-            </a>
-        {% endfor %}
+
     </div>
 </div>
 
