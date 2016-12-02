@@ -49,7 +49,14 @@ def update():
                     song_obj['sort'] = song['sort']
                     song_obj['artist'] = song['artist']
                     song_obj['title'] = song['title']
-                    song_obj['song_slug'] = song['song_slug']
+
+                    if song['song_slug'] == 'big-thief-masterpiece' and song['type'] == 'album':
+                        song_obj['song_slug'] = 'big-thief-masterpiece-album'
+                    elif song['song_slug'] == 'big-thief-masterpiece' and song['type'] == 'song':
+                        song_obj['song_slug'] = 'big-thief-masterpiece-song'
+                    else:
+                        song_obj['song_slug'] = song['song_slug']
+
                     song_obj['description'] = song['description']
                     song_obj['art'] = song['art']
                     song_obj['author'] = song['author']
@@ -62,7 +69,7 @@ def update():
                     song_obj['embed'] = song['embed'].replace('watch?v=', 'embed/')
                     song_obj['embed_type'] = song['embed_type']
                     song_obj['embed_caption'] = song['embed_caption']
-                    all_songs[song['song_slug']] = song_obj
+                    all_songs[song_obj['song_slug']] = song_obj
 
         output = json.dumps(all_songs)
         f.write(output)

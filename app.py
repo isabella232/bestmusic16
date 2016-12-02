@@ -78,6 +78,7 @@ def list(slug):
     except:
         context['ranked'] = False
 
+
     return make_response(render_template('list.html', **context))
 
 @app.route('/favorites/')

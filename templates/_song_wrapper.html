@@ -1,4 +1,10 @@
-<div class="song-wrapper" data-slug="{{ song.song_slug }}">
+{% if song.song_slug == 'big-thief-masterpiece' %}
+    {% set song_slug = song.song_slug + '-' + song.type %}
+{% else %}
+    {% set song_slug = song.song_slug %}
+{% endif %}
+
+<div class="song-wrapper" data-slug="{{ song_slug }}">
     <div class="song-art">
         <a><img class="art coverart" data-normal="http://media.npr.org/music/best-music-2016/{{ song.art.split('.')[0] }}-s200-c85.{{ song.art.split('.')[1] }}"></a>
     </div>
