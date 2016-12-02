@@ -45,15 +45,19 @@
                 </div>
                 <% } %>
                 <p class="desc"><%= item.description %></p>
-                <% if (item.author_twitter) { %>
-                    <a href="https://twitter.com/<%= item.author_twitter %>">
-                <% } %>
+
                 <p class="author">
+                    <% if (item.author_twitter) { %>
+                        <a href="https://twitter.com/<%= item.author_twitter %>">
+                    <% } %>
                     <%= item.author %>
+
+                    <% if (item.author_twitter) { %>
+                        </a>
+                    <% } %>
+                    
                     <span class="affiliation"><%= item.affiliation %></span></p>
-                <% if (item.author_twitter) { %>
-                    </a>
-                <% } %>
+
 
                 <% if (item.filed_under) { %>
                     <p class="filed"><b>Filed under:</b> <%= item.filed_under %></p>
