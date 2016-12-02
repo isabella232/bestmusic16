@@ -316,12 +316,14 @@ const onFavoriteButtonClick = function() {
         this.innerHTML = '';
         this.append(span);
         this.append(' Favorite');
+        ANALYTICS.trackEvent('item-unfavorited', slug);
     } else {
         favorites.push(slug);
         span.classList.add('filled');
         this.innerHTML = '';
         this.append(span);
         this.append(' Unfavorite');
+        ANALYTICS.trackEvent('item-favorited', slug);
     }
 
     if (favorites.length > 0) {
@@ -332,8 +334,6 @@ const onFavoriteButtonClick = function() {
 
     const storageItem = JSON.stringify(favorites);
     localStorage.setItem('favorites', storageItem);
-
-    ANALYTICS.trackEvent('item-favorited', slug);
 }
 
 const onSmartURLClick = function() {
