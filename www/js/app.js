@@ -182,8 +182,8 @@ const bindClickEvents = function() {
             const span = el.querySelector('span');
             span.classList.add('filled');
             el.innerHTML = '';
-            el.append(span);
-            el.append(' Unfavorite');
+            el.appendChild(span);
+            el.appendChild(document.createTextNode(' Unfavorite'));
         }
 
         favoriteButtons[i].addEventListener('click', onFavoriteButtonClick);
@@ -323,15 +323,15 @@ const onFavoriteButtonClick = function() {
         favorites.splice(favoriteIndex, 1);
         span.classList.remove('filled');
         this.innerHTML = '';
-        this.append(span);
-        this.append(' Favorite');
+        this.appendChild(span);
+        this.appendChild(document.createTextNode(' Favorite'));
         ANALYTICS.trackEvent('item-unfavorited', slug);
     } else {
         favorites.push(slug);
         span.classList.add('filled');
         this.innerHTML = '';
-        this.append(span);
-        this.append(' Unfavorite');
+        this.appendChild(span);
+        this.appendChild(document.createTextNode(' Unfavorite'));
         ANALYTICS.trackEvent('item-favorited', slug);
     }
 
@@ -403,7 +403,7 @@ const layoutFavorites = function(container) {
            'types': songTypes.length > 1 ? 'both' : songTypes[0]
         }), 'text/html');
         const songHTML = songDOM.querySelector('.list-container');
-        container.querySelector('.favorites').append(songHTML);
+        container.querySelector('.favorites').appendChild(songHTML);
     } else {
         container.querySelector('.no-content').style.display = 'block';
     }
