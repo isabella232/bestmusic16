@@ -2,7 +2,7 @@
 
 {% block meta %}
 <title>{{ list_name }}</title>
-<meta name="description" content="{{ list_description }}">
+<meta name="description" content="{{ social_description }}">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -16,7 +16,7 @@
 <meta property="og:title" content="{{ list_name }}" />
 <meta property="og:url" content="{{ S3_BASE_URL }}/list/{{ slug.replace('_', '-') }}" />
 <meta property="og:type" content="article" />
-<meta property="og:description" content="{{ list_description }}" />
+<meta property="og:description" content="{{ social_description }}" />
 <meta property="og:image" content="{{ S3_BASE_URL}}/assets/{{ art }}" />
 <meta property="og:site_name" content="NPR.org" />
 <meta property="fb:app_id" content="{{ COPY.share.facebook_app_id }}" />

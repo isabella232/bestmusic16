@@ -64,6 +64,7 @@ def list(slug):
             context['list_description'] = row['description']
             context['playlist'] = row['spotify']
             context['art'] = row['art']
+            context['social_description'] = row['social_description']
 
     for row in context['COPY']['deeper_lists']:
         if row['slug'] == slug:
@@ -71,6 +72,7 @@ def list(slug):
             context['list_description'] = row['description']
             context['playlist'] = row['spotify']
             context['art'] = row['art']
+            context['social_description'] = row['social_description']
 
     try:
         test_float = float(context['COPY'][underscores][0]['sort'])
