@@ -296,6 +296,7 @@ const onSongClick = function() {
     document.body.style.overflow = 'hidden';
     document.querySelector('#barba-wrapper').style.overflow = 'hidden';
 
+    flkty.resize();
     flkty.select([].indexOf.call(songContainers, this), false, true);
     handleEmbeds();
     ANALYTICS.trackEvent('item-selected', this.getAttribute('data-slug'));
