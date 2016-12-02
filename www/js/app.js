@@ -70,7 +70,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         carousel = container.querySelector('.main-carousel');
         modalContent = container.querySelector('.modal-content');
         closeModalButton = container.querySelector('.window-close');
-        
+
         sliderItemTemplate = template(container.querySelector('#slider-item').innerHTML);
 
         flkty = new Flickity(carousel, {
@@ -89,7 +89,7 @@ const attachEvents = function(currentStatus, prevStatus, container) {
         }
 
         if (spotifyPlaylist) {
-            spotifyPlaylist.addEventListener('click', onSpotifyPlaylistClick);        
+            spotifyPlaylist.addEventListener('click', onSpotifyPlaylistClick);
         }
         closeModalButton.addEventListener('click', onCloseModalButtonClick);
         modalOverlay.addEventListener('click', onModalOverlayClick);
@@ -98,9 +98,9 @@ const attachEvents = function(currentStatus, prevStatus, container) {
     }
 
     // track the pageview if this is not the initial page load
-    
+
     if (Object.keys(prevStatus).length > 0) {
-        ANALYTICS.trackPageview(currentStatus.url);        
+        ANALYTICS.trackPageview(currentStatus.url);
     }
 }
 
@@ -114,13 +114,14 @@ const checkForPermalink = function() {
 
     if (slug) {
         const songContainer = [].find.call(songContainers, function(container) {
-            return container.getAttribute('data-slug') === slug; 
+            return container.getAttribute('data-slug') === slug;
         })
         createSliderItems(songContainer);
 
         modal.style.display = 'block';
         setTimeout( function() { modalContent.classList.add('modal-show') }, 0);
         document.body.style.overflow = 'hidden';
+        document.querySelector('#barba-wrapper').style.overflow = 'hidden';
         flkty.resize();
         flkty.select(1, false, true);
 
@@ -135,7 +136,7 @@ const createSliderItems = function(selectedItem) {
     const i = [].indexOf.call(songContainers, selectedItem);
     const items = [songContainers[i - 1], selectedItem, songContainers[i + 1]];
     const sliderItems = [];
-    
+
     for (var j = 0; j < items.length; j++) {
         if (items[j]) {
             const slug = items[j].getAttribute('data-slug');
@@ -207,15 +208,15 @@ const getNewSlides = function() {
         const itemHTML = itemDOM.querySelector('.carousel-cell');
         return itemHTML;
     }
-    
+
     const listName = document.querySelector('.list-title h2').textContent;
     const slug = carouselCells[flkty.selectedIndex].getAttribute('data-slug');
     const listItem = [].find.call(songContainers, function(container) {
         return container.getAttribute('data-slug') === slug;
     })
     const listIndex = [].indexOf.call(songContainers, listItem);
-    
-    if (flkty.selectedIndex === 0 && carouselCells.length <= 3) {        
+
+    if (flkty.selectedIndex === 0 && carouselCells.length <= 3) {
         var addItem = songContainers[listIndex - 1];
 
         if (addItem) {
@@ -251,7 +252,7 @@ const updateSlider = function() {
     handleEmbeds();
 
     if (modalOpened) {
-        getNewSlides();    
+        getNewSlides();
     }
     bindClickEvents();
 
@@ -293,6 +294,7 @@ const onSongClick = function() {
     setTimeout( function() { modalContent.classList.add('modal-show') }, 0);
 
     document.body.style.overflow = 'hidden';
+    document.querySelector('#barba-wrapper').style.overflow = 'hidden';
 
     flkty.select([].indexOf.call(songContainers, this), false, true);
     handleEmbeds();
@@ -358,6 +360,7 @@ const closeModal = function() {
 const hideModal = function() {
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
+    document.querySelector('#barba-wrapper').style.overflow = 'auto';
 
     const cells = document.querySelectorAll('.carousel-cell');
     flkty.remove(cells);
