@@ -119,7 +119,11 @@ const checkForPermalink = function() {
         createSliderItems(songContainer);
 
         modal.style.display = 'block';
-        setTimeout( function() { modalContent.classList.add('modal-show') }, 0);
+        closeModalButton.style.display = 'block';
+        setTimeout( function() { 
+            modalContent.classList.add('modal-show');
+            modalOverlay.classList.add('modal-show');
+        }, 0);
         document.body.style.overflow = 'hidden';
         document.querySelector('#barba-wrapper').style.overflow = 'hidden';
         flkty.resize();
@@ -291,10 +295,14 @@ const onSongClick = function() {
     createSliderItems(this);
 
     modal.style.display = 'block';
-    setTimeout( function() { modalContent.classList.add('modal-show') }, 0);
+    setTimeout( function() { 
+        modalContent.classList.add('modal-show');
+        modalOverlay.classList.add('modal-show');
+    }, 0);
 
     document.body.style.overflow = 'hidden';
     document.querySelector('#barba-wrapper').style.overflow = 'hidden';
+    closeModalButton.style.display = 'block';
 
     flkty.resize();
     flkty.select([].indexOf.call(songContainers, this), false, true);
@@ -356,6 +364,8 @@ const onCloseModalButtonClick = function() {
 const closeModal = function() {
     modalContent.addEventListener('transitionend', hideModal);
     modalContent.classList.remove('modal-show');
+    modalOverlay.classList.remove('modal-show');
+    closeModalButton.style.display = 'none';
 }
 
 const hideModal = function() {

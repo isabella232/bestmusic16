@@ -814,9 +814,17 @@ header {
     .modal-overlay {
         width: 100%;
         height: 100%;
-        background-color: black;
-        opacity: 0.7;
+        background-color: transparent;
+        opacity: 0;
         z-index: 1;
+
+        @media @screen-small-above {
+            background-color: black;
+        }
+
+        &.modal-show {
+            opacity: 0.7;
+        }
     }
 
     .modal-content {
@@ -829,14 +837,14 @@ header {
 		z-index: 2;
         transition: all 0.25s;
         -webkit-transform: translate3d(0, 0, 0);
-        transform: translate(0%, -100%) scale(0.7);
+        transform: translate(0%, -100%);
         // -webkit-backface-visibility: hidden;
         -webkit-perspective: 1000;
 
         @media @screen-small-above {
             width: 75%;
             height: 95%;
-            transform: translate(-50%, -50%) scale(0.7);
+            transform: translate(-50%, -50%);
             top: 50%;
     		left: 50%;
     		max-height: 910px;
@@ -845,9 +853,9 @@ header {
 
         &.modal-show {
             opacity: 1;
-            transform: translate(0%, -100%) scale(1);
+            transform: translate(0%, -100%);
             @media @screen-small-above {
-                transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%);
             }
         }
 
