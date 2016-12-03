@@ -50,13 +50,13 @@
                     <% if (item.author_twitter) { %>
                         <a href="https://twitter.com/<%= item.author_twitter %>">
                     <% } %>
-                    <%= item.author %>
+                    <%= item.author %><% if (item.affiliation) { %>,<% } %>
 
                     <% if (item.author_twitter) { %>
                         </a>
                     <% } %>
 
-                    <span class="affiliation"><%= item.affiliation %></span></p>
+                     <span class="affiliation"><%= item.affiliation %></span></p>
 
 
                 <% if (item.filed_under) { %>
