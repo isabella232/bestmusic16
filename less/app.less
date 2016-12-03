@@ -224,6 +224,9 @@ header {
     border-bottom: @music-blue-lighter 3px solid;
 
 	.header-wrapper {
+
+        a {outline: none;}
+
 		img {
 	        max-width: 150px;
 	        width: 100%;
@@ -323,9 +326,14 @@ header {
     max-width: 960px;
     margin: 0 auto;
 
+
     .best-lists {
-        margin-top: 25px;
+        margin-top: 2.5rem;
         .clearfix();
+
+        @media @screen-small {
+            margin-top: 12px;
+        }
     }
 
     .list {
@@ -335,12 +343,32 @@ header {
         // padding: 0 0 30px;
         // border-bottom: 2.25px solid @music-blue-lighter;
 
+
 		&.bestlist {
-            margin-top: 50px;
             display: flex;
             margin-left: -3rem;
 
+            a {
+                outline: none;
+                display: flex;
 
+                .no-touchevents & {
+                    &:hover {
+                        .bestlist-item {
+                            h4 {
+                                color: @music-red;
+                                text-shadow: none;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            @media @screen-small {
+                //flex-wrap: wrap;
+                margin-left: -10px;
+            }
             // justify-content: space-between;
 
             // .no-touchevents & {
@@ -349,14 +377,35 @@ header {
             //     }
             // }
 
+
+
             .bestlist-item {
                 flex: 1;
                 margin-left: 3rem;
-                text-align: center;
+                background-color: @bg-light-purple;
+                box-shadow: 3px 2px 7px #222;
 
                 img {
                     width: 100%;
                 }
+
+                h4 {
+                    text-transform: uppercase;
+                    color: #fff;
+                    text-shadow: 2px 2px 2px #111;
+                    padding: .5rem 1rem 1.5rem 1rem;
+                    line-height: 1.5;
+                    font-size: 1.5rem;
+
+                    @media @screen-small {
+                        font-size: 1.1rem;
+                    }
+                }
+
+                @media @screen-small {
+                    margin-left: 10px;
+                }
+
             }
 
             // .index-song-list {
@@ -377,19 +426,7 @@ header {
             //     // }
             // }
 
-            @media @screen-small {
-                flex-wrap: wrap;
 
-                // .list-artwork {
-                //     flex-basis: 100%;
-                //     float: left;
-                // }
-                //
-                // .list-desc {
-                //     flex-basis: 100%;
-                //     float: left;
-                // }
-            }
 		}
 
         // &:last-child {
@@ -442,19 +479,20 @@ header {
     }
 
     .deeper-lists {
-		margin-bottom: 3rem;
 		margin-top: 2rem;
         padding-bottom: 1rem;
 
         h2 {
-            font-size: 22px;
-            margin-bottom: 0;
+            font-size: 16px;
+            margin-bottom: 5px;
 
-            @media @screen-medium-above {
-                font-size: 1.7rem;
-            }
-
+            @media @screen-small-above {
+        		font-size: 1.2rem;
+                margin-bottom: .3rem;
+        	}
         }
+
+
 
 		.dlist {
 			margin-top: 18px;
@@ -479,10 +517,8 @@ header {
 		}
 
 		span.arrow-more::before {
-			font-size: 16px;
-			margin-left: 4px;
-			position: absolute;
-            margin-top: -2px;
+			font-size: 1rem;
+			margin-left: .2rem;
 		}
 
 		a { color: @white; }
@@ -498,6 +534,8 @@ header {
 			margin-top: 0;
 			margin-bottom: 16px;
 			max-width: 900px;
+            line-height: 1.5;
+            font-size: .9rem;
 
 			&.intro-text {
 				margin-bottom: 1.5rem;
@@ -507,17 +545,14 @@ header {
 		}
 
 		@media @screen-small {
-			margin-bottom: 2rem;
+
 			h4 {
-				font-size: 16px;
+				font-size: 14px;
 				margin-bottom: 5px;
 			}
 
 			p {
 				font-size: 11px;
-				margin-top: 0;
-				margin-bottom: 16px;
-				line-height: 22px;
 			}
 		}
     }
@@ -1446,7 +1481,7 @@ header {
 }
 
 footer {
-    margin: 20px auto 20px auto;
+    margin: 10px auto 20px auto;
 
     h5 {
         color: @para-txt-dark;

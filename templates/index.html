@@ -5,33 +5,32 @@
         <!-- <h2>{{ COPY.content.index_best_title }}</h2> -->
         <!-- <p class="intro-text">{{ COPY.content.index_best_sub }}</p> -->
 
+        <div class="list bestlist">
 
-                <div class="list bestlist">
-
-                    {% for list in COPY.best_lists %}
-                    <a href="{{ S3_BASE_URL }}/list/{{ list.slug }}">
-                        <div class="bestlist-item">
-                            <img src="{{ S3_BASE_URL }}/assets/{{ list.art }}" />
-                            <h4>{{ list.list_name }}</h4>
-                        </div>
-                    </a>
-                    {% endfor %}
-
+            {% for list in COPY.best_lists %}
+            <a href="{{ S3_BASE_URL }}/list/{{ list.slug }}">
+                <div class="bestlist-item">
+                    <img src="{{ S3_BASE_URL }}/assets/{{ list.art }}" />
+                    <h4>{{ list.list_name }}</h4>
                 </div>
+            </a>
+            {% endfor %}
+
+        </div>
 
     </div>
 </div>
 
 <div class="index-lists container">
     <div class="deeper-lists">
-        <h2>{{ COPY.content.index_deeper_title }}</h2>
+        <h2>{{ COPY.content.index_deeper_title }} </h2>
         <p class="intro-text">{{ COPY.content.index_deeper_sub }}</p>
         <div class="lists">
             {% for list in COPY.deeper_lists %}
             <div class="dlist">
                 <a href="{{ S3_BASE_URL }}/list/{{ list.slug }}">
-                    <h4>{{ list.list_name }}</h4>
-                    <p class="list-desc">{{ list.description }}<span class="arrow-more"></span></p>
+                    <h4>{{ list.list_name }} <span class="arrow-more"></span></h4>
+                    <p class="list-desc">{{ list.description }}</p>
                 </a>
             </div>
             {% endfor %}
