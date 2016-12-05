@@ -22,7 +22,7 @@
 <meta property="fb:app_id" content="{{ COPY.share.facebook_app_id }}" />
 
 {# Google News #}
-<meta name="thumbnail" content="{{ COPY.share.google_news_image_url }}" />
+<meta name="thumbnail" content="{{ S3_BASE_URL}}/assets/{{ art }}" />
 {% endblock %}
 
 {% block content %}
