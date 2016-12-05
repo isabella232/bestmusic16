@@ -1015,6 +1015,17 @@ header {
                         line-height: 1.4rem;
                     }
 
+                    a {
+                        color: #fff;
+                        font-weight: bold;
+
+                        .no-touchevents & {
+                            &:hover {
+                                color: @music-red;
+                            }
+                        }
+                    }
+
                 }
 
                 @media @screen-small-above {
