@@ -3,6 +3,7 @@ import CrossStorageClient from './lib/cross-storage-client.js';
 
 var _gaq = _gaq || [];
 window._sf_async_config = {};
+window._sf_async_config.sections = "Music";
 var _comscore = _comscore || [];
 
 window.ANALYTICS = (function () {
