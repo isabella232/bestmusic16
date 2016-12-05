@@ -96,7 +96,7 @@ def favorites():
 
 @app.route('/share/')
 @oauth.oauth_required
-def share():
+def _share():
     context = make_context(asset_depth=1)
 
     context['lists'] = {}
