@@ -120,7 +120,7 @@ const checkForPermalink = function() {
 
         modal.style.display = 'block';
         closeModalButton.style.display = 'block';
-        setTimeout( function() { 
+        setTimeout( function() {
             modalContent.classList.add('modal-show');
             modalOverlay.classList.add('modal-show');
         }, 0);
@@ -295,7 +295,7 @@ const onSongClick = function() {
     createSliderItems(this);
 
     modal.style.display = 'block';
-    setTimeout( function() { 
+    setTimeout( function() {
         modalContent.classList.add('modal-show');
         modalOverlay.classList.add('modal-show');
     }, 0);
