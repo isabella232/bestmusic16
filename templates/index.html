@@ -2,11 +2,7 @@
 {% block content %}
 <div class="index-lists container">
     <div class="best-lists">
-        <!-- <h2>{{ COPY.content.index_best_title }}</h2> -->
-        <!-- <p class="intro-text">{{ COPY.content.index_best_sub }}</p> -->
-
         <div class="list bestlist">
-
             {% for list in COPY.best_lists %}
             <a href="{{ S3_BASE_URL }}/list/{{ list.slug }}/">
                 <div class="bestlist-item">
@@ -15,9 +11,7 @@
                 </div>
             </a>
             {% endfor %}
-
         </div>
-
     </div>
 </div>
 
@@ -45,7 +39,6 @@
         <p>Illustration: Chelsea Beck</p>
         <p>Design and Development: David Eads, Tyler Fisher, Wes Lindamood, and Brittany Mayes</p>
         <p>Published on: December 5, 2016</p>
-
     </div>
 </footer>
 {% endblock content %}
