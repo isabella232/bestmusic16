@@ -319,11 +319,11 @@ window.ANALYTICS = (function () {
 
     var trackPageview = function(url) {
         ga('send', 'pageview', {
-            location: url
+            location: url ? url : window.location.href
         });
 
         if (window.pSUPERFLY) {
-            pSUPERFLY.virtualPage(window.location.path, document.title);
+            pSUPERFLY.virtualPage(window.location.pathname, document.title);
         }
     }
 
