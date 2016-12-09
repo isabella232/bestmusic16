@@ -23,8 +23,8 @@
             {% for list in COPY.deeper_lists %}
             <div class="dlist">
                 <a href="{{ S3_BASE_URL }}/list/{{ list.slug }}/">
-                    <h4>{{ list.list_name }} <span class="arrow-more"></span></h4>
-                    <p class="list-desc">{{ list.description }}</p>
+                    <h4>{{ list.list_name|smarty }} <span class="arrow-more"></span></h4>
+                    <p class="list-desc">{{ list.social_description }}</p>
                 </a>
             </div>
             {% endfor %}
