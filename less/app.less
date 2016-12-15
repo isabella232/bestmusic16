@@ -1243,6 +1243,35 @@ header {
     }
 }
 
+/// the readers poll does not contain authors or descriptions, so let's treat the modal and embed differently.
+.readers-poll.modal {
+    .modal-content {
+        .modal-favorites {
+            display: none;
+        }
+
+        .scroll-container {
+            .desc, .author {
+                display: none;
+            }
+        }
+
+        @media @screen-small-above {
+            max-height: 700px;
+            max-width: 700px;
+
+            .scroll-container {
+                .embed {
+                    max-width: 400px;
+                    float: none;
+                    margin: .5rem auto;
+                }
+            }
+        }
+
+    }
+}
+
 //Favorites
 .favorites {
     .list-container {
