@@ -91,6 +91,7 @@ def favorites():
     """
     context = make_context(asset_depth=1)
     context['namespace'] = 'favorites'
+    context['slug'] = 'favorites'
 
     return make_response(render_template('favorites.html', **context))
 
