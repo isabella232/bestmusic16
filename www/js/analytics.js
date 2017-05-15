@@ -62,7 +62,7 @@ window.ANALYTICS = (function () {
             'dimension24': screenType // screen type
         };
 
-        var storage = new CrossStorageClient('http://www.npr.org/visuals/cross-storage-iframe.html');
+        var storage = new CrossStorageClient(window.location.protocol + '//www.npr.org/visuals/cross-storage-iframe.html');
         storage.onConnect().then(function() {
             return storage.get('firstVisitDate', 'hasListenedToAudio', 'isLoggedIn', 'isRegistered', 'originalLandingPage', 'originalReferrer', 'regDate');
         }).then(function(res) {
@@ -144,10 +144,7 @@ window.ANALYTICS = (function () {
     var setupGoogle = function() {
         embedGa();
         setupVizAnalytics();
-
-        if (window.location.protocol !== 'https:') {
-            setupDotOrgAnalytics();
-        }
+        setupDotOrgAnalytics();
      }
 
 
